@@ -4,3 +4,22 @@ project --topLevelPackage com.herokuapp.dealermenu --projectName dealermenu --ja
 // Spring Roo 1.2.3.RELEASE [rev 7fd62b6] log opened at 2014-01-26 19:22:59
 web mvc setup
 jpa setup --provider HIBERNATE --database POSTGRES
+// Spring Roo 1.2.3.RELEASE [rev 7fd62b6] log closed at 2014-01-27 00:30:59
+// Spring Roo 1.2.3.RELEASE [rev 7fd62b6] log opened at 2014-01-27 22:34:02
+security setup
+// [failed] entity jpa --class net.dealermenu.persistence.model.Dealerinformation
+// [failed] entity jpa --class Dealerinformation
+// Spring Roo 1.2.3.RELEASE [rev 7fd62b6] log closed at 2014-01-27 22:55:17
+// Spring Roo 1.2.3.RELEASE [rev 7fd62b6] log opened at 2014-01-27 22:56:27
+entity jpa --class Dealerinformation
+entity jpa --class Dealerinformation
+// Spring Roo 1.2.3.RELEASE [rev 7fd62b6] log closed at 2014-01-27 23:03:22
+// Spring Roo 1.2.3.RELEASE [rev 7fd62b6] log opened at 2014-01-27 23:06:34
+entity jpa --class Dealerinformation
+// Spring Roo 1.2.3.RELEASE [rev 7fd62b6] log closed at 2014-01-27 23:07:57
+// Spring Roo 1.2.3.RELEASE [rev 7fd62b6] log opened at 2014-01-27 23:37:52
+// [failed] entity jpa --class net.dealermenu.persistence.model.Dealerinformation
+// Spring Roo 1.2.3.RELEASE [rev 7fd62b6] log closed at 2014-01-27 23:38:39
+// Spring Roo 1.2.3.RELEASE [rev 7fd62b6] log opened at 2014-01-27 23:38:48
+entity jpa --class ~.Dealerinformation
+// Spring Roo 1.2.3.RELEASE [rev 7fd62b6] log closed at 2014-01-27 23:44:15

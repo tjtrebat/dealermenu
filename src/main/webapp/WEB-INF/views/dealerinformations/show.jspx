@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    <page:show id="ps_net_dealermenu_domain_Dealerinformation" object="${dealerinformation}" path="/dealerinformations" z="5QoBkSYBTgVBFWEuV7+C6aXrP5I=">
+        <field:display field="dealerName" id="s_net_dealermenu_domain_Dealerinformation_dealerName" object="${dealerinformation}" z="4iMuApTmqmhWrHDjGM0Kut5ajc8="/>
+        <field:display field="status" id="s_net_dealermenu_domain_Dealerinformation_status" object="${dealerinformation}" z="kWgT8z4yetfORznBIy/DnxdNng4="/>
+        <field:display field="mailId" id="s_net_dealermenu_domain_Dealerinformation_mailId" object="${dealerinformation}" z="5PBtatikQ5emvV5TvprBGYD3s80="/>
+        <field:display field="mobile" id="s_net_dealermenu_domain_Dealerinformation_mobile" object="${dealerinformation}" z="io6wlqSgtXBVgry47VdJtLbRo6k="/>
+        <field:display field="loginId" id="s_net_dealermenu_domain_Dealerinformation_loginId" object="${dealerinformation}" z="yh5mWrMEC/NOqzhNyKgchPzE0+c="/>
+        <field:display field="password" id="s_net_dealermenu_domain_Dealerinformation_password" object="${dealerinformation}" z="Nao2/o0XbxsHSoVW81fieXEf6XY="/>
+        <field:display field="userType" id="s_net_dealermenu_domain_Dealerinformation_userType" object="${dealerinformation}" z="R5z0x4iOluzUkIUYPRmwcxqZKpw="/>
+        <field:display field="streetAddress" id="s_net_dealermenu_domain_Dealerinformation_streetAddress" object="${dealerinformation}" z="XKn7zeab6zRifBRwXg91A+SDyoY="/>
+        <field:display field="city" id="s_net_dealermenu_domain_Dealerinformation_city" object="${dealerinformation}" z="Vh45csm/rb/zciqtJn4C+RBUYp4="/>
+        <field:display field="state" id="s_net_dealermenu_domain_Dealerinformation_state" object="${dealerinformation}" z="OzNZvaoQbGAquT6+2vzwK/v/ReU="/>
+        <field:display field="zip" id="s_net_dealermenu_domain_Dealerinformation_zip" object="${dealerinformation}" z="xIf6Me9FRn6608MZHHli49Uscss="/>
+    </page:show>
+</div>

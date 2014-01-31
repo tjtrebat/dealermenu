@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:c="http://java.sun.com/jsp/jstl/core" xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:form="urn:jsptagdir:/WEB-INF/tags/form" xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:spring="http://www.springframework.org/tags" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    <form:create id="fc_net_dealermenu_domain_Template" modelAttribute="template" path="/templates" render="${empty dependencies}" z="VAFT6vKdFj/+YwbxGM9deC1ybu4=">
+        <field:input field="createdBy" id="c_net_dealermenu_domain_Template_createdBy" z="NTYy05qYHNia2X1qmF4RVk/HBVI="/>
+        <field:input field="templateName" id="c_net_dealermenu_domain_Template_templateName" z="l/94AIPfcJrOqY0UkoJ0oJBW4ts="/>
+        <field:input field="type" id="c_net_dealermenu_domain_Template_type" z="28so3EuAvdGbl9ouAXOf04VmpTo="/>
+        <field:select field="dealer" id="c_net_dealermenu_domain_Template_dealer" itemValue="id" items="${dealerinformations}" path="/dealerinformations" z="AQAwq9TMtI4uA3A7NL2tWHF/Z+U="/>
+    </form:create>
+    <form:dependency dependencies="${dependencies}" id="d_net_dealermenu_domain_Template" render="${not empty dependencies}" z="5cODZIiVGuuuAPHv9i8NJqaTxLI="/>
+</div>

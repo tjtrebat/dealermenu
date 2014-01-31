@@ -30,3 +30,4 @@ entity jpa --class net.dealermenu.persistence.model.Dealerinformation
 entity jpa --class net.dealermenu.persistence.model.ProductCategory
 entity jpa --class net.dealermenu.persistence.model.Template
 entity jpa --class net.dealermenu.persistence.model.Product
+web mvc all --package ~.web

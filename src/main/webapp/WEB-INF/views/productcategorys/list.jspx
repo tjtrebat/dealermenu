@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" xmlns:table="urn:jsptagdir:/WEB-INF/tags/form/fields" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    <page:list id="pl_net_dealermenu_domain_ProductCategory" items="${productcategorys}" z="uMI9xAiNsp+slaSIM/WqlZZCl1s=">
+        <table:table data="${productcategorys}" id="l_net_dealermenu_domain_ProductCategory" path="/productcategorys" z="wA/gcuaRKN34lVDmBZUx5E6meyQ=">
+            <table:column id="c_net_dealermenu_domain_ProductCategory_productCategory" property="productCategory" z="RzcXyratQKOU27Xd9ksc884JAPY="/>
+            <table:column id="c_net_dealermenu_domain_ProductCategory_dealer" property="dealer" z="HPLC0svQnNDJuUBo2SEZKU/2Srw="/>
+        </table:table>
+    </page:list>
+</div>

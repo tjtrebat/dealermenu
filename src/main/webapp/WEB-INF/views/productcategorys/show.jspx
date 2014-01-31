@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    <page:show id="ps_net_dealermenu_domain_ProductCategory" object="${productcategory}" path="/productcategorys" z="pepzKJwsDPxpTMo2xkx92kgLobw=">
+        <field:display field="productCategory" id="s_net_dealermenu_domain_ProductCategory_productCategory" object="${productcategory}" z="JhhHDMdaAnd6JS7nKZM7X6DCnqs="/>
+        <field:display field="dealer" id="s_net_dealermenu_domain_ProductCategory_dealer" object="${productcategory}" z="6cLttRXaD5Vt7v/kmwpgz0wBEVY="/>
+    </page:show>
+</div>

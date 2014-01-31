@@ -15,6 +15,7 @@
         <field:input field="state" id="c_net_dealermenu_domain_Dealerinformation_state" z="sJyw9ql0Vir6GmUdlZtU7mrS7k8="/>
         <field:input field="zip" id="c_net_dealermenu_domain_Dealerinformation_zip" z="uitx3sXKNQgFkRlfDaiClOSH8y0="/>
         <field:simple field="productCategories" id="c_net_dealermenu_domain_Dealerinformation_productCategories" messageCode="entity_reference_not_managed" messageCodeAttribute="Product Category" z="KbldOQMwezOn1/PIRiYAnRPa//A="/>
+        <field:simple field="templates" id="c_net_dealermenu_domain_Dealerinformation_templates" messageCode="entity_reference_not_managed" messageCodeAttribute="Template" z="LDK5RD+UOnBjGH7irJnDbOpaBUA="/>
     </form:create>
     <form:dependency dependencies="${dependencies}" id="d_net_dealermenu_domain_Dealerinformation" render="${not empty dependencies}" z="YBODvyBJMyccws/6JVkiVslAF7Y="/>
 </div>

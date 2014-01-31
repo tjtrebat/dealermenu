@@ -6,7 +6,7 @@ package net.dealermenu.domain;
 import java.util.List;
 import net.dealermenu.domain.Dealerinformation;
 import net.dealermenu.domain.ProductCategory;
-import org.hibernate.sql.Template;
+import net.dealermenu.domain.Template;
 
 privileged aspect Dealerinformation_Roo_JavaBean {
     

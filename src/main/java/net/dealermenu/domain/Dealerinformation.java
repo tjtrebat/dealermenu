@@ -8,7 +8,6 @@ import javax.persistence.OneToMany;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
-import org.hibernate.sql.Template;
 import org.springframework.roo.addon.javabean.RooJavaBean;
 import org.springframework.roo.addon.jpa.activerecord.RooJpaActiveRecord;
 import org.springframework.roo.addon.tostring.RooToString;
@@ -18,7 +17,7 @@ import org.springframework.roo.addon.tostring.RooToString;
 @RooJpaActiveRecord
 @NamedQuery(name = "Dealerinformation.getDealerByLoginId", query = "SELECT dealerInformation FROM Dealerinformation dealerInformation WHERE dealerInformation.loginId=:loginId")
 public class Dealerinformation {
-	
+
 	@Column(name = "vDealerName")
 	@Size(min = 3, max = 50, message = "Your full name must be between 3 and 50 characters long.")
 	private String dealerName;

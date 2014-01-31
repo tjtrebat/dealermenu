@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import net.dealermenu.domain.Dealerinformation;
 import net.dealermenu.domain.ProductCategory;
+import net.dealermenu.domain.Template;
 import net.dealermenu.web.DealerinformationController;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -88,6 +89,7 @@ privileged aspect DealerinformationController_Roo_Controller {
     void DealerinformationController.populateEditForm(Model uiModel, Dealerinformation dealerinformation) {
         uiModel.addAttribute("dealerinformation", dealerinformation);
         uiModel.addAttribute("productcategorys", ProductCategory.findAllProductCategorys());
+        uiModel.addAttribute("templates", Template.findAllTemplates());
     }
     
     String DealerinformationController.encodeUrlPathSegment(String pathSegment, HttpServletRequest httpServletRequest) {

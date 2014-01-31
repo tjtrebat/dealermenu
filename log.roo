@@ -25,3 +25,8 @@ entity jpa --class ~.Dealerinformation
 // Spring Roo 1.2.3.RELEASE [rev 7fd62b6] log closed at 2014-01-27 23:44:15
 // Spring Roo 1.2.4.RELEASE [rev 75337cf] log opened at 2014-01-28 03:58:38
 entity jpa --class net.dealermenu.persistence.model.Dealerinformation
+// Spring Roo 1.2.4.RELEASE [rev 75337cf] log closed at 2014-01-28 04:03:58
+// Spring Roo 1.2.4.RELEASE [rev 75337cf] log opened at 2014-01-30 23:44:32
+entity jpa --class net.dealermenu.persistence.model.ProductCategory
+entity jpa --class net.dealermenu.persistence.model.Template
+entity jpa --class net.dealermenu.persistence.model.Product

@@ -1,6 +1,7 @@
 bin
-.settings
 target
+log.roo
+.settings
 .classpath
 .project
 .springBeans

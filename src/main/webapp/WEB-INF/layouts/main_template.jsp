@@ -33,7 +33,7 @@
 			</div>
 			<div class="grid_2 omega">
 				<p id="greeting">
-					<security:authorize url="/**">
+					<security:authorize access="isAuthenticated()">
 						<span id="greeting">Hello <security:authentication
 								property="principal.username" />!
 						</span>

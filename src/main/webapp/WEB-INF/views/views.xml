@@ -21,8 +21,8 @@
 			value="/WEB-INF/views/uncaughtException.jspx" />
 	</definition>
 
-	<definition extends="public" name="login">
-		<put-attribute name="body" value="/WEB-INF/views/login.jspx" />
+	<definition extends="template" name="login">
+		<put-attribute name="body" value="/WEB-INF/views/dealermenu/login.jspx" />
 	</definition>
 	
 </tiles-definitions>

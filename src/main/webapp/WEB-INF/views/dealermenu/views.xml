@@ -1,0 +1,111 @@
+<!DOCTYPE tiles-definitions PUBLIC
+	"-//Apache Software Foundation//DTD Tiles Configuration 2.1//EN"
+	"http://tiles.apache.org/dtds/tiles-config_2_1.dtd">
+
+<tiles-definitions>
+
+	<definition name="home" extends="template">
+		<put-attribute name="content" value="/WEB-INF/views/dealermenu/home.jsp" />
+	</definition>
+
+	<definition name="login" extends="template">
+		<put-attribute name="content" value="/WEB-INF/views/dealermenu/login.jsp" />
+	</definition>
+
+	<definition name="logout" extends="template">
+		<put-attribute name="content" value="/WEB-INF/views/dealermenu/logout.jsp" />
+	</definition>
+
+	<!-- Admin Content -->
+	<definition name="admin_template" extends="template">
+		<put-attribute name="adminMenu" value="/WEB-INF/views/dealermenu/admin/_menu.jsp" />
+	</definition>
+
+	<definition name="admin/activeDealers" extends="admin_template">
+		<put-attribute name="adminContent"
+			value="/WEB-INF/views/dealermenu/admin/activeDealers.jsp" />
+	</definition>
+
+	<definition name="admin/awaitingDealers" extends="admin_template">
+		<put-attribute name="adminContent"
+			value="/WEB-INF/views/dealermenu/admin/awaitingDealers.jsp" />
+	</definition>
+
+	<definition name="admin/deniedDealers" extends="admin_template">
+		<put-attribute name="adminContent"
+			value="/WEB-INF/views/dealermenu/admin/deniedDealers.jsp" />
+	</definition>
+
+	<definition name="admin/createDealer" extends="admin_template">
+		<put-attribute name="adminContent"
+			value="/WEB-INF/views/dealermenu/admin/createDealer.jsp" />
+	</definition>
+
+	<definition name="admin/dealerInfo" extends="admin_template">
+		<put-attribute name="adminContent"
+			value="/WEB-INF/views/dealermenu/admin/dealerInfo.jsp" />
+	</definition>
+
+	<definition name="admin/approveDealer" extends="admin_template">
+		<put-attribute name="adminContent"
+			value="/WEB-INF/views/dealermenu/admin/approveDealer.jsp" />
+	</definition>
+
+	<!-- Dealer Content -->
+	<definition name="dealer_template" extends="template">
+		<put-attribute name="dealerMenu" value="/WEB-INF/views/dealermenu/dealer/_menu.jsp" />
+	</definition>
+
+	<definition name="dealer/deals" extends="dealer_template">
+		<put-attribute name="dealerContent" value="/WEB-INF/views/dealermenu/dealer/deals.jsp" />
+	</definition>
+
+	<definition name="dealer/defaultSettings" extends="dealer_template">
+		<put-attribute name="subMenu" value="/WEB-INF/views/dealermenu/dealer/_submenu.jsp" />
+		<put-attribute name="dealerContent"
+			value="/WEB-INF/views/dealermenu/dealer/defaultSettings.jsp" />
+	</definition>
+
+	<definition name="dealer/defaultSettings/products" extends="dealer_template">
+		<put-attribute name="subMenu" value="/WEB-INF/views/dealermenu/dealer/_submenu.jsp" />
+		<put-attribute name="dealerContent" value="/WEB-INF/views/dealermenu/dealer/products.jsp" />
+	</definition>
+
+	<definition name="dealer/defaultSettings/packages" extends="dealer_template">
+		<put-attribute name="subMenu" value="/WEB-INF/views/dealermenu/dealer/_submenu.jsp" />
+		<put-attribute name="dealerContent" value="/WEB-INF/views/dealermenu/dealer/packages.jsp" />
+	</definition>
+
+	<definition name="dealer/defaultSettings/fees" extends="dealer_template">
+		<put-attribute name="subMenu" value="/WEB-INF/views/dealermenu/dealer/_submenu.jsp" />
+		<put-attribute name="dealerContent" value="/WEB-INF/views/dealermenu/dealer/fees.jsp" />
+	</definition>
+
+	<definition name="dealer/defaultSettings/taxes" extends="dealer_template">
+		<put-attribute name="subMenu" value="/WEB-INF/views/dealermenu/dealer/_submenu.jsp" />
+		<put-attribute name="dealerContent" value="/WEB-INF/views/dealermenu/dealer/taxes.jsp" />
+	</definition>
+
+	<definition name="dealer/defaultSettings/productCategory"
+		extends="dealer_template">
+		<put-attribute name="subMenu" value="/WEB-INF/views/dealermenu/dealer/_submenu.jsp" />
+		<put-attribute name="dealerContent"
+			value="/WEB-INF/views/dealermenu/dealer/productCategory.jsp" />
+	</definition>
+
+	<definition name="dealer/defaultSettings/provider" extends="dealer_template">
+		<put-attribute name="subMenu" value="/WEB-INF/views/dealermenu/dealer/_submenu.jsp" />
+		<put-attribute name="dealerContent" value="/WEB-INF/views/dealermenu/dealer/provider.jsp" />
+	</definition>
+
+	<definition name="dealer/dealTemplates" extends="dealer_template">
+		<put-attribute name="dealerContent"
+			value="/WEB-INF/views/dealermenu/dealer/dealTemplates.jsp" />
+	</definition>
+
+	<definition name="dealer/activeUsers" extends="dealer_template">
+		<put-attribute name="dealerContent"
+			value="/WEB-INF/views/dealermenu/dealer/activeUsers.jsp" />
+	</definition>
+
+</tiles-definitions>

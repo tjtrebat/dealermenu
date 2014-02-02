@@ -1,0 +1,37 @@
+<!DOCTYPE tiles-definitions PUBLIC
+	"-//Apache Software Foundation//DTD Tiles Configuration 2.1//EN"
+	"http://tiles.apache.org/dtds/tiles-config_2_1.dtd">
+
+<tiles-definitions>
+
+	<definition name="admin/activeDealers" extends="admin_template">
+		<put-attribute name="adminContent"
+			value="/WEB-INF/views/dealermenu/admin/activeDealers.jsp" />
+	</definition>
+
+	<definition name="admin/awaitingDealers" extends="admin_template">
+		<put-attribute name="adminContent"
+			value="/WEB-INF/views/dealermenu/admin/awaitingDealers.jsp" />
+	</definition>
+
+	<definition name="admin/deniedDealers" extends="admin_template">
+		<put-attribute name="adminContent"
+			value="/WEB-INF/views/dealermenu/admin/deniedDealers.jsp" />
+	</definition>
+
+	<definition name="admin/createDealer" extends="admin_template">
+		<put-attribute name="adminContent"
+			value="/WEB-INF/views/dealermenu/admin/createDealer.jsp" />
+	</definition>
+
+	<definition name="admin/dealerInfo" extends="admin_template">
+		<put-attribute name="adminContent"
+			value="/WEB-INF/views/dealermenu/admin/dealerInfo.jsp" />
+	</definition>
+
+	<definition name="admin/approveDealer" extends="admin_template">
+		<put-attribute name="adminContent"
+			value="/WEB-INF/views/dealermenu/admin/approveDealer.jsp" />
+	</definition>
+
+</tiles-definitions>

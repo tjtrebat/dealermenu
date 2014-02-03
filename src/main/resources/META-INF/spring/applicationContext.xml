@@ -91,4 +91,13 @@
 	<bean
 		class="org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor" />
 
+	<aop:config>
+		<aop:aspect ref="daoAspect">
+			<aop:pointcut id="getSingleResult"
+				expression="execution(* net.dealermenu.service.JpaDealerinformationDao.getDealerByLoginId(..))" />
+			<aop:around pointcut-ref="getSingleResult"
+				method="catchEmptyResultDataAccessException" />
+		</aop:aspect>
+	</aop:config>
+
 </beans>

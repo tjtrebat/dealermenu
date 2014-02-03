@@ -15,7 +15,8 @@ public class DaoAspect {
 			System.out.println("Found empty result set in "
 					+ pjp.getSignature());
 			e.printStackTrace();
-		} catch (Throwable e) {
+		}
+		catch (Throwable e) {
 			e.printStackTrace();
 		}
 		return result;

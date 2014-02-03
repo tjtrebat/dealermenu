@@ -10,7 +10,7 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 @Repository("templateService")
-@Transactional(propagation = Propagation.SUPPORTS)
+@Transactional
 public class JpaTemplateService implements TemplateService {
 
 	@PersistenceContext

@@ -45,23 +45,12 @@
 		</div>
 		<div class="clear"></div>
 		<ul id="main_menu" class="grid_12 alpha omega">
-			<security:authorize url="/admin/**">
-				<t:insertAttribute name="adminMenu" ignore="true"></t:insertAttribute>
-			</security:authorize>
-			<security:authorize url="/dealer/**">
-				<t:insertAttribute name="dealerMenu" ignore="true"></t:insertAttribute>
-			</security:authorize>
+			<t:insertAttribute name="menu" ignore="true" />
 		</ul>
-		<t:insertAttribute name="subMenu" ignore="true"></t:insertAttribute>
+		<t:insertAttribute name="subMenu" ignore="true" />
 		<div class="clear"></div>
 		<div id="content" class="grid_12 alpha omega">
-			<security:authorize url="/admin/**">
-				<t:insertAttribute name="adminContent" ignore="true"></t:insertAttribute>
-			</security:authorize>
-			<security:authorize url="/dealer/**">
-				<t:insertAttribute name="dealerContent" ignore="true"></t:insertAttribute>
-			</security:authorize>
-			<t:insertAttribute name="content" ignore="true"></t:insertAttribute>
+			<t:insertAttribute name="content" ignore="true" />
 		</div>
 		<div id="footer" class="grid_12 alpha omega">
 			<div class="grid_6 prefix_6 alpha omega">

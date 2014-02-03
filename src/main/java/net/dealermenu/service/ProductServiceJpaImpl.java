@@ -13,7 +13,7 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 @Repository("productService")
-@Transactional(propagation = Propagation.SUPPORTS)
+@Transactional
 public class ProductServiceJpaImpl implements ProductService {
 
 	@PersistenceContext

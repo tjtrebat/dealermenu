@@ -5,24 +5,24 @@
 	<definition extends="default" name="index">
 		<put-attribute name="body" value="/WEB-INF/views/index.jspx" />
 	</definition>
-
+	
 	<definition extends="public" name="dataAccessFailure">
 		<put-attribute name="body"
 			value="/WEB-INF/views/dataAccessFailure.jspx" />
 	</definition>
-
+	
 	<definition extends="public" name="resourceNotFound">
 		<put-attribute name="body"
 			value="/WEB-INF/views/resourceNotFound.jspx" />
 	</definition>
-
+	
 	<definition extends="public" name="uncaughtException">
 		<put-attribute name="body"
 			value="/WEB-INF/views/uncaughtException.jspx" />
 	</definition>
 
 	<definition extends="template" name="login">
-		<put-attribute name="body" value="/WEB-INF/views/dealermenu/login.jspx" />
+		<put-attribute name="content" value="/WEB-INF/views/login.jsp" />
 	</definition>
-	
+
 </tiles-definitions>

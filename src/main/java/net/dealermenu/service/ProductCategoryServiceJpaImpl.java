@@ -11,7 +11,7 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 @Repository("productCategoryService")
-@Transactional(propagation = Propagation.SUPPORTS)
+@Transactional
 public class ProductCategoryServiceJpaImpl implements ProductCategoryService {
 
 	@PersistenceContext

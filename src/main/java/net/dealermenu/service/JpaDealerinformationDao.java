@@ -16,7 +16,7 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 @Repository("dealerinformationDao")
-@Transactional(propagation = Propagation.SUPPORTS)
+@Transactional
 public class JpaDealerinformationDao implements DealerinformationDao {
 
 	@PersistenceContext
@@ -39,7 +39,7 @@ public class JpaDealerinformationDao implements DealerinformationDao {
 		Root<Dealerinformation> dealerInformation = qdef
 				.from(Dealerinformation.class);
 		qdef.where(
-				queryBuilder.equal(dealerInformation.get("userType"), "dealer"),
+				queryBuilder.equal(dealerInformation.get("userType"), "ROLE_USER"),
 				queryBuilder.equal(dealerInformation.get("status"), status));
 		TypedQuery<Dealerinformation> q = em.createQuery(qdef);
 		List<Dealerinformation> activeDealers = q.getResultList();
@@ -59,9 +59,14 @@ public class JpaDealerinformationDao implements DealerinformationDao {
 	public Dealerinformation getDealerByPrimaryKey(Long primaryKey) {
 		return em.find(Dealerinformation.class, primaryKey);
 	}
+	
+	@Override
+	public void saveDealer(Dealerinformation dealer) {
+		em.persist(dealer);
+	}
 
 	@Override
-	public Dealerinformation saveDealer(Dealerinformation dealer) {
+	public Dealerinformation updateDealer(Dealerinformation dealer) {
 		return em.merge(dealer);
 	}
 

@@ -16,17 +16,16 @@
 		<put-attribute name="footer" value="/WEB-INF/views/footer.jspx" />
 	</definition>
 
-	<definition name="template"
-		template="/WEB-INF/layouts/main_template.jsp" />
+	<definition name="template" template="/WEB-INF/layouts/main_template.jsp" />
 
 	<definition name="admin_template" extends="template">
-		<put-attribute name="adminMenu"
-			value="/WEB-INF/views/dealermenu/admin/_menu.jsp" />
+		<put-attribute name="menu"
+			value="/WEB-INF/views/admin/_menu.jsp" />
 	</definition>
 
 	<definition name="dealer_template" extends="template">
-		<put-attribute name="dealerMenu"
-			value="/WEB-INF/views/dealermenu/dealer/_menu.jsp" />
+		<put-attribute name="menu"
+			value="/WEB-INF/views/dealer/_menu.jsp" />
 	</definition>
 
 </tiles-definitions>

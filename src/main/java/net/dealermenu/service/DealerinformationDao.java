@@ -14,7 +14,9 @@ public interface DealerinformationDao {
 	
 	public Dealerinformation getDealerByPrimaryKey(Long primaryKey);
 	
-	public Dealerinformation saveDealer(Dealerinformation dealer);
+	public void saveDealer(Dealerinformation dealer);
+	
+	public Dealerinformation updateDealer(Dealerinformation dealer);
 
 	public void removeDealer(Dealerinformation dealerInformation);
 	

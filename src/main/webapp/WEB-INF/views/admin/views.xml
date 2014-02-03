@@ -5,33 +5,33 @@
 <tiles-definitions>
 
 	<definition name="admin/activeDealers" extends="admin_template">
-		<put-attribute name="adminContent"
-			value="/WEB-INF/views/dealermenu/admin/activeDealers.jsp" />
+		<put-attribute name="content"
+			value="/WEB-INF/views/admin/activeDealers.jsp" />
 	</definition>
 
 	<definition name="admin/awaitingDealers" extends="admin_template">
-		<put-attribute name="adminContent"
-			value="/WEB-INF/views/dealermenu/admin/awaitingDealers.jsp" />
+		<put-attribute name="content"
+			value="/WEB-INF/views/admin/awaitingDealers.jsp" />
 	</definition>
 
 	<definition name="admin/deniedDealers" extends="admin_template">
-		<put-attribute name="adminContent"
-			value="/WEB-INF/views/dealermenu/admin/deniedDealers.jsp" />
+		<put-attribute name="content"
+			value="/WEB-INF/views/admin/deniedDealers.jsp" />
 	</definition>
 
 	<definition name="admin/createDealer" extends="admin_template">
-		<put-attribute name="adminContent"
-			value="/WEB-INF/views/dealermenu/admin/createDealer.jsp" />
+		<put-attribute name="content"
+			value="/WEB-INF/views/admin/createDealer.jsp" />
 	</definition>
 
 	<definition name="admin/dealerInfo" extends="admin_template">
-		<put-attribute name="adminContent"
-			value="/WEB-INF/views/dealermenu/admin/dealerInfo.jsp" />
+		<put-attribute name="content"
+			value="/WEB-INF/views/admin/dealerInfo.jsp" />
 	</definition>
 
 	<definition name="admin/approveDealer" extends="admin_template">
-		<put-attribute name="adminContent"
-			value="/WEB-INF/views/dealermenu/admin/approveDealer.jsp" />
+		<put-attribute name="content"
+			value="/WEB-INF/views/admin/approveDealer.jsp" />
 	</definition>
 
 </tiles-definitions>

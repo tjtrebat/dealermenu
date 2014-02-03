@@ -1,28 +1,57 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<beans:beans xmlns="http://www.springframework.org/schema/security" 
-    xmlns:beans="http://www.springframework.org/schema/beans" 
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
-    xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
-        http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-3.1.xsd">
-    <!-- HTTP security configurations -->
-    <http auto-config="true" use-expressions="true">
-        <form-login login-processing-url="/resources/j_spring_security_check" login-page="/login" authentication-failure-url="/login?login_error=t" />
-        <logout logout-url="/resources/j_spring_security_logout" />
-        <!-- Configure these elements to secure URIs in your application -->
-        <intercept-url pattern="/choices/**" access="hasRole('ROLE_ADMIN')" />
-        <intercept-url pattern="/member/**" access="isAuthenticated()" />
-        <intercept-url pattern="/resources/**" access="permitAll" />
-        <intercept-url pattern="/**" access="permitAll" />
-    </http>
-    <!-- Configure Authentication mechanism -->
-    <authentication-manager alias="authenticationManager">
-        <!-- SHA-256 values can be produced using 'echo -n your_desired_password | sha256sum' (using normal *nix environments) -->
-        <authentication-provider>
-            <password-encoder hash="sha-256" />
-            <user-service>
-                <user name="admin" password="8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918" authorities="ROLE_ADMIN" />
-                <user name="user" password="04f8996da763b7a969b1028ee3007569eaf3a635486ddab211d512c85b9df8fb" authorities="ROLE_USER" />
-            </user-service>
-        </authentication-provider>
-    </authentication-manager>
+<beans:beans xmlns="http://www.springframework.org/schema/security"
+	xmlns:beans="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+        http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-3.2.xsd">
+
+	<global-method-security>
+		<protect-pointcut access="admin"
+			expression="execution(* net.dealermenu.web.AdminController.*(..))" />
+	</global-method-security>
+
+	<http auto-config="false" use-expressions="true"
+		entry-point-ref="loginUrlAuthenticationEntryPoint">
+		<intercept-url pattern="/resources/**" access="permitAll" />
+		<intercept-url pattern="/login" access="permitAll" />
+		<intercept-url pattern="/admin/**" access="hasRole('ROLE_ADMIN')" />
+		<intercept-url pattern="/dealer/**" access="hasRole('ROLE_USER')" />
+		<intercept-url pattern="/**"
+			access="hasRole('ROLE_ADMIN') or hasRole('ROLE_USER')" />
+		<custom-filter ref="myFilter" position="FORM_LOGIN_FILTER" />
+		<logout logout-url="/static/j_spring_security_logout" />
+		<remember-me key="userKey" token-validity-seconds="2419200" />
+	</http>
+
+	<authentication-manager alias="authenticationManager">
+		<authentication-provider>
+			<jdbc-user-service data-source-ref="dataSource"
+				users-by-username-query="select 
+				v_login_id, v_password, true from dealerinformation where v_login_id=?"
+				authorities-by-username-query="select 
+				v_login_id, v_user_type from dealerinformation where v_login_id=?" />
+		</authentication-provider>
+	</authentication-manager>
+
+	<beans:bean id="loginUrlAuthenticationEntryPoint"
+		class="org.springframework.security.web.authentication.LoginUrlAuthenticationEntryPoint">
+		<beans:constructor-arg value="/login" />
+	</beans:bean>
+
+	<beans:bean id="myFilter"
+		class="org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter">
+		<beans:property name="filterProcessesUrl" value="/static/j_spring_security_check" />
+		<beans:property name="authenticationManager" ref="authenticationManager" />
+		<beans:property name="authenticationFailureHandler">
+			<beans:bean
+				class="org.springframework.security.web.authentication.SimpleUrlAuthenticationFailureHandler">
+				<beans:property name="defaultFailureUrl" value="/login?login_error=t" />
+			</beans:bean>
+		</beans:property>
+		<beans:property name="authenticationSuccessHandler">
+			<beans:bean class="net.dealermenu.security.MyAuthenticationSuccessHandler" />
+		</beans:property>
+		<beans:property name="usernameParameter" value="loginId" />
+		<beans:property name="passwordParameter" value="password" />
+	</beans:bean>
+
 </beans:beans>

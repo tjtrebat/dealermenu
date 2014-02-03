@@ -108,7 +108,7 @@ public class AdminController {
 		dealer.setStatus("ActiveDealers");
 
 		// merges the dealerInformation object into persistence context
-		dealerinformationDao.saveDealer(dealer);
+		dealerinformationDao.updateDealer(dealer);
 
 		model.addAttribute("successMsg", "Dealer was approved successfully.");
 
@@ -191,7 +191,7 @@ public class AdminController {
 			return "admin/createDealer";
 		}
 		dealer.setStatus("AwaitingDealers");
-		dealer.setUserType("dealer");
+		dealer.setUserType("ROLE_USER");
 		dealerinformationDao.saveDealer(dealer);
 		model.addAttribute("successMsg", "Dealer was created successfully.");
 		return "redirect:/admin/dealers/createDealer";
@@ -210,7 +210,7 @@ public class AdminController {
 						.getDealerByPrimaryKey(dealer.getId());
 				BeanUtils.copyProperties(dealerInformation, dealer,
 						new String[] { "status" });
-				dealerinformationDao.saveDealer(dealer);
+				dealerinformationDao.updateDealer(dealer);
 			}
 		}
 	}

@@ -5,7 +5,9 @@
 	uri="http://www.springframework.org/security/tags"%>
 <%@ page session="true"%>
 <div class="grid_10 prefix_1 suffix_1 alpha omega">
-	<jsp:include page="../_notification.jsp" />
+	<div class="grid_10">
+		<jsp:include page="../_notification.jsp" />
+	</div>
 	<c:url value="/admin/dealers/activeDealers" var="activeDealersUrl" />
 	<form:form action="${activeDealersUrl}" modelAttribute="dealerForm"
 		method="post">
@@ -37,8 +39,7 @@
 						</div>
 						<div class="grid_1">
 							<p class="alignCenter">
-								<a
-									href="<c:url value="/admin/dealers/${dealer.id}" />">view</a>
+								<a href="<c:url value="/admin/dealers/${dealer.id}" />">view</a>
 							</p>
 						</div>
 						<div class="grid_1 omega">

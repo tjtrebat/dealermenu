@@ -6,7 +6,9 @@
 <%@ taglib prefix="tags" tagdir="/WEB-INF/tags"%>
 <%@ page session="false"%>
 <div id="products" class="grid_12 alpha omega">
-	<jsp:include page="../_notification.jsp" />
+	<div class="grid_12">
+		<jsp:include page="../_notification.jsp" />
+	</div>
 	<c:url value="/dealer/defaultSettings/products" var="productsUrl" />
 	<form:form action="${productsUrl}" modelAttribute="productForm"
 		method="post">

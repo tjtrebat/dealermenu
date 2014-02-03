@@ -5,7 +5,9 @@
 	uri="http://www.springframework.org/security/tags"%>
 <%@ page session="true"%>
 <div class="grid_6 prefix_3 suffix_3 alpha omega">
-	<jsp:include page="../_notification.jsp" />
+	<div class="grid_6">
+		<jsp:include page="../_notification.jsp" />
+	</div>
 	<c:url var="approveDealerUrl"
 		value="/admin/dealers/awaitingDealers/approve" />
 	<form:form method="post" modelAttribute="dealer"

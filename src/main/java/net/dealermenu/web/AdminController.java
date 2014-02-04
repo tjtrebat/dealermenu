@@ -163,11 +163,6 @@ public class AdminController {
 		return "redirect:/admin/dealers/deniedDealers";
 	}
 
-	@RequestMapping("/dealers/createDealers")
-	public String createDealers() {
-		return "admin/createDealers";
-	}
-
 	@RequestMapping("/dealers/{primaryKey}")
 	public String dealerInfo(@PathVariable Long primaryKey, Model model) {
 		model.addAttribute("dealer",

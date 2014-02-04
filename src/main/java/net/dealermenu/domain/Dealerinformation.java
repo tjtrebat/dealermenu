@@ -2,10 +2,13 @@ package net.dealermenu.domain;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Pattern.Flag;
 import javax.validation.constraints.Size;
 
 import org.springframework.roo.addon.javabean.RooJavaBean;
@@ -21,10 +24,6 @@ public class Dealerinformation {
 	@Column(name = "vDealerName")
 	@Size(min = 3, max = 50, message = "Your full name must be between 3 and 50 characters long.")
 	private String dealerName;
-
-	@Column(name = "vStatus")
-	@Pattern(regexp = "ActiveDealers|AwaitingDealers|DeniedDealers", flags = Pattern.Flag.CASE_INSENSITIVE)
-	private String status;
 
 	@Column(name = "vMailId")
 	@Pattern(regexp = "[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}", message = "Invalid email address.")
@@ -63,4 +62,12 @@ public class Dealerinformation {
 	@OneToMany(mappedBy = "dealer")
 	private List<ProductCategory> productCategories;
 
+	/**
+     */
+	@OneToOne(mappedBy = "dealer", cascade = CascadeType.ALL)
+	private Packages packages;
+
+	@Column(name = "vStatus")
+	@Pattern(regexp = "ActiveDealers|AwaitingDealers|DeniedDealers", flags = Flag.CASE_INSENSITIVE)
+	private String status;
 }

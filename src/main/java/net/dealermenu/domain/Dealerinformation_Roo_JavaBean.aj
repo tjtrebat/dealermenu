@@ -5,6 +5,7 @@ package net.dealermenu.domain;
 
 import java.util.List;
 import net.dealermenu.domain.Dealerinformation;
+import net.dealermenu.domain.Packages;
 import net.dealermenu.domain.ProductCategory;
 import net.dealermenu.domain.Template;
 
@@ -16,14 +17,6 @@ privileged aspect Dealerinformation_Roo_JavaBean {
     
     public void Dealerinformation.setDealerName(String dealerName) {
         this.dealerName = dealerName;
-    }
-    
-    public String Dealerinformation.getStatus() {
-        return this.status;
-    }
-    
-    public void Dealerinformation.setStatus(String status) {
-        this.status = status;
     }
     
     public String Dealerinformation.getMailId() {
@@ -112,6 +105,22 @@ privileged aspect Dealerinformation_Roo_JavaBean {
     
     public void Dealerinformation.setProductCategories(List<ProductCategory> productCategories) {
         this.productCategories = productCategories;
+    }
+    
+    public Packages Dealerinformation.getPackages() {
+        return this.packages;
+    }
+    
+    public void Dealerinformation.setPackages(Packages packages) {
+        this.packages = packages;
+    }
+    
+    public String Dealerinformation.getStatus() {
+        return this.status;
+    }
+    
+    public void Dealerinformation.setStatus(String status) {
+        this.status = status;
     }
     
 }

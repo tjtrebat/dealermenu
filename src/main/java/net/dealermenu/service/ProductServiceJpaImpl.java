@@ -9,7 +9,6 @@ import javax.persistence.TypedQuery;
 import net.dealermenu.domain.Product;
 
 import org.springframework.stereotype.Repository;
-import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 @Repository("productService")
@@ -18,6 +17,11 @@ public class ProductServiceJpaImpl implements ProductService {
 
 	@PersistenceContext
 	EntityManager em;
+
+	@Override
+	public void saveProduct(Product product) {
+		em.persist(product);
+	}
 
 	@Override
 	public void removeProduct(Product product) {

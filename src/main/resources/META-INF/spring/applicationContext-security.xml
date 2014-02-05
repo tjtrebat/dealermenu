@@ -5,7 +5,7 @@
         http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-3.2.xsd">
 
 	<global-method-security>
-		<protect-pointcut access="admin"
+		<protect-pointcut access="ROLE_ADMIN"
 			expression="execution(* net.dealermenu.web.AdminController.*(..))" />
 	</global-method-security>
 

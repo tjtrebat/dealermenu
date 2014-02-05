@@ -24,7 +24,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 /**
- * @author Nick
+ * @author Tom
  * 
  */
 @Controller("admin")
@@ -81,14 +81,11 @@ public class AdminController {
 	public String approveDealer(
 			@ModelAttribute("dealer") @Valid Dealerinformation dealer,
 			BindingResult bindingResult, Model model) {
-
 		// get Dealerinformation object using dealerName
 		Dealerinformation dealerInformation = dealerinformationDao
 				.getDealerByPrimaryKey(dealer.getId());
-
 		BeanUtils.copyProperties(dealerInformation, dealer, new String[] {
 				"loginId", "password" });
-
 		// Check if the user name is already taken
 		Dealerinformation dealerWithSameLogin = dealerinformationDao
 				.getDealerByLoginId(dealer.getLoginId());
@@ -97,21 +94,16 @@ public class AdminController {
 			// add an error message to the bindingResult
 			bindingResult.rejectValue("loginId", "error.dealer",
 					"Sorry, that Login Id already exists.");
-
 		// display the form again if there are errors
 		if (bindingResult.hasErrors()) {
 			// add dealer bean model attribute
 			model.addAttribute("dealer", dealer);
 			return "admin/approveDealer";
 		}
-
 		dealer.setStatus("ActiveDealers");
-
 		// merges the dealerInformation object into persistence context
 		dealerinformationDao.updateDealer(dealer);
-
 		model.addAttribute("successMsg", "Dealer was approved successfully.");
-
 		return "redirect:/admin/dealers/activeDealers";
 	}
 

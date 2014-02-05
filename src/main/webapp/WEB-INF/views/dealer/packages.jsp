@@ -78,7 +78,7 @@
 							Preferred 
 						</c:when>
 							<c:otherwise>
-								<c:out value="${packages.preferredPackageName}" />
+								${packages.preferredPackageName}
 							</c:otherwise>
 						</c:choose>
 					</p>
@@ -98,7 +98,7 @@
 							Premium
 						</c:when>
 							<c:otherwise>
-								<c:out value="${packages.premiumPackageName}" />
+								${packages.premiumPackageName}
 							</c:otherwise>
 						</c:choose>
 					</p>
@@ -118,7 +118,7 @@
 							Value
 						</c:when>
 							<c:otherwise>
-								<c:out value="${packages.valuePackageName}" />
+								${packages.valuePackageName}
 							</c:otherwise>
 						</c:choose>
 					</p>
@@ -138,7 +138,7 @@
 							Economy
 						</c:when>
 							<c:otherwise>
-								<c:out value="${packages.economyPackageName}" />
+								${packages.economyPackageName}
 							</c:otherwise>
 						</c:choose>
 					</p>

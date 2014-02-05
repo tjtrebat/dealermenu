@@ -59,7 +59,7 @@ public class Dealerinformation {
 	@OneToMany(mappedBy = "dealer")
 	private List<Template> templates;
 
-	@OneToMany(mappedBy = "dealer")
+	@OneToMany(mappedBy = "dealer", cascade = CascadeType.ALL)
 	private List<ProductCategory> productCategories;
 
 	/**

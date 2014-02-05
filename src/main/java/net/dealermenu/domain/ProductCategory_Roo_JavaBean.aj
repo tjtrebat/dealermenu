@@ -10,12 +10,12 @@ import net.dealermenu.domain.ProductCategory;
 
 privileged aspect ProductCategory_Roo_JavaBean {
     
-    public String ProductCategory.getProductCategory() {
-        return this.productCategory;
+    public String ProductCategory.getProductCategoryName() {
+        return this.productCategoryName;
     }
     
-    public void ProductCategory.setProductCategory(String productCategory) {
-        this.productCategory = productCategory;
+    public void ProductCategory.setProductCategoryName(String productCategoryName) {
+        this.productCategoryName = productCategoryName;
     }
     
     public Dealerinformation ProductCategory.getDealer() {

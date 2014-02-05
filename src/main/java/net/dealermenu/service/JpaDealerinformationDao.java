@@ -10,9 +10,9 @@ import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 
 import net.dealermenu.domain.Dealerinformation;
+import net.dealermenu.domain.ProductCategory;
 
 import org.springframework.stereotype.Repository;
-import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 @Repository("dealerinformationDao")
@@ -38,9 +38,9 @@ public class JpaDealerinformationDao implements DealerinformationDao {
 				.createQuery(Dealerinformation.class);
 		Root<Dealerinformation> dealerInformation = qdef
 				.from(Dealerinformation.class);
-		qdef.where(
-				queryBuilder.equal(dealerInformation.get("userType"), "ROLE_USER"),
-				queryBuilder.equal(dealerInformation.get("status"), status));
+		qdef.where(queryBuilder.equal(dealerInformation.get("userType"),
+				"ROLE_USER"), queryBuilder.equal(
+				dealerInformation.get("status"), status));
 		TypedQuery<Dealerinformation> q = em.createQuery(qdef);
 		List<Dealerinformation> activeDealers = q.getResultList();
 		return activeDealers;
@@ -59,7 +59,7 @@ public class JpaDealerinformationDao implements DealerinformationDao {
 	public Dealerinformation getDealerByPrimaryKey(Long primaryKey) {
 		return em.find(Dealerinformation.class, primaryKey);
 	}
-	
+
 	@Override
 	public void saveDealer(Dealerinformation dealer) {
 		em.persist(dealer);
@@ -73,6 +73,14 @@ public class JpaDealerinformationDao implements DealerinformationDao {
 	@Override
 	public void removeDealer(Dealerinformation dealerInformation) {
 		em.remove(dealerInformation);
+	}
+
+	@Override
+	public void addProductCategory(String loginId,
+			ProductCategory productCategory) {
+		Dealerinformation dealer = getDealerByLoginId(loginId);
+		productCategory.setDealer(dealer);
+		dealer.getProductCategories().add(productCategory);
 	}
 
 }

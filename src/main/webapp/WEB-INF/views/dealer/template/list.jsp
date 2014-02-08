@@ -6,10 +6,10 @@
 <%@ page session="false"%>
 <div class="grid_10 prefix_1 suffix_1 alpha omega">
 	<div class="grid_10">
-		<jsp:include page="../_notification.jsp" />
+		<jsp:include page="../../_notification.jsp" />
 	</div>
-	<c:url var="dealTemplatesUrl" value="/admin/dealers/dealTemplates" />
-	<form:form action="${dealTemplatesUrl}" modelAttribute="templateForm"
+	<c:url var="listUrl" value="/admin/dealers/templates" />
+	<form:form action="${listUrl}" modelAttribute="templateForm"
 		method="post">
 		<div id="tblContents" class="grid_10">
 			<div id="tblHeader" class="grid_10 alpha omega">
@@ -60,7 +60,7 @@
 						</div>
 						<div class="grid_1">
 							<p>
-								<a href="<c:url value="/dealer/dealTemplates/${template.id}" />">view</a>
+								<a href="<c:url value="/dealer/templates/${template.id}" />">view</a>
 							</p>
 						</div>
 						<div class="grid_1">

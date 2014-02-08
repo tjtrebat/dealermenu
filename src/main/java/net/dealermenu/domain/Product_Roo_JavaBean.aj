@@ -5,6 +5,7 @@ package net.dealermenu.domain;
 
 import net.dealermenu.domain.Product;
 import net.dealermenu.domain.ProductCategory;
+import net.dealermenu.domain.Provider;
 
 privileged aspect Product_Roo_JavaBean {
     
@@ -14,14 +15,6 @@ privileged aspect Product_Roo_JavaBean {
     
     public void Product.setProductName(String productName) {
         this.productName = productName;
-    }
-    
-    public String Product.getProvider() {
-        return this.provider;
-    }
-    
-    public void Product.setProvider(String provider) {
-        this.provider = provider;
     }
     
     public String Product.getDescription() {
@@ -94,6 +87,14 @@ privileged aspect Product_Roo_JavaBean {
     
     public void Product.setIsBalloon(Boolean isBalloon) {
         this.isBalloon = isBalloon;
+    }
+    
+    public Provider Product.getProvider() {
+        return this.provider;
+    }
+    
+    public void Product.setProvider(Provider provider) {
+        this.provider = provider;
     }
     
     public ProductCategory Product.getProductCategory() {

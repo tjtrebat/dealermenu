@@ -1,0 +1,24 @@
+<!DOCTYPE tiles-definitions PUBLIC
+	"-//Apache Software Foundation//DTD Tiles Configuration 2.1//EN"
+	"http://tiles.apache.org/dtds/tiles-config_2_1.dtd">
+
+<tiles-definitions>
+
+	<definition name="tax/list" extends="dealer_template">
+		<put-attribute name="subMenu" value="/WEB-INF/views/dealer/_submenu.jsp" />
+		<put-attribute name="content" value="/WEB-INF/views/dealer/tax/list.jsp" />
+	</definition>
+
+	<definition name="tax/create" extends="dealer_template">
+		<put-attribute name="subMenu" value="/WEB-INF/views/dealer/_submenu.jsp" />
+		<put-attribute name="content"
+			value="/WEB-INF/views/dealer/tax/create.jsp" />
+	</definition>
+
+	<definition name="tax/update" extends="dealer_template">
+		<put-attribute name="subMenu" value="/WEB-INF/views/dealer/_submenu.jsp" />
+		<put-attribute name="content"
+			value="/WEB-INF/views/dealer/tax/update.jsp" />
+	</definition>
+
+</tiles-definitions>

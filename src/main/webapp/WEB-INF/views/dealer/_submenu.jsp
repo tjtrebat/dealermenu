@@ -14,5 +14,5 @@
 		href="<c:url value="/dealer/defaultSettings/productCategory" />">Product
 			Category</a></li>
 	<li class="grid_2 omega"><a class="menuLink"
-		href="<c:url value="/dealer/defaultSettings/provider" />">Provider</a></li>
+		href="<c:url value="/dealer/defaultSettings/providers" />">Provider</a></li>
 </ul>

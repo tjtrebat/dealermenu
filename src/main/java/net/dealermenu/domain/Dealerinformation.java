@@ -4,7 +4,7 @@ import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
-import javax.persistence.NamedQuery;
+import javax.persistence.NamedQueries;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.validation.constraints.Pattern;
@@ -18,7 +18,14 @@ import org.springframework.roo.addon.tostring.RooToString;
 @RooJavaBean
 @RooToString
 @RooJpaActiveRecord
-@NamedQuery(name = "Dealerinformation.getDealerByLoginId", query = "SELECT dealerInformation FROM Dealerinformation dealerInformation WHERE dealerInformation.loginId=:loginId")
+@NamedQueries({
+		@javax.persistence.NamedQuery(name = "Dealerinformation.getDealerByLoginId", query = "SELECT dealerInformation FROM Dealerinformation dealerInformation WHERE dealerInformation.loginId=:loginId"),
+		@javax.persistence.NamedQuery(name = "Dealerinformation.getProducts", query = "SELECT product FROM Dealerinformation dealerInformation JOIN dealerInformation.providers provider JOIN provider.products product WHERE dealerInformation.loginId=:loginId"),
+		@javax.persistence.NamedQuery(name = "Dealerinformation.getProductByPrimaryKey", query = "SELECT product FROM Dealerinformation dealerInformation JOIN dealerInformation.providers provider JOIN provider.products product WHERE dealerInformation.loginId=:loginId AND product.id=:primaryKey"),
+		@javax.persistence.NamedQuery(name = "Dealerinformation.getFeeByPrimaryKey", query = "SELECT fee FROM Dealerinformation dealerInformation JOIN dealerInformation.fees fee WHERE dealerInformation.loginId=:loginId AND fee.id=:primaryKey"),
+		@javax.persistence.NamedQuery(name = "Dealerinformation.getTaxByPrimaryKey", query = "SELECT tax FROM Dealerinformation dealerInformation JOIN dealerInformation.taxes tax WHERE dealerInformation.loginId=:loginId AND tax.id=:primaryKey"),
+		@javax.persistence.NamedQuery(name = "Dealerinformation.getProductCategoryByPrimaryKey", query = "SELECT productCategory FROM Dealerinformation dealerInformation JOIN dealerInformation.productCategories productCategory WHERE dealerInformation.loginId=:loginId AND productCategory.id=:primaryKey"),
+		@javax.persistence.NamedQuery(name = "Dealerinformation.getProviderByPrimaryKey", query = "SELECT provider FROM Dealerinformation dealerInformation JOIN dealerInformation.providers provider WHERE dealerInformation.loginId=:loginId AND provider.id=:primaryKey") })
 public class Dealerinformation {
 
 	@Column(name = "vDealerName")
@@ -56,18 +63,33 @@ public class Dealerinformation {
 	@Column(name = "vZip")
 	private String zip;
 
+	@Column(name = "vStatus")
+	@Pattern(regexp = "ActiveDealers|AwaitingDealers|DeniedDealers", flags = Flag.CASE_INSENSITIVE)
+	private String status;
+
 	@OneToMany(mappedBy = "dealer")
 	private List<Template> templates;
 
-	@OneToMany(mappedBy = "dealer", cascade = CascadeType.ALL)
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "dealer")
 	private List<ProductCategory> productCategories;
 
 	/**
      */
-	@OneToOne(mappedBy = "dealer", cascade = CascadeType.ALL)
+	@OneToOne(cascade = CascadeType.ALL, mappedBy = "dealer")
 	private Packages packages;
 
-	@Column(name = "vStatus")
-	@Pattern(regexp = "ActiveDealers|AwaitingDealers|DeniedDealers", flags = Flag.CASE_INSENSITIVE)
-	private String status;
+	/**
+     */
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "dealer")
+	private List<Provider> providers;
+
+	/**
+     */
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "dealer")
+	private List<Tax> taxes;
+
+	/**
+     */
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "dealer")
+	private List<Fee> fees;
 }

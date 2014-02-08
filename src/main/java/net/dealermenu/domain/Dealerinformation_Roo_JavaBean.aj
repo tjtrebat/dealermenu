@@ -5,8 +5,11 @@ package net.dealermenu.domain;
 
 import java.util.List;
 import net.dealermenu.domain.Dealerinformation;
+import net.dealermenu.domain.Fee;
 import net.dealermenu.domain.Packages;
 import net.dealermenu.domain.ProductCategory;
+import net.dealermenu.domain.Provider;
+import net.dealermenu.domain.Tax;
 import net.dealermenu.domain.Template;
 
 privileged aspect Dealerinformation_Roo_JavaBean {
@@ -91,6 +94,14 @@ privileged aspect Dealerinformation_Roo_JavaBean {
         this.zip = zip;
     }
     
+    public String Dealerinformation.getStatus() {
+        return this.status;
+    }
+    
+    public void Dealerinformation.setStatus(String status) {
+        this.status = status;
+    }
+    
     public List<Template> Dealerinformation.getTemplates() {
         return this.templates;
     }
@@ -115,12 +126,28 @@ privileged aspect Dealerinformation_Roo_JavaBean {
         this.packages = packages;
     }
     
-    public String Dealerinformation.getStatus() {
-        return this.status;
+    public List<Provider> Dealerinformation.getProviders() {
+        return this.providers;
     }
     
-    public void Dealerinformation.setStatus(String status) {
-        this.status = status;
+    public void Dealerinformation.setProviders(List<Provider> providers) {
+        this.providers = providers;
+    }
+    
+    public List<Tax> Dealerinformation.getTaxes() {
+        return this.taxes;
+    }
+    
+    public void Dealerinformation.setTaxes(List<Tax> taxes) {
+        this.taxes = taxes;
+    }
+    
+    public List<Fee> Dealerinformation.getFees() {
+        return this.fees;
+    }
+    
+    public void Dealerinformation.setFees(List<Fee> fees) {
+        this.fees = fees;
     }
     
 }

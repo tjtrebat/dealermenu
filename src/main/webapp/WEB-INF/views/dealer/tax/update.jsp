@@ -6,113 +6,86 @@
 <%@ page session="false"%>
 <div class="grid_6 prefix_3 suffix_3 alpha omega">
 	<div class="grid_6">
-		<jsp:include page="../_notification.jsp" />
+		<jsp:include page="../../_notification.jsp" />
 	</div>
-	<c:url var="createProductUrl"
-		value="/dealer/defaultSettings/createProduct" />
-	<form:form action="${createProductUrl}" modelAttribute="product"
-		method="post">
+	<c:url var="updateUrl" value="/dealer/defaultSettings/taxes/update" />
+	<form:form action="${updateUrl}" modelAttribute="tax" method="post">
+		<form:hidden path="id" />
 		<div class="grid_2 alpha">
 			<p>
-				<strong>Product Name</strong>
+				<strong>Profile Name</strong>
 			</p>
 		</div>
 		<div class="grid_4 omega">
 			<p>
-				<form:input path="productName" size="30" />
+				<form:input path="profileName" size="30" />
 			</p>
 		</div>
 		<div class="clear"></div>
 		<div class="grid_2 alpha">
 			<p>
-				<strong>Provider</strong>
+				<strong>Tax Type</strong>
 			</p>
 		</div>
 		<div class="grid_4 omega">
 			<p>
-				<form:input path="provider" size="30" />
+				<form:input path="taxType" size="30" />
 			</p>
 		</div>
 		<div class="clear"></div>
 		<div class="grid_2 alpha">
 			<p>
-				<strong>Product Category</strong>
+				<strong>Rate</strong>
 			</p>
 		</div>
 		<div class="grid_4 omega">
 			<p>
-				<form:input path="productCategory" size="30" />
+				<form:input path="rate" size="4" />
 			</p>
 		</div>
 		<div class="clear"></div>
 		<div class="grid_2 alpha">
 			<p>
-				<strong>Description</strong>
+				<strong>Starting Taxable Amount</strong>
 			</p>
 		</div>
 		<div class="grid_4 omega">
 			<p>
-				<form:input path="description" size="30" />
+				<form:input path="startingTaxableAmt" size="4" />
 			</p>
 		</div>
 		<div class="clear"></div>
 		<div class="grid_2 alpha">
 			<p>
-				<strong>Maximum Price</strong>
+				<strong>Max Taxable Amount</strong>
 			</p>
 		</div>
 		<div class="grid_4 omega">
 			<p>
-				<form:input path="maxPrice" size="30" />
+				<form:input path="maxTaxableAmt" size="4" />
 			</p>
 		</div>
 		<div class="clear"></div>
 		<div class="grid_2 alpha">
 			<p>
-				<strong>Default Price</strong>
+				<strong>Max Total Tax</strong>
 			</p>
 		</div>
 		<div class="grid_4 omega">
 			<p>
-				<form:input path="defaultPrice" size="30" />
+				<form:input path="maxTotalTax" size="4" />
 			</p>
 		</div>
 		<div class="clear"></div>
 		<div class="grid_2 alpha">
 			<p>
-				<strong>Minimum Price</strong>
+				<strong>Default</strong>
 			</p>
 		</div>
 		<div class="grid_4 omega">
 			<p>
-				<form:input path="minPrice" size="30" />
+				<form:checkbox path="isDefault" />
 			</p>
-		</div>
-		<div class="clear"></div>
-		<div class="grid_2 alpha">
-			<p>
-				<strong>Cost</strong>
-			</p>
-		</div>
-		<div class="grid_4 omega">
-			<p>
-				<form:input path="cost" size="30" />
-			</p>
-		</div>
-		<div class="clear"></div>
-		<div class="grid_4 push_2 alpha omega">
-			<div class="grid_2 alpha">
-				<form:checkbox path="isFinance" />
-				Finance<br />
-				<form:checkbox path="isLease" />
-				Lease<br />
-			</div>
-			<div class="grid_2 omega">
-				<form:checkbox path="isCash" />
-				Cash<br />
-				<form:checkbox path="isBalloon" />
-				Balloon<br />
-			</div>
 		</div>
 		<div class="clear"></div>
 		<div class="grid_2 prefix_2 suffix_2 alpha omega">

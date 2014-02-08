@@ -70,8 +70,7 @@ public class AdminController {
 	}
 
 	@RequestMapping(value = "/dealers/awaitingDealers/approve", method = RequestMethod.GET)
-	public String approveDealer(@RequestParam("pk") Long primaryKey,
-			Model model) {
+	public String approveDealer(@RequestParam("pk") Long primaryKey, Model model) {
 		model.addAttribute("dealer",
 				dealerinformationDao.getDealerByPrimaryKey(primaryKey));
 		return "admin/approveDealer";
@@ -146,8 +145,7 @@ public class AdminController {
 			@ModelAttribute("dealerForm") DealerForm dealerForm, Model model) {
 		for (Dealerinformation dealer : dealerForm.getDealers()) {
 			if (dealer.getId() != null) {
-				dealerinformationDao.removeDealer(dealerinformationDao
-						.getDealerByPrimaryKey(dealer.getId()));
+				dealerinformationDao.removeDealer(dealer.getId());
 				model.addAttribute("successMsg",
 						"Dealer(s) has been deleted successfully.");
 			}

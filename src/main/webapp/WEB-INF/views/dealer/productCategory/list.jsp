@@ -6,33 +6,35 @@
 <%@ page session="false"%>
 <div class="grid_6 prefix_3 suffix_3 alpha omega">
 	<div class="grid_6">
-		<jsp:include page="../_notification.jsp" />
+		<jsp:include page="../../_notification.jsp" />
 	</div>
-	<c:url var="createProductCategoryUrl"
-		value="/dealer/defaultSettings/createProductCategory" />
-	<form:form action="${createProductCategoryUrl}"
-		modelAttribute="productCategory" method="post">
-		<div class="grid_3 alpha">
-			<p>
-				<strong>Product Category Name</strong>
-			</p>
-		</div>
-		<div class="grid_3 omega">
-			<p>
-				<form:input path="productCategoryName" />
-			</p>
+	<c:url var="createUrl"
+		value="/dealer/defaultSettings/productCategory/create" />
+	<form:form action="${createUrl}" modelAttribute="productCategory"
+		method="post">
+		<div class="grid_6">
+			<div class="grid_2 alpha">
+				<p class="alignRight">
+					<strong>Product Category Name</strong>
+				</p>
+			</div>
+			<div class="grid_4 omega">
+				<p>
+					<form:input path="productCategoryName" size="30" />
+				</p>
+			</div>
+			<div class="clear"></div>
+			<div class="grid_6 alpha omega">
+				<p class="alignCenter">
+					<input type="submit" value="Add" />
+				</p>
+			</div>
 		</div>
 		<div class="clear"></div>
-		<div class="grid_2 prefix_2 suffix_2 alpha omega">
-			<p>
-				<input type="submit" value="Add" />
-			</p>
-		</div>
 	</form:form>
-	<c:url var="productCategoryUrl"
-		value="/dealer/defaultSettings/productCategory" />
-	<form:form action="${productCategoryUrl}"
-		modelAttribute="productCategoryForm" method="post">
+	<c:url var="listUrl" value="/dealer/defaultSettings/productCategory" />
+	<form:form action="${listUrl}" modelAttribute="productCategoryForm"
+		method="post">
 		<div id="tblContents" class="grid_6">
 			<div id="tblHeader" class="grid_6 alpha omega">
 				<div class="grid_4 alpha">
@@ -64,7 +66,7 @@
 					<div class="clear"></div>
 				</c:forEach>
 				<div class="grid_2 prefix_2 suffix_2 alpha omega">
-					<p>
+					<p class="alignCenter">
 						<input type="submit" value="Submit" />
 					</p>
 				</div>

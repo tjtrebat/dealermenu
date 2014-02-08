@@ -3,26 +3,26 @@ package net.dealermenu.service;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
-import net.dealermenu.domain.Product;
-
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-@Repository("productService")
+import net.dealermenu.domain.Fee;
+
+@Repository("feeService")
 @Transactional
-public class ProductServiceJpaImpl implements ProductService {
+public class FeeServiceJpaImpl implements FeeService {
 
 	@PersistenceContext
 	EntityManager em;
 
 	@Override
-	public void removeProduct(Long primaryKey) {
-		em.remove(em.find(Product.class, primaryKey));
+	public void removeFee(Long primaryKey) {
+		em.remove(em.find(Fee.class, primaryKey));
 	}
 
 	@Override
-	public Product updateProduct(Product product) {
-		return em.merge(product);
+	public Fee updateFee(Fee fee) {
+		return em.merge(fee);
 	}
 
 }

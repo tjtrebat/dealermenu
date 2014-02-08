@@ -2,7 +2,7 @@ package net.dealermenu.domain;
 
 import java.util.List;
 
-import javax.persistence.Column;
+import javax.persistence.CascadeType;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
@@ -13,15 +13,19 @@ import org.springframework.roo.addon.tostring.RooToString;
 @RooJavaBean
 @RooToString
 @RooJpaActiveRecord
-public class ProductCategory {
+public class Provider {
 
-	@Column(name = "vProductCategory")
-	private String productCategoryName;
+	/**
+     */
+	private String providerName;
 
+	/**
+     */
 	@ManyToOne
 	private Dealerinformation dealer;
 
-	@OneToMany(mappedBy = "productCategory")
+	/**
+     */
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "provider")
 	private List<Product> products;
-
 }

@@ -6,10 +6,10 @@
 <%@ page session="false"%>
 <div class="grid_6 prefix_3 suffix_3 alpha omega">
 	<div class="grid_6">
-		<jsp:include page="../_notification.jsp" />
+		<jsp:include page="../../_notification.jsp" />
 	</div>
-	<c:url var="updatePackagesUrl" value="/dealer/defaultSettings/packages" />
-	<form:form action="${updatePackagesUrl}" modelAttribute="packages"
+	<c:url var="updateUrl" value="/dealer/defaultSettings/packages/update" />
+	<form:form action="${updateUrl}" modelAttribute="packages"
 		method="post">
 		<div class="grid_2 alpha">
 			<p>

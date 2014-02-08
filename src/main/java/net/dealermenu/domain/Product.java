@@ -2,8 +2,6 @@ package net.dealermenu.domain;
 
 import javax.persistence.Column;
 import javax.persistence.ManyToOne;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
 
 import org.springframework.roo.addon.javabean.RooJavaBean;
 import org.springframework.roo.addon.jpa.activerecord.RooJpaActiveRecord;
@@ -12,14 +10,10 @@ import org.springframework.roo.addon.tostring.RooToString;
 @RooJavaBean
 @RooToString
 @RooJpaActiveRecord
-@NamedQueries({ @NamedQuery(name = "Product.findProductsByLoginId", query = "SELECT product FROM Product product WHERE product.productCategory.dealer.loginId = :loginId") })
 public class Product {
 
 	@Column(name = "vProductName")
 	private String productName;
-
-	@Column(name = "vProvider")
-	private String provider;
 
 	@Column(name = "vProductDescription")
 	private String description;
@@ -47,6 +41,11 @@ public class Product {
 
 	@Column(name = "vBalloon")
 	private Boolean isBalloon;
+
+	/**
+     */
+	@ManyToOne
+	private Provider provider;
 
 	@ManyToOne
 	private ProductCategory productCategory;

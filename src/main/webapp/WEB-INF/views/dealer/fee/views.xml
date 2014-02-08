@@ -1,0 +1,24 @@
+<!DOCTYPE tiles-definitions PUBLIC
+	"-//Apache Software Foundation//DTD Tiles Configuration 2.1//EN"
+	"http://tiles.apache.org/dtds/tiles-config_2_1.dtd">
+
+<tiles-definitions>
+
+	<definition name="fee/list" extends="dealer_template">
+		<put-attribute name="subMenu" value="/WEB-INF/views/dealer/_submenu.jsp" />
+		<put-attribute name="content" value="/WEB-INF/views/dealer/fee/list.jsp" />
+	</definition>
+
+	<definition name="fee/create" extends="dealer_template">
+		<put-attribute name="subMenu" value="/WEB-INF/views/dealer/_submenu.jsp" />
+		<put-attribute name="content"
+			value="/WEB-INF/views/dealer/fee/create.jsp" />
+	</definition>
+	
+	<definition name="fee/update" extends="dealer_template">
+		<put-attribute name="subMenu" value="/WEB-INF/views/dealer/_submenu.jsp" />
+		<put-attribute name="content"
+			value="/WEB-INF/views/dealer/fee/update.jsp" />
+	</definition>
+
+</tiles-definitions>

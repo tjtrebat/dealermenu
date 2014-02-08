@@ -14,50 +14,6 @@
 			value="/WEB-INF/views/dealer/defaultSettings.jsp" />
 	</definition>
 
-	<definition name="dealer/defaultSettings/products" extends="dealer_template">
-		<put-attribute name="subMenu" value="/WEB-INF/views/dealer/_submenu.jsp" />
-		<put-attribute name="content" value="/WEB-INF/views/dealer/products.jsp" />
-	</definition>
-
-	<definition name="dealer/defaultSettings/createProduct"
-		extends="dealer_template">
-		<put-attribute name="subMenu" value="/WEB-INF/views/dealer/_submenu.jsp" />
-		<put-attribute name="content"
-			value="/WEB-INF/views/dealer/createProduct.jsp" />
-	</definition>
-
-	<definition name="dealer/defaultSettings/packages" extends="dealer_template">
-		<put-attribute name="subMenu" value="/WEB-INF/views/dealer/_submenu.jsp" />
-		<put-attribute name="content" value="/WEB-INF/views/dealer/packages.jsp" />
-	</definition>
-
-	<definition name="dealer/defaultSettings/fees" extends="dealer_template">
-		<put-attribute name="subMenu" value="/WEB-INF/views/dealer/_submenu.jsp" />
-		<put-attribute name="content" value="/WEB-INF/views/dealer/fees.jsp" />
-	</definition>
-
-	<definition name="dealer/defaultSettings/taxes" extends="dealer_template">
-		<put-attribute name="subMenu" value="/WEB-INF/views/dealer/_submenu.jsp" />
-		<put-attribute name="content" value="/WEB-INF/views/dealer/taxes.jsp" />
-	</definition>
-
-	<definition name="dealer/defaultSettings/productCategory"
-		extends="dealer_template">
-		<put-attribute name="subMenu" value="/WEB-INF/views/dealer/_submenu.jsp" />
-		<put-attribute name="content"
-			value="/WEB-INF/views/dealer/productCategory.jsp" />
-	</definition>
-
-	<definition name="dealer/defaultSettings/provider" extends="dealer_template">
-		<put-attribute name="subMenu" value="/WEB-INF/views/dealer/_submenu.jsp" />
-		<put-attribute name="content" value="/WEB-INF/views/dealer/provider.jsp" />
-	</definition>
-
-	<definition name="dealer/dealTemplates" extends="dealer_template">
-		<put-attribute name="content"
-			value="/WEB-INF/views/dealer/dealTemplates.jsp" />
-	</definition>
-
 	<definition name="dealer/activeUsers" extends="dealer_template">
 		<put-attribute name="content"
 			value="/WEB-INF/views/dealer/activeUsers.jsp" />

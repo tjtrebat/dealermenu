@@ -7,10 +7,16 @@
 <%@ page session="false"%>
 <div id="products" class="grid_12 alpha omega">
 	<div class="grid_12">
-		<jsp:include page="../_notification.jsp" />
+		<jsp:include page="../../_notification.jsp" />
 	</div>
-	<c:url value="/dealer/defaultSettings/products" var="productsUrl" />
-	<form:form action="${productsUrl}" modelAttribute="productForm"
+	<div class="grid_12">
+		<c:url var="createUrl" value="/dealer/defaultSettings/products/create" />
+		<p>
+			<a href="${createUrl}">&#43; Add Product</a>
+		</p>
+	</div>
+	<c:url value="/dealer/defaultSettings/products" var="listUrl" />
+	<form:form action="${listUrl}" modelAttribute="productForm"
 		method="post">
 		<div id="tblContents" class="grid_12">
 			<div id="tblHeader" class="grid_12 alpha omega">
@@ -69,10 +75,10 @@
 							<p>${product.productName}</p>
 						</div>
 						<div class="grid_2">
-							<p>${product.provider}</p>
+							<p>${product.provider.providerName}</p>
 						</div>
 						<div class="grid_2">
-							<p>${product.productCategory.productCategory}</p>
+							<p>${product.productCategory.productCategoryName}</p>
 						</div>
 						<div class="grid_1">
 							<p class="alignCenter">
@@ -96,7 +102,9 @@
 						</div>
 						<div class="grid_1">
 							<p class="alignCenter">
-								<a href="#">edit</a>
+								<c:url var="updateUrl"
+									value="/dealer/defaultSettings/products/update/${product.id}" />
+								<a href="${updateUrl}">edit</a>
 							</p>
 						</div>
 						<div class="grid_1 omega">
@@ -109,8 +117,7 @@
 					<div class="clear"></div>
 				</c:forEach>
 				<div class="grid_2 prefix_5 suffix_5 alpha omega">
-					<p>
-						<button type="button">Add</button>
+					<p class="alignCenter">
 						<input type="submit" value="Delete" />
 					</p>
 				</div>

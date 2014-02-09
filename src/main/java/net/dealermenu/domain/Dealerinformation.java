@@ -1,5 +1,6 @@
 package net.dealermenu.domain;
 
+import java.io.Serializable;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -20,13 +21,15 @@ import org.springframework.roo.addon.tostring.RooToString;
 @RooJpaActiveRecord
 @NamedQueries({
 		@javax.persistence.NamedQuery(name = "Dealerinformation.getDealerByLoginId", query = "SELECT dealerInformation FROM Dealerinformation dealerInformation WHERE dealerInformation.loginId=:loginId"),
+		@javax.persistence.NamedQuery(name = "Dealerinformation.getDealTemplates", query = "SELECT dealTemplate FROM Dealerinformation dealerInformation JOIN dealerInformation.dealTemplates dealTemplate WHERE dealerInformation.loginId=:loginId"),
+		@javax.persistence.NamedQuery(name = "Dealerinformation.getDealTemplateByPrimaryKey", query = "SELECT dealTemplate FROM Dealerinformation dealerInformation JOIN dealerInformation.dealTemplates dealTemplate WHERE dealerInformation.loginId=:loginId AND dealTemplate.id=:primaryKey"),
 		@javax.persistence.NamedQuery(name = "Dealerinformation.getProducts", query = "SELECT product FROM Dealerinformation dealerInformation JOIN dealerInformation.providers provider JOIN provider.products product WHERE dealerInformation.loginId=:loginId"),
 		@javax.persistence.NamedQuery(name = "Dealerinformation.getProductByPrimaryKey", query = "SELECT product FROM Dealerinformation dealerInformation JOIN dealerInformation.providers provider JOIN provider.products product WHERE dealerInformation.loginId=:loginId AND product.id=:primaryKey"),
 		@javax.persistence.NamedQuery(name = "Dealerinformation.getFeeByPrimaryKey", query = "SELECT fee FROM Dealerinformation dealerInformation JOIN dealerInformation.fees fee WHERE dealerInformation.loginId=:loginId AND fee.id=:primaryKey"),
 		@javax.persistence.NamedQuery(name = "Dealerinformation.getTaxByPrimaryKey", query = "SELECT tax FROM Dealerinformation dealerInformation JOIN dealerInformation.taxes tax WHERE dealerInformation.loginId=:loginId AND tax.id=:primaryKey"),
 		@javax.persistence.NamedQuery(name = "Dealerinformation.getProductCategoryByPrimaryKey", query = "SELECT productCategory FROM Dealerinformation dealerInformation JOIN dealerInformation.productCategories productCategory WHERE dealerInformation.loginId=:loginId AND productCategory.id=:primaryKey"),
 		@javax.persistence.NamedQuery(name = "Dealerinformation.getProviderByPrimaryKey", query = "SELECT provider FROM Dealerinformation dealerInformation JOIN dealerInformation.providers provider WHERE dealerInformation.loginId=:loginId AND provider.id=:primaryKey") })
-public class Dealerinformation {
+public class Dealerinformation implements Serializable {
 
 	@Column(name = "vDealerName")
 	@Size(min = 3, max = 50, message = "Your full name must be between 3 and 50 characters long.")
@@ -67,8 +70,8 @@ public class Dealerinformation {
 	@Pattern(regexp = "ActiveDealers|AwaitingDealers|DeniedDealers", flags = Flag.CASE_INSENSITIVE)
 	private String status;
 
-	@OneToMany(mappedBy = "dealer")
-	private List<Template> templates;
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "dealer")
+	private List<DealTemplate> dealTemplates;
 
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "dealer")
 	private List<ProductCategory> productCategories;

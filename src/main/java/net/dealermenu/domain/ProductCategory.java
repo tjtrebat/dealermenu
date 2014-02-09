@@ -1,5 +1,6 @@
 package net.dealermenu.domain;
 
+import java.io.Serializable;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -13,7 +14,7 @@ import org.springframework.roo.addon.tostring.RooToString;
 @RooJavaBean
 @RooToString
 @RooJpaActiveRecord
-public class ProductCategory {
+public class ProductCategory implements Serializable {
 
 	@Column(name = "vProductCategory")
 	private String productCategoryName;

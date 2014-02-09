@@ -2,6 +2,7 @@ package net.dealermenu.service;
 
 import java.util.List;
 
+import net.dealermenu.domain.DealTemplate;
 import net.dealermenu.domain.Dealerinformation;
 import net.dealermenu.domain.Fee;
 import net.dealermenu.domain.Product;
@@ -24,6 +25,10 @@ public interface DealerinformationDao {
 	public Dealerinformation updateDealer(Dealerinformation dealer);
 
 	public void removeDealer(Long primaryKey);
+	
+	public List<DealTemplate> getDealTemplates(String loginId);
+	
+	public DealTemplate getDealTemplateByPrimaryKey(String loginId, Long primaryKey);
 	
 	public List<Product> getProducts(String loginId);
 	

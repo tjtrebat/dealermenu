@@ -8,8 +8,14 @@
 	<div class="grid_10">
 		<jsp:include page="../../_notification.jsp" />
 	</div>
-	<c:url var="listUrl" value="/admin/dealers/templates" />
-	<form:form action="${listUrl}" modelAttribute="templateForm"
+	<div class="grid_10">
+		<c:url var="createUrl" value="/dealer/dealtemplates/create" />
+		<p>
+			<a href="${createUrl}">&#43; Create Deal Template</a>
+		</p>
+	</div>
+	<c:url var="listUrl" value="/dealer/dealtemplates" />
+	<form:form action="${listUrl}" modelAttribute="dealTemplateForm"
 		method="post">
 		<div id="tblContents" class="grid_10">
 			<div id="tblHeader" class="grid_10 alpha omega">
@@ -29,56 +35,59 @@
 					</p>
 				</div>
 				<div class="grid_1">
-					<p>
+					<p class="alignCenter">
 						<strong>View</strong>
 					</p>
 				</div>
 				<div class="grid_1">
-					<p>
+					<p class="alignCenter">
 						<strong>Edit</strong>
 					</p>
 				</div>
 				<div class="grid_1 omega">
-					<p>
+					<p class="alignCenter">
 						<strong>Delete</strong>
 					</p>
 				</div>
 			</div>
 			<div class="clear"></div>
 			<div id="tblBody" class="grid_10 alpha omega">
-				<c:forEach var="template" items="${templateForm.templates}"
-					varStatus="status">
+				<c:forEach var="dealTemplate"
+					items="${dealTemplateForm.dealTemplates}" varStatus="status">
 					<div class="grid_10 alpha omega tblRow">
 						<div class="grid_3 alpha">
-							<p>${template.templateName}</p>
+							<p>${dealTemplate.templateName}</p>
 						</div>
 						<div class="grid_2">
-							<p>${template.type}</p>
+							<p>${dealTemplate.type}</p>
 						</div>
 						<div class="grid_2">
-							<p>${template.createdBy}</p>
+							<p>${dealTemplate.createdBy}</p>
 						</div>
 						<div class="grid_1">
-							<p>
-								<a href="<c:url value="/dealer/templates/${template.id}" />">view</a>
+							<p class="alignCenter">
+								<%-- <a
+									href="<c:url value="/dealer/dealtemplate/${dealTemplate.id}" />">view</a> --%>
 							</p>
 						</div>
 						<div class="grid_1">
-							<p>
-								<a href="#">edit</a>
+							<p class="alignCenter">
+								<%-- <c:url var="updateUrl"
+									value="/dealer/dealtemplate/update/${dealTemplate.id}" />
+								<a href="${updateUrl}">edit</a> --%>
 							</p>
 						</div>
 						<div class="grid_1 omega">
-							<p>
-								<input type="checkbox" name="templates[${status.index}].id"
-									value="${template.id}" />
+							<p class="alignCenter">
+								<%-- <input type="checkbox" name="dealTemplates[${status.index}].id"
+									value="${dealTemplate.id}" /> --%>
 							</p>
 						</div>
 					</div>
 					<div class="clear"></div>
 				</c:forEach>
 				<div class="grid_2 prefix_4 suffix_4 alpha omega">
-					<p>
+					<p class="alignCenter">
 						<input type="submit" value="Submit" />
 					</p>
 				</div>

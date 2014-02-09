@@ -4,13 +4,13 @@
 package net.dealermenu.domain;
 
 import java.util.List;
+import net.dealermenu.domain.DealTemplate;
 import net.dealermenu.domain.Dealerinformation;
 import net.dealermenu.domain.Fee;
 import net.dealermenu.domain.Packages;
 import net.dealermenu.domain.ProductCategory;
 import net.dealermenu.domain.Provider;
 import net.dealermenu.domain.Tax;
-import net.dealermenu.domain.Template;
 
 privileged aspect Dealerinformation_Roo_JavaBean {
     
@@ -102,12 +102,12 @@ privileged aspect Dealerinformation_Roo_JavaBean {
         this.status = status;
     }
     
-    public List<Template> Dealerinformation.getTemplates() {
-        return this.templates;
+    public List<DealTemplate> Dealerinformation.getDealTemplates() {
+        return this.dealTemplates;
     }
     
-    public void Dealerinformation.setTemplates(List<Template> templates) {
-        this.templates = templates;
+    public void Dealerinformation.setDealTemplates(List<DealTemplate> dealTemplates) {
+        this.dealTemplates = dealTemplates;
     }
     
     public List<ProductCategory> Dealerinformation.getProductCategories() {

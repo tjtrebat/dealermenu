@@ -1,10 +1,11 @@
 package net.dealermenu.web;
 
+import java.io.Serializable;
 import java.util.List;
 
 import net.dealermenu.domain.Product;
 
-public class ProductForm {
+public class ProductForm implements Serializable {
 
 	private List<Product> products;
 

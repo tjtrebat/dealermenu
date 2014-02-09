@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<flow xmlns="http://www.springframework.org/schema/webflow"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/webflow http://www.springframework.org/schema/webflow/spring-webflow-2.0.xsd">
+
+	<var name="dealTemplate" class="net.dealermenu.domain.DealTemplate" />
+
+	<view-state id="details" view="dealtemplate/details" model="dealTemplate">
+		<on-entry>
+			<evaluate result="viewScope.dealTypes"
+				expression="T(net.dealermenu.domain.DealType).values()" />
+		</on-entry>
+		<transition on="success" to="products" />
+	</view-state>
+
+	<view-state id="products" view="dealtemplate/products"
+		model="viewScope.productForm">
+		<on-entry>
+			<set name="viewScope.productForm" value="new net.dealermenu.web.ProductForm()" />
+			<evaluate
+				expression="viewScope.productForm.setProducts(dealerinformationDao.getProducts(currentUser.name))" />
+		</on-entry>
+		<transition on="success" to="list" />
+	</view-state>
+
+	<end-state id="list"
+		view="externalRedirect:contextRelative:/dealer/dealtemplates" />
+
+	<global-transitions>
+		<transition on="cancel" to="list" />
+	</global-transitions>
+
+</flow>

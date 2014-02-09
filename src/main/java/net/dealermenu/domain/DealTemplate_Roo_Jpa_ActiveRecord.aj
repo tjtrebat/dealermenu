@@ -6,70 +6,70 @@ package net.dealermenu.domain;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import net.dealermenu.domain.Template;
+import net.dealermenu.domain.DealTemplate;
 import org.springframework.transaction.annotation.Transactional;
 
-privileged aspect Template_Roo_Jpa_ActiveRecord {
+privileged aspect DealTemplate_Roo_Jpa_ActiveRecord {
     
     @PersistenceContext
-    transient EntityManager Template.entityManager;
+    transient EntityManager DealTemplate.entityManager;
     
-    public static final EntityManager Template.entityManager() {
-        EntityManager em = new Template().entityManager;
+    public static final EntityManager DealTemplate.entityManager() {
+        EntityManager em = new DealTemplate().entityManager;
         if (em == null) throw new IllegalStateException("Entity manager has not been injected (is the Spring Aspects JAR configured as an AJC/AJDT aspects library?)");
         return em;
     }
     
-    public static long Template.countTemplates() {
-        return entityManager().createQuery("SELECT COUNT(o) FROM Template o", Long.class).getSingleResult();
+    public static long DealTemplate.countDealTemplates() {
+        return entityManager().createQuery("SELECT COUNT(o) FROM DealTemplate o", Long.class).getSingleResult();
     }
     
-    public static List<Template> Template.findAllTemplates() {
-        return entityManager().createQuery("SELECT o FROM Template o", Template.class).getResultList();
+    public static List<DealTemplate> DealTemplate.findAllDealTemplates() {
+        return entityManager().createQuery("SELECT o FROM DealTemplate o", DealTemplate.class).getResultList();
     }
     
-    public static Template Template.findTemplate(Long id) {
+    public static DealTemplate DealTemplate.findDealTemplate(Long id) {
         if (id == null) return null;
-        return entityManager().find(Template.class, id);
+        return entityManager().find(DealTemplate.class, id);
     }
     
-    public static List<Template> Template.findTemplateEntries(int firstResult, int maxResults) {
-        return entityManager().createQuery("SELECT o FROM Template o", Template.class).setFirstResult(firstResult).setMaxResults(maxResults).getResultList();
+    public static List<DealTemplate> DealTemplate.findDealTemplateEntries(int firstResult, int maxResults) {
+        return entityManager().createQuery("SELECT o FROM DealTemplate o", DealTemplate.class).setFirstResult(firstResult).setMaxResults(maxResults).getResultList();
     }
     
     @Transactional
-    public void Template.persist() {
+    public void DealTemplate.persist() {
         if (this.entityManager == null) this.entityManager = entityManager();
         this.entityManager.persist(this);
     }
     
     @Transactional
-    public void Template.remove() {
+    public void DealTemplate.remove() {
         if (this.entityManager == null) this.entityManager = entityManager();
         if (this.entityManager.contains(this)) {
             this.entityManager.remove(this);
         } else {
-            Template attached = Template.findTemplate(this.id);
+            DealTemplate attached = DealTemplate.findDealTemplate(this.id);
             this.entityManager.remove(attached);
         }
     }
     
     @Transactional
-    public void Template.flush() {
+    public void DealTemplate.flush() {
         if (this.entityManager == null) this.entityManager = entityManager();
         this.entityManager.flush();
     }
     
     @Transactional
-    public void Template.clear() {
+    public void DealTemplate.clear() {
         if (this.entityManager == null) this.entityManager = entityManager();
         this.entityManager.clear();
     }
     
     @Transactional
-    public Template Template.merge() {
+    public DealTemplate DealTemplate.merge() {
         if (this.entityManager == null) this.entityManager = entityManager();
-        Template merged = this.entityManager.merge(this);
+        DealTemplate merged = this.entityManager.merge(this);
         this.entityManager.flush();
         return merged;
     }

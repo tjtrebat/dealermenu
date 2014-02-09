@@ -3,13 +3,13 @@
 
 package net.dealermenu.domain;
 
-import net.dealermenu.domain.Template;
+import net.dealermenu.domain.DealTemplate;
 import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 
-privileged aspect Template_Roo_ToString {
+privileged aspect DealTemplate_Roo_ToString {
     
-    public String Template.toString() {
+    public String DealTemplate.toString() {
         return ReflectionToStringBuilder.toString(this, ToStringStyle.SHORT_PREFIX_STYLE);
     }
     

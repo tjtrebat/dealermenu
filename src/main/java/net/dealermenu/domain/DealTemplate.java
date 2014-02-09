@@ -1,4 +1,6 @@
 package net.dealermenu.domain;
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
@@ -11,7 +13,7 @@ import org.springframework.roo.addon.tostring.RooToString;
 @RooToString
 @RooJpaActiveRecord
 @Table(name = "templates")
-public class Template {
+public class DealTemplate implements Serializable {
 	
 	@Column(name = "vCreatedBy")
 	private String createdBy;
@@ -20,7 +22,7 @@ public class Template {
 	private String templateName;
 
 	@Column(name = "vType")
-	private String type;
+	private DealType type;
 
 	@ManyToOne
 	private Dealerinformation dealer;

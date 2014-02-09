@@ -3,11 +3,11 @@
 
 package net.dealermenu.domain;
 
-import net.dealermenu.domain.Template;
+import net.dealermenu.domain.DealTemplate;
 import org.springframework.beans.factory.annotation.Configurable;
 
-privileged aspect Template_Roo_Configurable {
+privileged aspect DealTemplate_Roo_Configurable {
     
-    declare @type: Template: @Configurable;
+    declare @type: DealTemplate: @Configurable;
     
 }

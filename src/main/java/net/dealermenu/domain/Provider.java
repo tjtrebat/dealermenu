@@ -1,5 +1,6 @@
 package net.dealermenu.domain;
 
+import java.io.Serializable;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -13,7 +14,7 @@ import org.springframework.roo.addon.tostring.RooToString;
 @RooJavaBean
 @RooToString
 @RooJpaActiveRecord
-public class Provider {
+public class Provider implements Serializable {
 
 	/**
      */

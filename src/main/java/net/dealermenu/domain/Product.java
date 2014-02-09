@@ -1,5 +1,7 @@
 package net.dealermenu.domain;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.ManyToOne;
 
@@ -10,7 +12,7 @@ import org.springframework.roo.addon.tostring.RooToString;
 @RooJavaBean
 @RooToString
 @RooJpaActiveRecord
-public class Product {
+public class Product implements Serializable {
 
 	@Column(name = "vProductName")
 	private String productName;

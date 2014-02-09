@@ -9,6 +9,7 @@ import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 
+import net.dealermenu.domain.DealTemplate;
 import net.dealermenu.domain.Dealerinformation;
 import net.dealermenu.domain.Fee;
 import net.dealermenu.domain.Product;
@@ -81,13 +82,32 @@ public class JpaDealerinformationDao implements DealerinformationDao {
 	}
 
 	@Override
+	public List<DealTemplate> getDealTemplates(String loginId) {
+		TypedQuery<DealTemplate> query = em.createNamedQuery(
+				"Dealerinformation.getDealTemplates", DealTemplate.class);
+		query.setParameter("loginId", loginId.trim());
+		return query.getResultList();
+	}
+
+	@Override
+	public DealTemplate getDealTemplateByPrimaryKey(String loginId,
+			Long primaryKey) {
+		TypedQuery<DealTemplate> query = em.createNamedQuery(
+				"Dealerinformation.getDealTemplateByPrimaryKey",
+				DealTemplate.class);
+		query.setParameter("loginId", loginId.trim());
+		query.setParameter("primaryKey", primaryKey);
+		return query.getSingleResult();
+	}
+
+	@Override
 	public List<Product> getProducts(String loginId) {
 		TypedQuery<Product> query = em.createNamedQuery(
 				"Dealerinformation.getProducts", Product.class);
 		query.setParameter("loginId", loginId.trim());
 		return query.getResultList();
 	}
-
+	
 	@Override
 	public Product getProductByPrimaryKey(String loginId, Long primaryKey) {
 		TypedQuery<Product> query = em.createNamedQuery(

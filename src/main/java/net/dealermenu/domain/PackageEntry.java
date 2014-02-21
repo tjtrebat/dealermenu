@@ -45,8 +45,4 @@ public class PackageEntry implements Serializable {
         this.isEconomy = isEconomy;
     }
 
-    /**
-     */
-    private double price;
-
 }

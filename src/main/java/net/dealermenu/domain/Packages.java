@@ -1,13 +1,16 @@
 package net.dealermenu.domain;
+import java.io.Serializable;
+
+import javax.persistence.OneToOne;
+
 import org.springframework.roo.addon.javabean.RooJavaBean;
 import org.springframework.roo.addon.jpa.activerecord.RooJpaActiveRecord;
 import org.springframework.roo.addon.tostring.RooToString;
-import javax.persistence.OneToOne;
 
 @RooJavaBean
 @RooToString
 @RooJpaActiveRecord
-public class Packages {
+public class Packages implements Serializable {
 
     /**
      */
@@ -28,5 +31,5 @@ public class Packages {
     /**
      */
     @OneToOne
-    private Dealerinformation dealer;
+    private Dealer dealer;
 }

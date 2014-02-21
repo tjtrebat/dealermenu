@@ -5,7 +5,7 @@ import java.security.Principal;
 import javax.validation.Valid;
 
 import net.dealermenu.domain.Provider;
-import net.dealermenu.service.DealerinformationDao;
+import net.dealermenu.service.DealerService;
 import net.dealermenu.service.ProviderService;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,15 +25,15 @@ public class ProviderController {
 	@Autowired
 	ProviderService providerService;
 	@Autowired
-	private DealerinformationDao dealerinformationDao;
+	private DealerService dealerService;
 
 	@RequestMapping
 	public String list(Model model, Principal principal) {
+		model.addAttribute("provider", new Provider());
 		ProviderForm providerForm = new ProviderForm();
-		providerForm.setProviders(dealerinformationDao.getProviders(principal
+		providerForm.setProviders(dealerService.getProviders(principal
 				.getName()));
 		model.addAttribute("providerForm", providerForm);
-		model.addAttribute("provider", new Provider());
 		return "provider/list";
 	}
 
@@ -41,14 +41,12 @@ public class ProviderController {
 	public String list(
 			@ModelAttribute("providerForm") ProviderForm providerForm,
 			Model model, Principal principal) {
-		for (Provider provider : providerForm.getProviders()) {
-			if (provider.getId() != null) {
-				providerService.removeProvider(dealerinformationDao
-						.getProviderByPrimaryKey(principal.getName(),
-								provider.getId()).getId());
-				model.addAttribute("successMsg",
-						"Provider was deleted successfully.");
-			}
+		for (Long providerId : providerForm.getSelectedIds()) {
+			Provider provider = dealerService.getProviderByPrimaryKey(
+					principal.getName(), providerId);
+			providerService.removeProvider(provider.getId());
+			model.addAttribute("successMsg",
+					"Provider was deleted successfully.");
 		}
 		return "redirect:/dealer/defaultSettings/providers";
 	}
@@ -62,7 +60,7 @@ public class ProviderController {
 			model.addAttribute("provider", provider);
 			return "provider/list";
 		}
-		dealerinformationDao.addProvider(principal.getName(), provider);
+		dealerService.addProvider(principal.getName(), provider);
 		model.addAttribute("successMsg", "Provider was created successfully.");
 		return "redirect:/dealer/defaultSettings/providers";
 	}

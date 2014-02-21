@@ -14,13 +14,41 @@
 	</view-state>
 
 	<view-state id="products" view="dealtemplate/products"
-		model="viewScope.productForm">
+		model="flowScope.productForm">
 		<on-entry>
-			<set name="viewScope.productForm" value="new net.dealermenu.web.ProductForm()" />
+			<set name="flowScope.productForm" value="new net.dealermenu.web.ProductForm()" />
 			<evaluate
-				expression="viewScope.productForm.setProducts(dealerinformationDao.getProducts(currentUser.name))" />
+				expression="flowScope.productForm.setProducts(dealerService.getProducts(currentUser.name))" />
 		</on-entry>
-		<transition on="success" to="list" />
+		<transition on="success" to="packages" />
+	</view-state>
+
+	<view-state id="packages" view="dealtemplate/packages"
+		model="flowScope.packageTypeForm">
+		<on-entry>
+			<set name="flowScope.packageTypeForm" value="new net.dealermenu.web.PackageTypeForm()" />
+			<evaluate
+				expression="flowScope.packageTypeForm.setProducts(flowScope.productForm.getSelectedProducts())" />
+		</on-entry>
+		<transition on="success" to="fees" />
+	</view-state>
+
+	<view-state id="fees" view="dealtemplate/fees" model="viewScope.feeForm">
+		<on-entry>
+			<set name="viewScope.feeForm" value="new net.dealermenu.web.FeeForm()" />
+			<evaluate
+				expression="viewScope.feeForm.setFees(dealerService.getFees(currentUser.name))" />
+		</on-entry>
+		<transition on="success" to="list">
+			<evaluate
+				expression="dealerService.addDealTemplate(currentUser.name, dealTemplate)" />
+			<evaluate
+				expression="dealerService.addDealTemplateProducts(currentUser.name, 
+				dealTemplate.getId(), flowScope.packageTypeForm.getPackageTypes())" />
+			<evaluate
+				expression="dealerService.addDealTemplateFees(currentUser.name, 
+				dealTemplate.getId(), viewScope.feeForm.getSelectedIds())" />
+		</transition>
 	</view-state>
 
 	<end-state id="list"

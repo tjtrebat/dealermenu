@@ -3,7 +3,8 @@ package net.dealermenu.web;
 import java.security.Principal;
 import java.util.Set;
 
-import net.dealermenu.domain.Dealerinformation;
+import net.dealermenu.domain.Dealer;
+import net.dealermenu.domain.UserRoles;
 
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.authority.AuthorityUtils;
@@ -21,12 +22,12 @@ public class LoginController {
 			Set<String> roles = AuthorityUtils
 					.authorityListToSet(((Authentication) principal)
 							.getAuthorities());
-			if (roles.contains("ROLE_ADMIN"))
+			if (roles.contains(UserRoles.ROLE_ADMIN))
 				return "redirect:/admin";
-			else if (roles.contains("ROLE_USER"))
+			else if (roles.contains(UserRoles.ROLE_USER))
 				return "redirect:/dealer";
 		}
-		model.addAttribute("dealerInformation", new Dealerinformation());
+		model.addAttribute("dealer", new Dealer());
 		return "login";
 	}
 

@@ -3,7 +3,9 @@
 
 package net.dealermenu.domain;
 
-import net.dealermenu.domain.Dealerinformation;
+import java.util.List;
+import net.dealermenu.domain.DealTemplate;
+import net.dealermenu.domain.Dealer;
 import net.dealermenu.domain.Fee;
 
 privileged aspect Fee_Roo_JavaBean {
@@ -48,12 +50,20 @@ privileged aspect Fee_Roo_JavaBean {
         this.isTaxable = isTaxable;
     }
     
-    public Dealerinformation Fee.getDealer() {
+    public Dealer Fee.getDealer() {
         return this.dealer;
     }
     
-    public void Fee.setDealer(Dealerinformation dealer) {
+    public void Fee.setDealer(Dealer dealer) {
         this.dealer = dealer;
+    }
+    
+    public List<DealTemplate> Fee.getDealTemplates() {
+        return this.dealTemplates;
+    }
+    
+    public void Fee.setDealTemplates(List<DealTemplate> dealTemplates) {
+        this.dealTemplates = dealTemplates;
     }
     
 }

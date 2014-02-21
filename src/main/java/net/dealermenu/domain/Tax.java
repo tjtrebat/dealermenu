@@ -1,4 +1,6 @@
 package net.dealermenu.domain;
+import java.io.Serializable;
+
 import javax.persistence.ManyToOne;
 
 import org.springframework.roo.addon.javabean.RooJavaBean;
@@ -8,7 +10,7 @@ import org.springframework.roo.addon.tostring.RooToString;
 @RooJavaBean
 @RooToString
 @RooJpaActiveRecord
-public class Tax {
+public class Tax implements Serializable {
 
     /**
      */
@@ -41,5 +43,5 @@ public class Tax {
     /**
      */
     @ManyToOne
-    private Dealerinformation dealer;
+    private Dealer dealer;
 }

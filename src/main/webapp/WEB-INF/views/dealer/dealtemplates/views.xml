@@ -7,6 +7,11 @@
 			value="/WEB-INF/views/dealer/dealtemplates/list.jsp" />
 	</definition>
 
+	<definition name="dealtemplate/info" extends="dealer_template">
+		<put-attribute name="content"
+			value="/WEB-INF/views/dealer/dealtemplates/info.jsp" />
+	</definition>
+
 	<definition name="dealtemplate/*" extends="dealer_template">
 		<put-attribute name="content"
 			value="/WEB-INF/views/dealer/dealtemplates/{1}.jsp" />

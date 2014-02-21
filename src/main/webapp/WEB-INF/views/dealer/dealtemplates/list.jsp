@@ -1,6 +1,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="s"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@ taglib prefix="security"
 	uri="http://www.springframework.org/security/tags"%>
 <%@ page session="false"%>
@@ -59,28 +60,29 @@
 							<p>${dealTemplate.templateName}</p>
 						</div>
 						<div class="grid_2">
-							<p>${dealTemplate.type}</p>
+							<c:set var="dealType" value="${dealTemplate.type}" />
+							<p>${fn:toUpperCase(fn:substring(dealType, 0, 1))}${fn:toLowerCase(fn:substring(dealType, 1, 50))}</p>
 						</div>
 						<div class="grid_2">
 							<p>${dealTemplate.createdBy}</p>
 						</div>
 						<div class="grid_1">
 							<p class="alignCenter">
-								<%-- <a
-									href="<c:url value="/dealer/dealtemplate/${dealTemplate.id}" />">view</a> --%>
+								<a
+									href="<c:url value="/dealer/dealtemplates/info/${dealTemplate.id}" />">view</a>
 							</p>
 						</div>
 						<div class="grid_1">
 							<p class="alignCenter">
-								<%-- <c:url var="updateUrl"
-									value="/dealer/dealtemplate/update/${dealTemplate.id}" />
-								<a href="${updateUrl}">edit</a> --%>
+								<c:url var="updateUrl" value="/dealer/dealtemplates/update">
+									<c:param name="pk">${dealTemplate.id}</c:param>
+								</c:url>
+								<a href="${updateUrl}">edit</a>
 							</p>
 						</div>
 						<div class="grid_1 omega">
 							<p class="alignCenter">
-								<%-- <input type="checkbox" name="dealTemplates[${status.index}].id"
-									value="${dealTemplate.id}" /> --%>
+								<form:checkbox path="checkboxes[${dealTemplate.id}]" />
 							</p>
 						</div>
 					</div>

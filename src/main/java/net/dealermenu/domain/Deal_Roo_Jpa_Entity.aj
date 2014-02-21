@@ -9,34 +9,34 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Version;
-import net.dealermenu.domain.Dealerinformation;
+import net.dealermenu.domain.Deal;
 
-privileged aspect Dealerinformation_Roo_Jpa_Entity {
+privileged aspect Deal_Roo_Jpa_Entity {
     
-    declare @type: Dealerinformation: @Entity;
+    declare @type: Deal: @Entity;
     
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id")
-    private Long Dealerinformation.id;
+    private Long Deal.id;
     
     @Version
     @Column(name = "version")
-    private Integer Dealerinformation.version;
+    private Integer Deal.version;
     
-    public Long Dealerinformation.getId() {
+    public Long Deal.getId() {
         return this.id;
     }
     
-    public void Dealerinformation.setId(Long id) {
+    public void Deal.setId(Long id) {
         this.id = id;
     }
     
-    public Integer Dealerinformation.getVersion() {
+    public Integer Deal.getVersion() {
         return this.version;
     }
     
-    public void Dealerinformation.setVersion(Integer version) {
+    public void Deal.setVersion(Integer version) {
         this.version = version;
     }
     

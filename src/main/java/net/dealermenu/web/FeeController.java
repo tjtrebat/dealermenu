@@ -5,7 +5,7 @@ import java.security.Principal;
 import javax.validation.Valid;
 
 import net.dealermenu.domain.Fee;
-import net.dealermenu.service.DealerinformationDao;
+import net.dealermenu.service.DealerService;
 import net.dealermenu.service.FeeService;
 
 import org.springframework.beans.BeanUtils;
@@ -27,12 +27,12 @@ public class FeeController {
 	@Autowired
 	private FeeService feeService;
 	@Autowired
-	private DealerinformationDao dealerinformationDao;
+	private DealerService dealerService;
 
 	@RequestMapping
 	public String list(Model model, Principal principal) {
 		FeeForm feeForm = new FeeForm();
-		feeForm.setFees(dealerinformationDao.getFees(principal.getName()));
+		feeForm.setFees(dealerService.getFees(principal.getName()));
 		model.addAttribute("feeForm", feeForm);
 		return "fee/list";
 	}
@@ -40,13 +40,11 @@ public class FeeController {
 	@RequestMapping(method = RequestMethod.POST)
 	public String list(@ModelAttribute("feeForm") FeeForm feeForm, Model model,
 			Principal principal) {
-		for (Fee fee : feeForm.getFees()) {
-			if (fee.getId() != null) {
-				feeService.removeFee(dealerinformationDao.getFeeByPrimaryKey(
-						principal.getName(), fee.getId()).getId());
-				model.addAttribute("successMsg",
-						"Fees were deleted successfully");
-			}
+		for (Long feeId : feeForm.getSelectedIds()) {
+			Fee fee = dealerService.getFeeByPrimaryKey(principal.getName(),
+					feeId);
+			feeService.removeFee(fee.getId());
+			model.addAttribute("successMsg", "Fees were deleted successfully");
 		}
 		return "redirect:/dealer/defaultSettings/fees";
 	}
@@ -64,7 +62,7 @@ public class FeeController {
 			model.addAttribute("fee", fee);
 			return "fee/create";
 		}
-		dealerinformationDao.addFee(principal.getName(), fee);
+		dealerService.addFee(principal.getName(), fee);
 		model.addAttribute("successMsg", "Fees were created successfully");
 		return "redirect:/dealer/defaultSettings/fees";
 	}
@@ -72,7 +70,7 @@ public class FeeController {
 	@RequestMapping("/update/{primaryKey}")
 	public String update(@PathVariable Long primaryKey, Model model,
 			Principal principal) {
-		Fee fee = dealerinformationDao.getFeeByPrimaryKey(principal.getName(),
+		Fee fee = dealerService.getFeeByPrimaryKey(principal.getName(),
 				primaryKey);
 		model.addAttribute("fee", fee);
 		return "fee/update";
@@ -85,8 +83,8 @@ public class FeeController {
 			model.addAttribute("fee", fee);
 			return "fee/update";
 		}
-		Fee feeEntity = dealerinformationDao.getFeeByPrimaryKey(
-				principal.getName(), fee.getId());
+		Fee feeEntity = dealerService.getFeeByPrimaryKey(principal.getName(),
+				fee.getId());
 		BeanUtils.copyProperties(fee, feeEntity, new String[] { "id",
 				"version", "dealer" });
 		feeService.updateFee(feeEntity);

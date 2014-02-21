@@ -27,9 +27,9 @@
 			<div class="grid_4 omega">
 				<p>
 					<form:select path="type">
-						<c:forEach var="dealType" varStatus="status" items="${dealTypes}">
-							<form:option value="${dealType}">${fn:toUpperCase(fn:substring(dealType, 0, 1))}${fn:toLowerCase(fn:substring(dealType, 1, 50))}
-							</form:option>
+						<c:forEach var="dealType" items="${dealTypes}">
+							<option value="${dealType}"
+								<c:if test="${dealType eq dealTemplate.type}">selected</c:if>>${fn:toUpperCase(fn:substring(dealType, 0, 1))}${fn:toLowerCase(fn:substring(dealType, 1, 50))}</option>
 						</c:forEach>
 					</form:select>
 				</p>

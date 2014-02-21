@@ -22,7 +22,13 @@
 	</bean>
 
 	<!-- Executes flows: the entry point into the Spring Web Flow system -->
-	<webflow:flow-executor id="flowExecutor" />
+	<webflow:flow-executor id="flowExecutor">
+		<webflow:flow-execution-listeners>
+			<webflow:listener ref="loggingFlowExecutionListener" />
+		</webflow:flow-execution-listeners>
+	</webflow:flow-executor>
+
+	<bean id="loggingFlowExecutionListener" class="net.dealermenu.web.LoggingFlowExecutionListener" />
 
 	<!-- The registry of executable flow definitions -->
 	<webflow:flow-registry base-path="/WEB-INF/views"
@@ -43,4 +49,5 @@
 		id="conversionServiceExposingInterceptor">
 		<constructor-arg ref="applicationConversionService" />
 	</bean>
+
 </beans>

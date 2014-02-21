@@ -4,8 +4,7 @@
 <%@ page session="false"%>
 <div class="grid_6 prefix_3 suffix_3 alpha omega">
 	<s:url var="authUrl" value="/static/j_spring_security_check" />
-	<form:form method="post" modelAttribute="dealerInformation"
-		action="${authUrl}">
+	<form:form method="post" modelAttribute="dealer" action="${authUrl}">
 		<div class="grid_2 alpha">
 			<p class="alignRight">
 				<label for="username">Username</label>
@@ -45,5 +44,7 @@
 <script type="text/javascript">
 	$(function() {
 		$("#username").focus();
-	});	
+	});
+
+	
 </script>

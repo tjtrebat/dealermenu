@@ -6,70 +6,70 @@ package net.dealermenu.domain;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import net.dealermenu.domain.Dealerinformation;
+import net.dealermenu.domain.Deal;
 import org.springframework.transaction.annotation.Transactional;
 
-privileged aspect Dealerinformation_Roo_Jpa_ActiveRecord {
+privileged aspect Deal_Roo_Jpa_ActiveRecord {
     
     @PersistenceContext
-    transient EntityManager Dealerinformation.entityManager;
+    transient EntityManager Deal.entityManager;
     
-    public static final EntityManager Dealerinformation.entityManager() {
-        EntityManager em = new Dealerinformation().entityManager;
+    public static final EntityManager Deal.entityManager() {
+        EntityManager em = new Deal().entityManager;
         if (em == null) throw new IllegalStateException("Entity manager has not been injected (is the Spring Aspects JAR configured as an AJC/AJDT aspects library?)");
         return em;
     }
     
-    public static long Dealerinformation.countDealerinformations() {
-        return entityManager().createQuery("SELECT COUNT(o) FROM Dealerinformation o", Long.class).getSingleResult();
+    public static long Deal.countDeals() {
+        return entityManager().createQuery("SELECT COUNT(o) FROM Deal o", Long.class).getSingleResult();
     }
     
-    public static List<Dealerinformation> Dealerinformation.findAllDealerinformations() {
-        return entityManager().createQuery("SELECT o FROM Dealerinformation o", Dealerinformation.class).getResultList();
+    public static List<Deal> Deal.findAllDeals() {
+        return entityManager().createQuery("SELECT o FROM Deal o", Deal.class).getResultList();
     }
     
-    public static Dealerinformation Dealerinformation.findDealerinformation(Long id) {
+    public static Deal Deal.findDeal(Long id) {
         if (id == null) return null;
-        return entityManager().find(Dealerinformation.class, id);
+        return entityManager().find(Deal.class, id);
     }
     
-    public static List<Dealerinformation> Dealerinformation.findDealerinformationEntries(int firstResult, int maxResults) {
-        return entityManager().createQuery("SELECT o FROM Dealerinformation o", Dealerinformation.class).setFirstResult(firstResult).setMaxResults(maxResults).getResultList();
+    public static List<Deal> Deal.findDealEntries(int firstResult, int maxResults) {
+        return entityManager().createQuery("SELECT o FROM Deal o", Deal.class).setFirstResult(firstResult).setMaxResults(maxResults).getResultList();
     }
     
     @Transactional
-    public void Dealerinformation.persist() {
+    public void Deal.persist() {
         if (this.entityManager == null) this.entityManager = entityManager();
         this.entityManager.persist(this);
     }
     
     @Transactional
-    public void Dealerinformation.remove() {
+    public void Deal.remove() {
         if (this.entityManager == null) this.entityManager = entityManager();
         if (this.entityManager.contains(this)) {
             this.entityManager.remove(this);
         } else {
-            Dealerinformation attached = Dealerinformation.findDealerinformation(this.id);
+            Deal attached = Deal.findDeal(this.id);
             this.entityManager.remove(attached);
         }
     }
     
     @Transactional
-    public void Dealerinformation.flush() {
+    public void Deal.flush() {
         if (this.entityManager == null) this.entityManager = entityManager();
         this.entityManager.flush();
     }
     
     @Transactional
-    public void Dealerinformation.clear() {
+    public void Deal.clear() {
         if (this.entityManager == null) this.entityManager = entityManager();
         this.entityManager.clear();
     }
     
     @Transactional
-    public Dealerinformation Dealerinformation.merge() {
+    public Deal Deal.merge() {
         if (this.entityManager == null) this.entityManager = entityManager();
-        Dealerinformation merged = this.entityManager.merge(this);
+        Deal merged = this.entityManager.merge(this);
         this.entityManager.flush();
         return merged;
     }

@@ -5,6 +5,8 @@
 <%@ page session="false"%>
 <div class="grid_6 prefix_3 suffix_3 alpha omega">
 	<form:form commandName="productForm" method="post">
+		<input type="hidden" name="_flowExecutionKey"
+			value="${flowExecutionKey}" />
 		<div id="tblContents" class="grid_6">
 			<div id="tblHeader" class="grid_6 alpha omega">
 				<div class="grid_2 alpha">
@@ -25,8 +27,7 @@
 			</div>
 			<div class="clear"></div>
 			<div id="tblBody" class="grid_6 alpha omega">
-				<c:forEach var="product" items="${productForm.products}"
-					varStatus="status">
+				<c:forEach var="product" items="${productForm.products}">
 					<div class="grid_6 alpha omega tblRow">
 						<div class="grid_2 alpha">
 							<p>${product.productName}</p>
@@ -36,8 +37,7 @@
 						</div>
 						<div class="grid_2 omega">
 							<p class="alignCenter">
-								<input type="checkbox" name="products[${status.index}].id"
-									value="${product.id}" />
+								<form:checkbox path="checkboxes[${product.id}]" />
 							</p>
 						</div>
 					</div>

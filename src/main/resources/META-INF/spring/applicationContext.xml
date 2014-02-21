@@ -94,7 +94,7 @@
 	<aop:config>
 		<aop:aspect ref="daoAspect">
 			<aop:pointcut id="getSingleResult"
-				expression="execution(* net.dealermenu.service.JpaDealerinformationDao.getDealerByLoginId(..))" />
+				expression="execution(* net.dealermenu.service.DealerServiceJpaImpl.getDealerByLoginId(..))" />
 			<aop:around pointcut-ref="getSingleResult"
 				method="catchEmptyResultDataAccessException" />
 		</aop:aspect>

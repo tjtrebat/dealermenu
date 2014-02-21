@@ -58,10 +58,7 @@
 						</div>
 						<div class="grid_1 omega">
 							<p class="alignCenter">
-								<input type="hidden" name="dealers[${status.index}].id"
-									value="${dealer.id}" /><input
-									name="dealers[${status.index}].status" value="DeniedDealers"
-									type="checkbox" />
+								<form:checkbox path="checkboxes[${dealer.id}]" />
 							</p>
 						</div>
 					</div>

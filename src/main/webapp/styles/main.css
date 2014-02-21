@@ -7,8 +7,12 @@ h1 {
 	color: #6D7392;
 }
 
+h6 {
+	margin: 0px;
+}
+
 a {
-	color: #34282C;
+	/* color: #34282C; */
 	text-decoration: none;
 }
 

@@ -6,7 +6,7 @@ import javax.validation.Valid;
 
 import net.dealermenu.domain.Product;
 import net.dealermenu.domain.Provider;
-import net.dealermenu.service.DealerinformationDao;
+import net.dealermenu.service.DealerService;
 import net.dealermenu.service.ProductService;
 import net.dealermenu.service.ProviderService;
 
@@ -31,13 +31,12 @@ public class ProductController {
 	@Autowired
 	private ProviderService providerService;
 	@Autowired
-	private DealerinformationDao dealerinformationDao;
+	private DealerService dealerService;
 
 	@RequestMapping
 	public String list(Model model, Principal principal) {
 		ProductForm productForm = new ProductForm();
-		productForm.setProducts(dealerinformationDao.getProducts(principal
-				.getName()));
+		productForm.setProducts(dealerService.getProducts(principal.getName()));
 		model.addAttribute("productForm", productForm);
 		return "product/list";
 	}
@@ -45,14 +44,12 @@ public class ProductController {
 	@RequestMapping(method = RequestMethod.POST)
 	public String list(@ModelAttribute("productForm") ProductForm productForm,
 			Model model, Principal principal) {
-		for (Product product : productForm.getProducts()) {
-			if (product.getId() != null) {
-				productService.removeProduct(dealerinformationDao
-						.getProductByPrimaryKey(principal.getName(),
-								product.getId()).getId());
-				model.addAttribute("successMsg",
-						"Products were deleted successfully");
-			}
+		for (Long productId : productForm.getSelectedIds()) {
+			Product product = dealerService.getProductByPrimaryKey(
+					principal.getName(), productId);
+			productService.removeProduct(product.getId());
+			model.addAttribute("successMsg",
+					"Products were deleted successfully");
 		}
 		return "redirect:/dealer/defaultSettings/products";
 	}
@@ -62,9 +59,9 @@ public class ProductController {
 		Product product = new Product();
 		model.addAttribute("product", product);
 		model.addAttribute("providers",
-				dealerinformationDao.getProviders(principal.getName()));
+				dealerService.getProviders(principal.getName()));
 		model.addAttribute("productCategories",
-				dealerinformationDao.getProductCategories(principal.getName()));
+				dealerService.getProductCategories(principal.getName()));
 		return "product/create";
 	}
 
@@ -76,9 +73,8 @@ public class ProductController {
 			return "product/create";
 		}
 		providerService.addProduct(
-				dealerinformationDao.getProviderByPrimaryKey(
-						principal.getName(), product.getProvider().getId())
-						.getId(), product);
+				dealerService.getProviderByPrimaryKey(principal.getName(),
+						product.getProvider().getId()).getId(), product);
 		model.addAttribute("successMsg", "Product was created successfully.");
 		return "redirect:/dealer/defaultSettings/products";
 	}
@@ -86,13 +82,13 @@ public class ProductController {
 	@RequestMapping("/update/{primaryKey}")
 	public String update(@PathVariable Long primaryKey, Model model,
 			Principal principal) {
-		Product product = dealerinformationDao.getProductByPrimaryKey(
+		Product product = dealerService.getProductByPrimaryKey(
 				principal.getName(), primaryKey);
 		model.addAttribute("product", product);
 		model.addAttribute("providers",
-				dealerinformationDao.getProviders(principal.getName()));
+				dealerService.getProviders(principal.getName()));
 		model.addAttribute("productCategories",
-				dealerinformationDao.getProductCategories(principal.getName()));
+				dealerService.getProductCategories(principal.getName()));
 		return "product/update";
 	}
 
@@ -103,9 +99,9 @@ public class ProductController {
 			model.addAttribute("product", product);
 			return "product/update";
 		}
-		Provider provider = dealerinformationDao.getProviderByPrimaryKey(
+		Provider provider = dealerService.getProviderByPrimaryKey(
 				principal.getName(), product.getProvider().getId());
-		Product productEntity = dealerinformationDao.getProductByPrimaryKey(
+		Product productEntity = dealerService.getProductByPrimaryKey(
 				principal.getName(), product.getId());
 		productEntity.setProvider(provider);
 		BeanUtils.copyProperties(product, productEntity, new String[] { "id",

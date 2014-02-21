@@ -1,37 +1,52 @@
 package net.dealermenu.service;
 
 import java.util.List;
+import java.util.Map;
 
 import net.dealermenu.domain.DealTemplate;
-import net.dealermenu.domain.Dealerinformation;
+import net.dealermenu.domain.Dealer;
+import net.dealermenu.domain.DealerStatus;
 import net.dealermenu.domain.Fee;
+import net.dealermenu.domain.PackageEntry;
 import net.dealermenu.domain.Product;
 import net.dealermenu.domain.ProductCategory;
 import net.dealermenu.domain.Provider;
 import net.dealermenu.domain.Tax;
 
-public interface DealerinformationDao {
+public interface DealerService {
 
-	public List<Dealerinformation> getDealerinformations();
+	public List<Dealer> getDealers();
 
-	public List<Dealerinformation> getDealersByStatus(String status);
+	public List<Dealer> getDealersByStatus(DealerStatus status);
 
-	public Dealerinformation getDealerByLoginId(String loginId);
+	public Dealer getDealerByLoginId(String loginId);
 
-	public Dealerinformation getDealerByPrimaryKey(Long primaryKey);
+	public Dealer getDealerByPrimaryKey(Long primaryKey);
 
-	public void saveDealer(Dealerinformation dealer);
+	public void saveDealer(Dealer dealer);
 
-	public Dealerinformation updateDealer(Dealerinformation dealer);
+	public Dealer updateDealer(Dealer dealer);
 
 	public void removeDealer(Long primaryKey);
-	
+
 	public List<DealTemplate> getDealTemplates(String loginId);
-	
-	public DealTemplate getDealTemplateByPrimaryKey(String loginId, Long primaryKey);
-	
+
+	public DealTemplate getDealTemplateByPrimaryKey(String loginId,
+			Long primaryKey);
+
+	public void addDealTemplate(String loginId, DealTemplate dealTemplate);
+
+	public void addDealTemplateProducts(String loginId, Long dealTemplateId,
+			Map<Long, PackageEntry> packageTypes);
+
+	public void addDealTemplateFees(String loginId, Long dealTemplateId,
+			List<Long> feeIds);
+
+	public DealTemplate updateDealTemplate(String loginId,
+			DealTemplate dealTemplate);
+
 	public List<Product> getProducts(String loginId);
-	
+
 	public Product getProductByPrimaryKey(String loginId, Long primaryKey);
 
 	public List<Fee> getFees(String loginId);

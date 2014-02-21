@@ -5,7 +5,7 @@ import java.security.Principal;
 import javax.validation.Valid;
 
 import net.dealermenu.domain.ProductCategory;
-import net.dealermenu.service.DealerinformationDao;
+import net.dealermenu.service.DealerService;
 import net.dealermenu.service.ProductCategoryService;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,15 +25,15 @@ public class ProductCategoryController {
 	@Autowired
 	ProductCategoryService productCategoryService;
 	@Autowired
-	private DealerinformationDao dealerinformationDao;
+	private DealerService dealerService;
 
 	@RequestMapping
 	public String list(Model model, Principal principal) {
+		model.addAttribute("productCategory", new ProductCategory());
 		ProductCategoryForm productCategoryForm = new ProductCategoryForm();
-		productCategoryForm.setProductCategories(dealerinformationDao
+		productCategoryForm.setProductCategories(dealerService
 				.getProductCategories(principal.getName()));
 		model.addAttribute("productCategoryForm", productCategoryForm);
-		model.addAttribute("productCategory", new ProductCategory());
 		return "productCategory/list";
 	}
 
@@ -41,17 +41,14 @@ public class ProductCategoryController {
 	public String list(
 			@ModelAttribute("productCategoryForm") ProductCategoryForm productCategoryForm,
 			Model model, Principal principal) {
-		for (ProductCategory productCategory : productCategoryForm
-				.getProductCategories()) {
-			if (productCategory.getId() != null) {
-				productCategoryService
-						.removeProductCategory(dealerinformationDao
-								.getProductCategoryByPrimaryKey(
-										principal.getName(),
-										productCategory.getId()).getId());
-				model.addAttribute("successMsg",
-						"Product category was deleted successfully.");
-			}
+		for (Long productCategoryId : productCategoryForm.getSelectedIds()) {
+			ProductCategory productCategory = dealerService
+					.getProductCategoryByPrimaryKey(principal.getName(),
+							productCategoryId);
+			productCategoryService.removeProductCategory(productCategory
+					.getId());
+			model.addAttribute("successMsg",
+					"Product category was deleted successfully.");
 		}
 		return "redirect:/dealer/defaultSettings/productCategory";
 	}
@@ -66,8 +63,7 @@ public class ProductCategoryController {
 			model.addAttribute("productCategory", productCategory);
 			return "productCategory/list";
 		}
-		dealerinformationDao.addProductCategory(principal.getName(),
-				productCategory);
+		dealerService.addProductCategory(principal.getName(), productCategory);
 		model.addAttribute("successMsg",
 				"Product category was created successfully.");
 		return "redirect:/dealer/defaultSettings/productCategory";

@@ -4,7 +4,7 @@
 package net.dealermenu.domain;
 
 import java.util.List;
-import net.dealermenu.domain.Dealerinformation;
+import net.dealermenu.domain.Dealer;
 import net.dealermenu.domain.Product;
 import net.dealermenu.domain.Provider;
 
@@ -18,11 +18,11 @@ privileged aspect Provider_Roo_JavaBean {
         this.providerName = providerName;
     }
     
-    public Dealerinformation Provider.getDealer() {
+    public Dealer Provider.getDealer() {
         return this.dealer;
     }
     
-    public void Provider.setDealer(Dealerinformation dealer) {
+    public void Provider.setDealer(Dealer dealer) {
         this.dealer = dealer;
     }
     

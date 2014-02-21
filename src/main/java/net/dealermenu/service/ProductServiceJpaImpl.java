@@ -25,4 +25,8 @@ public class ProductServiceJpaImpl implements ProductService {
 		return em.merge(product);
 	}
 
+	@Override
+	public Product findProduct(Long primaryKey) {
+		return em.find(Product.class, primaryKey);
+	}
 }

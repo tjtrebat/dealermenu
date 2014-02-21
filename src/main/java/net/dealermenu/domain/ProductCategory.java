@@ -20,7 +20,7 @@ public class ProductCategory implements Serializable {
 	private String productCategoryName;
 
 	@ManyToOne
-	private Dealerinformation dealer;
+	private Dealer dealer;
 
 	@OneToMany(mappedBy = "productCategory")
 	private List<Product> products;

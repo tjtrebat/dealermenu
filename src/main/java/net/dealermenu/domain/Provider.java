@@ -23,7 +23,7 @@ public class Provider implements Serializable {
 	/**
      */
 	@ManyToOne
-	private Dealerinformation dealer;
+	private Dealer dealer;
 
 	/**
      */

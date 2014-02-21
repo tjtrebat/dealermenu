@@ -61,8 +61,7 @@
 						</div>
 						<div class="grid_1 omega">
 							<p class="alignCenter">
-								<input name="taxes[${status.index}].id" value="${tax.id}"
-									type="checkbox" />
+								<form:checkbox path="checkboxes[${tax.id}]" />
 							</p>
 						</div>
 					</div>

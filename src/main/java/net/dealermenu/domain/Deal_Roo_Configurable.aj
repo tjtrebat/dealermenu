@@ -3,11 +3,11 @@
 
 package net.dealermenu.domain;
 
-import net.dealermenu.domain.Dealerinformation;
+import net.dealermenu.domain.Deal;
 import org.springframework.beans.factory.annotation.Configurable;
 
-privileged aspect Dealerinformation_Roo_Configurable {
+privileged aspect Deal_Roo_Configurable {
     
-    declare @type: Dealerinformation: @Configurable;
+    declare @type: Deal: @Configurable;
     
 }

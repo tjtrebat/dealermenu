@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<flow xmlns="http://www.springframework.org/schema/webflow"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/webflow http://www.springframework.org/schema/webflow/spring-webflow-2.0.xsd">
+
+	<var name="dealTemplate" class="net.dealermenu.domain.DealTemplate" />
+
+	<view-state id="details" view="dealtemplate/details" model="dealTemplate">
+		<on-entry>
+			<evaluate result="dealTemplate"
+				expression="dealerService.getDealTemplateByPrimaryKey(currentUser.name, requestParameters.pk)" />
+			<evaluate result="viewScope.dealTypes"
+				expression="T(net.dealermenu.domain.DealType).values()" />
+		</on-entry>
+		<transition on="success" to="products" />
+	</view-state>
+
+	<view-state id="products" view="dealtemplate/products"
+		model="flowScope.productForm">
+		<on-entry>
+			<set name="flowScope.productForm" value="new net.dealermenu.web.ProductForm()" />
+			<evaluate
+				expression="flowScope.productForm.setProducts(dealerService.getProducts(currentUser.name))" />
+			<evaluate
+				expression="flowScope.productForm.selectProducts(dealTemplateService.getPackageTypes(dealTemplate.getId()).keySet())" />
+		</on-entry>
+		<transition on="success" to="packages" />
+	</view-state>
+
+	<view-state id="packages" view="dealtemplate/packages"
+		model="flowScope.packageTypeForm">
+		<on-entry>
+			<set name="flowScope.packageTypeForm" value="new net.dealermenu.web.PackageTypeForm()" />
+			<evaluate
+				expression="flowScope.packageTypeForm.setProducts(flowScope.productForm.getSelectedProducts())" />
+			<evaluate
+				expression="flowScope.packageTypeForm.selectPackageTypes(dealTemplateService.getPackageTypes(dealTemplate.getId()))" />
+		</on-entry>
+		<transition on="success" to="fees" />
+	</view-state>
+
+	<view-state id="fees" view="dealtemplate/fees" model="viewScope.feeForm">
+		<on-entry>
+			<set name="viewScope.feeForm" value="new net.dealermenu.web.FeeForm()" />
+			<evaluate
+				expression="viewScope.feeForm.setFees(dealerService.getFees(currentUser.name))" />
+			<evaluate
+				expression="viewScope.feeForm.selectFees(dealTemplateService.getFees(dealTemplate.getId()))" />
+		</on-entry>
+		<transition on="success" to="list">
+			<evaluate
+				expression="dealerService.updateDealTemplate(currentUser.name, dealTemplate)" />
+			<evaluate
+				expression="dealerService.addDealTemplateProducts(currentUser.name, 
+				dealTemplate.getId(), flowScope.packageTypeForm.getPackageTypes())" />
+			<evaluate
+				expression="dealerService.addDealTemplateFees(currentUser.name, dealTemplate.getId(), 
+				viewScope.feeForm.getSelectedIds())" />
+		</transition>
+	</view-state>
+
+	<end-state id="list"
+		view="externalRedirect:contextRelative:/dealer/dealtemplates" />
+
+	<global-transitions>
+		<transition on="cancel" to="list" />
+	</global-transitions>
+
+</flow>

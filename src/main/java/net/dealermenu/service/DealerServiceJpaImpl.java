@@ -1,6 +1,10 @@
 package net.dealermenu.service;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -10,81 +14,80 @@ import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 
 import net.dealermenu.domain.DealTemplate;
-import net.dealermenu.domain.Dealerinformation;
+import net.dealermenu.domain.Dealer;
+import net.dealermenu.domain.DealerStatus;
 import net.dealermenu.domain.Fee;
+import net.dealermenu.domain.PackageEntry;
 import net.dealermenu.domain.Product;
 import net.dealermenu.domain.ProductCategory;
 import net.dealermenu.domain.Provider;
 import net.dealermenu.domain.Tax;
+import net.dealermenu.domain.UserRoles;
 
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-@Repository("dealerinformationDao")
+@Repository("dealerService")
 @Transactional
-public class JpaDealerinformationDao implements DealerinformationDao {
+public class DealerServiceJpaImpl implements DealerService {
 
 	@PersistenceContext
 	EntityManager em;
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<Dealerinformation> getDealerinformations() {
-		return (List<Dealerinformation>) em
-				.createQuery(
-						"SELECT dealerInformation FROM Dealerinformation dealerInformation")
+	public List<Dealer> getDealers() {
+		return (List<Dealer>) em
+				.createQuery("SELECT dealer FROM Dealer dealer")
 				.getResultList();
 	}
 
 	@Override
-	public List<Dealerinformation> getDealersByStatus(String status) {
+	public List<Dealer> getDealersByStatus(DealerStatus status) {
 		CriteriaBuilder queryBuilder = em.getCriteriaBuilder();
-		CriteriaQuery<Dealerinformation> qdef = queryBuilder
-				.createQuery(Dealerinformation.class);
-		Root<Dealerinformation> dealerInformation = qdef
-				.from(Dealerinformation.class);
-		qdef.where(queryBuilder.equal(dealerInformation.get("userType"),
-				"ROLE_USER"), queryBuilder.equal(
-				dealerInformation.get("status"), status));
-		TypedQuery<Dealerinformation> q = em.createQuery(qdef);
-		List<Dealerinformation> activeDealers = q.getResultList();
+		CriteriaQuery<Dealer> qdef = queryBuilder.createQuery(Dealer.class);
+		Root<Dealer> dealer = qdef.from(Dealer.class);
+		qdef.where(
+				queryBuilder.equal(dealer.get("userType"), UserRoles.ROLE_USER),
+				queryBuilder.equal(dealer.get("status"), status));
+		TypedQuery<Dealer> q = em.createQuery(qdef);
+		List<Dealer> activeDealers = q.getResultList();
 		return activeDealers;
 	}
 
 	@Override
-	public Dealerinformation getDealerByLoginId(String loginId) {
-		TypedQuery<Dealerinformation> query = em
-				.createNamedQuery("Dealerinformation.getDealerByLoginId",
-						Dealerinformation.class);
+	public Dealer getDealerByLoginId(String loginId) {
+		TypedQuery<Dealer> query = em.createNamedQuery(
+				"Dealer.getDealerByLoginId", Dealer.class);
 		query.setParameter("loginId", loginId.trim());
 		return query.getSingleResult();
 	}
 
 	@Override
-	public Dealerinformation getDealerByPrimaryKey(Long primaryKey) {
-		return em.find(Dealerinformation.class, primaryKey);
+	public Dealer getDealerByPrimaryKey(Long primaryKey) {
+		return em.find(Dealer.class, primaryKey);
 	}
 
 	@Override
-	public void saveDealer(Dealerinformation dealer) {
+	public void saveDealer(Dealer dealer) {
 		em.persist(dealer);
 	}
 
 	@Override
-	public Dealerinformation updateDealer(Dealerinformation dealer) {
+	public Dealer updateDealer(Dealer dealer) {
 		return em.merge(dealer);
 	}
 
 	@Override
 	public void removeDealer(Long primaryKey) {
-		Dealerinformation dealer = em.find(Dealerinformation.class, primaryKey);
+		Dealer dealer = em.find(Dealer.class, primaryKey);
 		em.remove(dealer);
 	}
 
 	@Override
 	public List<DealTemplate> getDealTemplates(String loginId) {
 		TypedQuery<DealTemplate> query = em.createNamedQuery(
-				"Dealerinformation.getDealTemplates", DealTemplate.class);
+				"Dealer.getDealTemplates", DealTemplate.class);
 		query.setParameter("loginId", loginId.trim());
 		return query.getResultList();
 	}
@@ -93,25 +96,62 @@ public class JpaDealerinformationDao implements DealerinformationDao {
 	public DealTemplate getDealTemplateByPrimaryKey(String loginId,
 			Long primaryKey) {
 		TypedQuery<DealTemplate> query = em.createNamedQuery(
-				"Dealerinformation.getDealTemplateByPrimaryKey",
-				DealTemplate.class);
+				"Dealer.getDealTemplateByPrimaryKey", DealTemplate.class);
 		query.setParameter("loginId", loginId.trim());
 		query.setParameter("primaryKey", primaryKey);
 		return query.getSingleResult();
 	}
 
 	@Override
+	public void addDealTemplate(String loginId, DealTemplate dealTemplate) {
+		Dealer dealer = getDealerByLoginId(loginId);
+		dealTemplate.setDealer(dealer);
+		dealer.getDealTemplates().add(dealTemplate);
+	}
+
+	@Override
+	public void addDealTemplateProducts(String loginId, Long dealTemplateId,
+			Map<Long, PackageEntry> packageTypes) {
+		DealTemplate dealTemplate = getDealTemplateByPrimaryKey(loginId,
+				dealTemplateId);
+		Map<Product, PackageEntry> products = new HashMap<Product, PackageEntry>();
+		for (Entry<Long, PackageEntry> packageType : packageTypes.entrySet())
+			products.put(getProductByPrimaryKey(loginId, packageType.getKey()),
+					packageType.getValue());
+		dealTemplate.setPackageTypes(products);
+	}
+
+	@Override
+	public void addDealTemplateFees(String loginId, Long dealTemplateId,
+			List<Long> feeIds) {
+		DealTemplate dealTemplate = getDealTemplateByPrimaryKey(loginId,
+				dealTemplateId);
+		List<Fee> fees = new ArrayList<Fee>();
+		for (Long feeId : feeIds)
+			fees.add(getFeeByPrimaryKey(loginId, feeId));
+		dealTemplate.setFees(fees);
+	}
+
+	@Override
+	public DealTemplate updateDealTemplate(String loginId,
+			DealTemplate dealTemplate) {
+		Dealer dealer = getDealerByLoginId(loginId);
+		dealTemplate.setDealer(dealer);
+		return em.merge(dealTemplate);
+	}
+
+	@Override
 	public List<Product> getProducts(String loginId) {
-		TypedQuery<Product> query = em.createNamedQuery(
-				"Dealerinformation.getProducts", Product.class);
+		TypedQuery<Product> query = em.createNamedQuery("Dealer.getProducts",
+				Product.class);
 		query.setParameter("loginId", loginId.trim());
 		return query.getResultList();
 	}
-	
+
 	@Override
 	public Product getProductByPrimaryKey(String loginId, Long primaryKey) {
 		TypedQuery<Product> query = em.createNamedQuery(
-				"Dealerinformation.getProductByPrimaryKey", Product.class);
+				"Dealer.getProductByPrimaryKey", Product.class);
 		query.setParameter("loginId", loginId.trim());
 		query.setParameter("primaryKey", primaryKey);
 		return query.getSingleResult();
@@ -127,7 +167,7 @@ public class JpaDealerinformationDao implements DealerinformationDao {
 	@Override
 	public Fee getFeeByPrimaryKey(String loginId, Long primaryKey) {
 		TypedQuery<Fee> query = em.createNamedQuery(
-				"Dealerinformation.getFeeByPrimaryKey", Fee.class);
+				"Dealer.getFeeByPrimaryKey", Fee.class);
 		query.setParameter("loginId", loginId.trim());
 		query.setParameter("primaryKey", primaryKey);
 		return query.getSingleResult();
@@ -135,7 +175,7 @@ public class JpaDealerinformationDao implements DealerinformationDao {
 
 	@Override
 	public void addFee(String loginId, Fee fee) {
-		Dealerinformation dealer = getDealerByLoginId(loginId);
+		Dealer dealer = getDealerByLoginId(loginId);
 		fee.setDealer(dealer);
 		dealer.getFees().add(fee);
 	}
@@ -150,7 +190,7 @@ public class JpaDealerinformationDao implements DealerinformationDao {
 	@Override
 	public Tax getTaxByPrimaryKey(String loginId, Long primaryKey) {
 		TypedQuery<Tax> query = em.createNamedQuery(
-				"Dealerinformation.getTaxByPrimaryKey", Tax.class);
+				"Dealer.getTaxByPrimaryKey", Tax.class);
 		query.setParameter("loginId", loginId.trim());
 		query.setParameter("primaryKey", primaryKey);
 		return query.getSingleResult();
@@ -158,7 +198,7 @@ public class JpaDealerinformationDao implements DealerinformationDao {
 
 	@Override
 	public void addTax(String loginId, Tax tax) {
-		Dealerinformation dealer = getDealerByLoginId(loginId);
+		Dealer dealer = getDealerByLoginId(loginId);
 		tax.setDealer(dealer);
 		dealer.getTaxes().add(tax);
 	}
@@ -175,8 +215,7 @@ public class JpaDealerinformationDao implements DealerinformationDao {
 	public ProductCategory getProductCategoryByPrimaryKey(String loginId,
 			Long primaryKey) {
 		TypedQuery<ProductCategory> query = em.createNamedQuery(
-				"Dealerinformation.getProductCategoryByPrimaryKey",
-				ProductCategory.class);
+				"Dealer.getProductCategoryByPrimaryKey", ProductCategory.class);
 		query.setParameter("loginId", loginId.trim());
 		query.setParameter("primaryKey", primaryKey);
 		return query.getSingleResult();
@@ -185,7 +224,7 @@ public class JpaDealerinformationDao implements DealerinformationDao {
 	@Override
 	public void addProductCategory(String loginId,
 			ProductCategory productCategory) {
-		Dealerinformation dealer = getDealerByLoginId(loginId);
+		Dealer dealer = getDealerByLoginId(loginId);
 		productCategory.setDealer(dealer);
 		dealer.getProductCategories().add(productCategory);
 	}
@@ -200,7 +239,7 @@ public class JpaDealerinformationDao implements DealerinformationDao {
 	@Override
 	public Provider getProviderByPrimaryKey(String loginId, Long primaryKey) {
 		TypedQuery<Provider> query = em.createNamedQuery(
-				"Dealerinformation.getProviderByPrimaryKey", Provider.class);
+				"Dealer.getProviderByPrimaryKey", Provider.class);
 		query.setParameter("loginId", loginId.trim());
 		query.setParameter("primaryKey", primaryKey);
 		return query.getSingleResult();
@@ -208,7 +247,7 @@ public class JpaDealerinformationDao implements DealerinformationDao {
 
 	@Override
 	public void addProvider(String loginId, Provider provider) {
-		Dealerinformation dealer = getDealerByLoginId(loginId);
+		Dealer dealer = getDealerByLoginId(loginId);
 		provider.setDealer(dealer);
 		dealer.getProviders().add(provider);
 	}

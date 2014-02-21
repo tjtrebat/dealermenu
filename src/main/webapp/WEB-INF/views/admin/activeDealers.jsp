@@ -3,7 +3,7 @@
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@ taglib prefix="security"
 	uri="http://www.springframework.org/security/tags"%>
-<%@ page session="true"%>
+<%@ page session="false"%>
 <div class="grid_10 prefix_1 suffix_1 alpha omega">
 	<div class="grid_10">
 		<jsp:include page="../_notification.jsp" />
@@ -44,10 +44,7 @@
 						</div>
 						<div class="grid_1 omega">
 							<p class="alignCenter">
-								<input type="hidden" name="dealers[${status.index}].id"
-									value="${dealer.id}" /><input
-									name="dealers[${status.index}].status" value="DeniedDealers"
-									type="checkbox" />
+								<form:checkbox path="checkboxes[${dealer.id}]" />
 							</p>
 						</div>
 					</div>

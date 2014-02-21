@@ -3,13 +3,13 @@
 
 package net.dealermenu.domain;
 
-import net.dealermenu.domain.Dealerinformation;
+import net.dealermenu.domain.Dealer;
 import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 
-privileged aspect Dealerinformation_Roo_ToString {
+privileged aspect Dealer_Roo_ToString {
     
-    public String Dealerinformation.toString() {
+    public String Dealer.toString() {
         return ReflectionToStringBuilder.toString(this, ToStringStyle.SHORT_PREFIX_STYLE);
     }
     

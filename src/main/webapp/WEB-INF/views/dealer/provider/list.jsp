@@ -57,8 +57,7 @@
 						</div>
 						<div class="grid_2 omega">
 							<p class="alignCenter">
-								<input name="providers[${status.index}].id"
-									value="${provider.id}" type="checkbox" />
+								<form:checkbox path="checkboxes[${provider.id}]" />
 							</p>
 						</div>
 					</div>

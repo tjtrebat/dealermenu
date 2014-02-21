@@ -1,0 +1,118 @@
+package net.dealermenu.domain;
+import java.util.Map;
+import org.springframework.roo.addon.javabean.RooJavaBean;
+import org.springframework.roo.addon.jpa.activerecord.RooJpaActiveRecord;
+import org.springframework.roo.addon.tostring.RooToString;
+import javax.persistence.CollectionTable;
+import javax.persistence.ElementCollection;
+import javax.persistence.Enumerated;
+import javax.persistence.MapKeyJoinColumn;
+import net.dealermenu.web.DealType;
+import javax.persistence.ManyToOne;
+
+@RooJavaBean
+@RooToString
+@RooJpaActiveRecord
+public class Deal {
+
+    /**
+     */
+    @Enumerated
+    private DealType dealType;
+
+    /**
+     */
+    private String buyerName;
+
+    /**
+     */
+    private double sellingPrice;
+
+    /**
+     */
+    private double trade;
+
+    /**
+     */
+    private double payoff;
+
+    /**
+     */
+    private double customerCash;
+
+    /**
+     */
+    private double rebate;
+
+    /**
+     */
+    private String vehicleType;
+
+    /**
+     */
+    private String stock;
+
+    /**
+     */
+    private int mileage;
+
+    /**
+     */
+    private String vin;
+
+    /**
+     */
+    @ManyToOne
+    private Tax tax;
+
+    /**
+     */
+    private double apr;
+
+    /**
+     */
+    private int term;
+
+    /**
+     */
+    private double apr1;
+
+    /**
+     */
+    private int term1;
+
+    /**
+     */
+    private double msrp;
+
+    /**
+     */
+    private double lev;
+
+    /**
+     */
+    private double baseAmtFinanced;
+
+    /**
+     */
+    @Enumerated
+    private PackageType packageType;
+
+    @ElementCollection
+    @CollectionTable(name = "PROD_VALUES")
+    @MapKeyJoinColumn(name = "PROD_ID")
+    private Map<Product, Double> productValues;
+
+    /**
+     */
+    private double fees;
+
+    /**
+     */
+    private Boolean isSigned;
+
+    /**
+     */
+    @ManyToOne
+    private Dealer dealer;
+}

@@ -2,10 +2,10 @@ package net.dealermenu.web;
 
 import java.security.Principal;
 
-import net.dealermenu.domain.Dealerinformation;
+import net.dealermenu.domain.Dealer;
 import net.dealermenu.domain.PackageType;
 import net.dealermenu.domain.Packages;
-import net.dealermenu.service.DealerinformationDao;
+import net.dealermenu.service.DealerService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -21,11 +21,11 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 public class PackagesController {
 
 	@Autowired
-	private DealerinformationDao dealerinformationDao;
+	private DealerService dealerService;
 
 	@RequestMapping({ "", "/update" })
 	public String update(Model model, Principal principal) {
-		Packages packages = dealerinformationDao.getDealerByLoginId(
+		Packages packages = dealerService.getDealerByLoginId(
 				principal.getName()).getPackages();
 		if (packages == null)
 			packages = new Packages();
@@ -37,7 +37,7 @@ public class PackagesController {
 	public String update(@RequestParam("packageType") int packageType,
 			@RequestParam("alternateLanguage") String alternateLanguage,
 			Model model, Principal principal) {
-		Dealerinformation dealer = dealerinformationDao
+		Dealer dealer = dealerService
 				.getDealerByLoginId(principal.getName());
 		Packages packages = dealer.getPackages();
 		if (packages == null)
@@ -57,7 +57,7 @@ public class PackagesController {
 			break;
 		}
 		dealer.setPackages(packages);
-		dealerinformationDao.updateDealer(dealer);
+		dealerService.updateDealer(dealer);
 		model.addAttribute("packages", dealer.getPackages());
 		return "redirect:/dealer/defaultSettings/packages";
 	}

@@ -3,7 +3,7 @@
 
 package net.dealermenu.domain;
 
-import net.dealermenu.domain.Dealerinformation;
+import net.dealermenu.domain.Dealer;
 import net.dealermenu.domain.Packages;
 
 privileged aspect Packages_Roo_JavaBean {
@@ -40,11 +40,11 @@ privileged aspect Packages_Roo_JavaBean {
         this.economyPackageName = economyPackageName;
     }
     
-    public Dealerinformation Packages.getDealer() {
+    public Dealer Packages.getDealer() {
         return this.dealer;
     }
     
-    public void Packages.setDealer(Dealerinformation dealer) {
+    public void Packages.setDealer(Dealer dealer) {
         this.dealer = dealer;
     }
     

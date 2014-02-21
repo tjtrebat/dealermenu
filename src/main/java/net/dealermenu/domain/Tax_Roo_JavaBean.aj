@@ -3,7 +3,7 @@
 
 package net.dealermenu.domain;
 
-import net.dealermenu.domain.Dealerinformation;
+import net.dealermenu.domain.Dealer;
 import net.dealermenu.domain.Tax;
 
 privileged aspect Tax_Roo_JavaBean {
@@ -64,11 +64,11 @@ privileged aspect Tax_Roo_JavaBean {
         this.isDefault = isDefault;
     }
     
-    public Dealerinformation Tax.getDealer() {
+    public Dealer Tax.getDealer() {
         return this.dealer;
     }
     
-    public void Tax.setDealer(Dealerinformation dealer) {
+    public void Tax.setDealer(Dealer dealer) {
         this.dealer = dealer;
     }
     

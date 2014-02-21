@@ -5,7 +5,7 @@ import java.security.Principal;
 import javax.validation.Valid;
 
 import net.dealermenu.domain.Tax;
-import net.dealermenu.service.DealerinformationDao;
+import net.dealermenu.service.DealerService;
 import net.dealermenu.service.TaxService;
 
 import org.springframework.beans.BeanUtils;
@@ -27,12 +27,12 @@ public class TaxController {
 	@Autowired
 	TaxService taxService;
 	@Autowired
-	private DealerinformationDao dealerinformationDao;
+	private DealerService dealerService;
 
 	@RequestMapping
 	public String list(Model model, Principal principal) {
 		TaxForm taxForm = new TaxForm();
-		taxForm.setTaxes(dealerinformationDao.getTaxes(principal.getName()));
+		taxForm.setTaxes(dealerService.getTaxes(principal.getName()));
 		model.addAttribute("taxForm", taxForm);
 		return "tax/list";
 	}
@@ -40,13 +40,11 @@ public class TaxController {
 	@RequestMapping(method = RequestMethod.POST)
 	public String list(@ModelAttribute("taxForm") TaxForm taxForm, Model model,
 			Principal principal) {
-		for (Tax tax : taxForm.getTaxes()) {
-			if (tax.getId() != null) {
-				taxService.removeTax(dealerinformationDao.getTaxByPrimaryKey(
-						principal.getName(), tax.getId()).getId());
-				model.addAttribute("successMsg",
-						"Taxes were deleted successfully");
-			}
+		for (Long taxId : taxForm.getSelectedIds()) {
+			Tax tax = dealerService.getTaxByPrimaryKey(principal.getName(),
+					taxId);
+			taxService.removeTax(tax.getId());
+			model.addAttribute("successMsg", "Taxes were deleted successfully");
 		}
 		return "redirect:/dealer/defaultSettings/taxes";
 	}
@@ -64,7 +62,7 @@ public class TaxController {
 			model.addAttribute("tax", tax);
 			return "tax/create";
 		}
-		dealerinformationDao.addTax(principal.getName(), tax);
+		dealerService.addTax(principal.getName(), tax);
 		model.addAttribute("successMsg", "Taxes were created successfully");
 		return "redirect:/dealer/defaultSettings/taxes";
 	}
@@ -72,7 +70,7 @@ public class TaxController {
 	@RequestMapping("/update/{primaryKey}")
 	public String update(@PathVariable Long primaryKey, Model model,
 			Principal principal) {
-		Tax tax = dealerinformationDao.getTaxByPrimaryKey(principal.getName(),
+		Tax tax = dealerService.getTaxByPrimaryKey(principal.getName(),
 				primaryKey);
 		model.addAttribute("tax", tax);
 		return "tax/update";
@@ -85,8 +83,8 @@ public class TaxController {
 			model.addAttribute("tax", tax);
 			return "tax/update";
 		}
-		Tax taxEntity = dealerinformationDao.getTaxByPrimaryKey(
-				principal.getName(), tax.getId());
+		Tax taxEntity = dealerService.getTaxByPrimaryKey(principal.getName(),
+				tax.getId());
 		BeanUtils.copyProperties(tax, taxEntity, new String[] { "id",
 				"version", "dealer" });
 		taxService.updateTax(taxEntity);

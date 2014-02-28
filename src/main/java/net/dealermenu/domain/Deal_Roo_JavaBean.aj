@@ -5,20 +5,27 @@ package net.dealermenu.domain;
 
 import java.util.Map;
 import net.dealermenu.domain.Deal;
-import net.dealermenu.domain.Dealer;
+import net.dealermenu.domain.DealTemplate;
 import net.dealermenu.domain.PackageType;
 import net.dealermenu.domain.Product;
 import net.dealermenu.domain.Tax;
-import net.dealermenu.web.DealType;
 
 privileged aspect Deal_Roo_JavaBean {
     
-    public DealType Deal.getDealType() {
-        return this.dealType;
+    public Map<Long, Double> Deal.getProductValuesKeyedById() {
+        return this.productValuesKeyedById;
     }
     
-    public void Deal.setDealType(DealType dealType) {
-        this.dealType = dealType;
+    public void Deal.setProductValuesKeyedById(Map<Long, Double> productValuesKeyedById) {
+        this.productValuesKeyedById = productValuesKeyedById;
+    }
+    
+    public Map<Long, Boolean> Deal.getSelectedProducts() {
+        return this.selectedProducts;
+    }
+    
+    public void Deal.setSelectedProducts(Map<Long, Boolean> selectedProducts) {
+        this.selectedProducts = selectedProducts;
     }
     
     public String Deal.getBuyerName() {
@@ -197,12 +204,12 @@ privileged aspect Deal_Roo_JavaBean {
         this.isSigned = isSigned;
     }
     
-    public Dealer Deal.getDealer() {
-        return this.dealer;
+    public DealTemplate Deal.getDealTemplate() {
+        return this.dealTemplate;
     }
     
-    public void Deal.setDealer(Dealer dealer) {
-        this.dealer = dealer;
+    public void Deal.setDealTemplate(DealTemplate dealTemplate) {
+        this.dealTemplate = dealTemplate;
     }
     
 }

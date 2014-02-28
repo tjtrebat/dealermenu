@@ -2,6 +2,7 @@
 <%@ taglib uri="http://www.springframework.org/tags" prefix="s"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<%@ taglib prefix="tags" tagdir="/WEB-INF/tags"%>
 <%@ page session="false"%>
 <div class="grid_6 prefix_3 suffix_3 alpha omega">
 	<form:form commandName="dealTemplate" method="post">
@@ -29,7 +30,8 @@
 					<form:select path="type">
 						<c:forEach var="dealType" items="${dealTypes}">
 							<option value="${dealType}"
-								<c:if test="${dealType eq dealTemplate.type}">selected</c:if>>${fn:toUpperCase(fn:substring(dealType, 0, 1))}${fn:toLowerCase(fn:substring(dealType, 1, 50))}</option>
+								<c:if test="${dealType eq dealTemplate.type}">selected</c:if>><tags:ucfirst
+									value="${dealType}" /></option>
 						</c:forEach>
 					</form:select>
 				</p>

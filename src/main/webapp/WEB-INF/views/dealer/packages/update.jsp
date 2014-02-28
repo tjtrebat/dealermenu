@@ -44,7 +44,7 @@
 			</p>
 		</div>
 	</form:form>
-	<div id="tblContents" class="grid_6">
+	<div id="tblContents" class="grid_6 alpha omega">
 		<div id="tblHeader" class="grid_6 alpha omega">
 			<div class="grid_2 alpha">
 				<p>

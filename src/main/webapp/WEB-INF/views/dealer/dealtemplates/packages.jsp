@@ -7,7 +7,7 @@
 	<form:form commandName="packageTypeForm" method="post">
 		<input type="hidden" name="_flowExecutionKey"
 			value="${flowExecutionKey}" />
-		<div id="tblContents" class="grid_8">
+		<div id="tblContents" class="grid_8 alpha omega">
 			<div id="tblHeader" class="grid_8 alpha omega">
 				<div class="grid_2 alpha">
 					<p>

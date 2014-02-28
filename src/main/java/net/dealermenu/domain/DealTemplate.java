@@ -8,11 +8,12 @@ import javax.persistence.CascadeType;
 import javax.persistence.CollectionTable;
 import javax.persistence.Column;
 import javax.persistence.ElementCollection;
-import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.MapKeyJoinColumn;
+import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 
 import org.springframework.roo.addon.javabean.RooJavaBean;
 import org.springframework.roo.addon.jpa.activerecord.RooJpaActiveRecord;
@@ -21,6 +22,7 @@ import org.springframework.roo.addon.tostring.RooToString;
 @RooJavaBean
 @RooToString
 @RooJpaActiveRecord
+@NamedQuery(name = "DealTemplate.getSumOfFeeValues", query = "SELECT SUM(fee.defaultValue) FROM DealTemplate dealTemplate JOIN dealTemplate.fees fee WHERE dealTemplate.id=:primaryKey")
 public class DealTemplate implements Serializable {
 
 	@Column(name = "vCreatedBy")
@@ -41,7 +43,11 @@ public class DealTemplate implements Serializable {
 	private Map<Product, PackageEntry> packageTypes;
 
 	@ManyToMany
-	@JoinTable(name = "DEALTPL_FEE", joinColumns = { @JoinColumn(name = "DEALTPL_ID") }, inverseJoinColumns = { @JoinColumn(name = "FEE_ID") })
+	@JoinTable(name = "DEALTPL_FEE", joinColumns = { @javax.persistence.JoinColumn(name = "DEALTPL_ID") }, inverseJoinColumns = { @javax.persistence.JoinColumn(name = "FEE_ID") })
 	private List<Fee> fees;
 
+	/**
+     */
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "dealTemplate")
+	private List<Deal> deals;
 }

@@ -24,7 +24,7 @@
 	</div>
 	<c:url var="listUrl" value="/dealer/deals" />
 	<%-- <form:form action="${listUrl}" modelAttribute="dealForm" method="post">
-		<div id="tblContents" class="grid_8">
+		<div id="tblContents" class="grid_8 alpha omega">
 			<div id="tblHeader" class="grid_8 alpha omega">
 				<div class="grid_2 alpha">
 					<p>

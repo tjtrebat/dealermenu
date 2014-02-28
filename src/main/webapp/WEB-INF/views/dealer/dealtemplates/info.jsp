@@ -8,7 +8,7 @@
 	<div class="grid_8">
 		<h6>Product Details</h6>
 	</div>
-	<div id="tblContents" class="grid_8">
+	<div id="tblContents" class="grid_8 alpha omega">
 		<div id="tblHeader" class="grid_8 alpha omega">
 			<div class="grid_2 alpha">
 				<p>
@@ -79,7 +79,7 @@
 	<div class="grid_8">
 		<h6>Fees Details</h6>
 	</div>
-	<div id="tblContents" class="grid_8">
+	<div id="tblContents" class="grid_8 alpha omega">
 		<div id="tblHeader" class="grid_8 alpha omega">
 			<div class="grid_2 alpha">
 				<p>

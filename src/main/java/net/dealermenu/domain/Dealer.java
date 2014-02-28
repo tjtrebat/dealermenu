@@ -97,8 +97,4 @@ public class Dealer implements Serializable {
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "dealer")
 	private List<Fee> fees;
 
-	/**
-     */
-	@OneToMany(cascade = CascadeType.ALL, mappedBy = "dealer")
-	private List<Deal> deals;
 }

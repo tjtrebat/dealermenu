@@ -35,7 +35,7 @@
 	<c:url var="listUrl" value="/dealer/defaultSettings/productCategory" />
 	<form:form action="${listUrl}" modelAttribute="productCategoryForm"
 		method="post">
-		<div id="tblContents" class="grid_6">
+		<div id="tblContents" class="grid_6 alpha omega">
 			<div id="tblHeader" class="grid_6 alpha omega">
 				<div class="grid_4 alpha">
 					<p>

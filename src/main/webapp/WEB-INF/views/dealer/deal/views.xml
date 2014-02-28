@@ -14,4 +14,7 @@
 			value="/WEB-INF/views/dealer/deal/create.jsp" />
 	</definition>
 
+	<definition name="deal/productList"
+		template="/WEB-INF/views/dealer/deal/productList.jsp" />
+
 </tiles-definitions>

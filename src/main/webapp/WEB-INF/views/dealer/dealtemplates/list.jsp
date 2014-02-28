@@ -4,6 +4,7 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@ taglib prefix="security"
 	uri="http://www.springframework.org/security/tags"%>
+<%@ taglib prefix="tags" tagdir="/WEB-INF/tags"%>
 <%@ page session="false"%>
 <div class="grid_10 prefix_1 suffix_1 alpha omega">
 	<div class="grid_10">
@@ -18,7 +19,7 @@
 	<c:url var="listUrl" value="/dealer/dealtemplates" />
 	<form:form action="${listUrl}" modelAttribute="dealTemplateForm"
 		method="post">
-		<div id="tblContents" class="grid_10">
+		<div id="tblContents" class="grid_10 alpha omega">
 			<div id="tblHeader" class="grid_10 alpha omega">
 				<div class="grid_3 alpha">
 					<p>
@@ -60,8 +61,9 @@
 							<p>${dealTemplate.templateName}</p>
 						</div>
 						<div class="grid_2">
-							<c:set var="dealType" value="${dealTemplate.type}" />
-							<p>${fn:toUpperCase(fn:substring(dealType, 0, 1))}${fn:toLowerCase(fn:substring(dealType, 1, 50))}</p>
+							<p>
+								<tags:ucfirst value="${dealTemplate.type}" />
+							</p>
 						</div>
 						<div class="grid_2">
 							<p>${dealTemplate.createdBy}</p>

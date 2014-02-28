@@ -1,118 +1,124 @@
 package net.dealermenu.domain;
+
 import java.util.Map;
-import org.springframework.roo.addon.javabean.RooJavaBean;
-import org.springframework.roo.addon.jpa.activerecord.RooJpaActiveRecord;
-import org.springframework.roo.addon.tostring.RooToString;
+
 import javax.persistence.CollectionTable;
 import javax.persistence.ElementCollection;
 import javax.persistence.Enumerated;
-import javax.persistence.MapKeyJoinColumn;
-import net.dealermenu.web.DealType;
 import javax.persistence.ManyToOne;
+import javax.persistence.MapKeyJoinColumn;
+import javax.persistence.Transient;
+
+import org.hibernate.validator.constraints.NotBlank;
+import org.springframework.roo.addon.javabean.RooJavaBean;
+import org.springframework.roo.addon.jpa.activerecord.RooJpaActiveRecord;
+import org.springframework.roo.addon.tostring.RooToString;
 
 @RooJavaBean
 @RooToString
 @RooJpaActiveRecord
 public class Deal {
 
-    /**
-     */
-    @Enumerated
-    private DealType dealType;
+	@Transient
+	Map<Long, Double> productValuesKeyedById;
 
-    /**
-     */
-    private String buyerName;
+	@Transient
+	Map<Long, Boolean> selectedProducts;
 
-    /**
+	/**
      */
-    private double sellingPrice;
+	@NotBlank(message="Buyer name may not be empty")
+	private String buyerName;
 
-    /**
+	/**
      */
-    private double trade;
+	private double sellingPrice;
 
-    /**
+	/**
      */
-    private double payoff;
+	private double trade;
 
-    /**
+	/**
      */
-    private double customerCash;
+	private double payoff;
 
-    /**
+	/**
      */
-    private double rebate;
+	private double customerCash;
 
-    /**
+	/**
      */
-    private String vehicleType;
+	private double rebate;
 
-    /**
+	/**
      */
-    private String stock;
+	private String vehicleType;
 
-    /**
+	/**
      */
-    private int mileage;
+	private String stock;
 
-    /**
+	/**
      */
-    private String vin;
+	private int mileage;
 
-    /**
+	/**
      */
-    @ManyToOne
-    private Tax tax;
+	private String vin;
 
-    /**
+	/**
      */
-    private double apr;
+	@ManyToOne
+	private Tax tax;
 
-    /**
+	/**
      */
-    private int term;
+	private double apr;
 
-    /**
+	/**
      */
-    private double apr1;
+	private int term;
 
-    /**
+	/**
      */
-    private int term1;
+	private double apr1;
 
-    /**
+	/**
      */
-    private double msrp;
+	private int term1;
 
-    /**
+	/**
      */
-    private double lev;
+	private double msrp;
 
-    /**
+	/**
      */
-    private double baseAmtFinanced;
+	private double lev;
 
-    /**
+	/**
      */
-    @Enumerated
-    private PackageType packageType;
+	private double baseAmtFinanced;
 
-    @ElementCollection
-    @CollectionTable(name = "PROD_VALUES")
-    @MapKeyJoinColumn(name = "PROD_ID")
-    private Map<Product, Double> productValues;
-
-    /**
+	/**
      */
-    private double fees;
+	@Enumerated
+	private PackageType packageType;
 
-    /**
-     */
-    private Boolean isSigned;
+	@ElementCollection
+	@CollectionTable(name = "PROD_VALUES")
+	@MapKeyJoinColumn(name = "PROD_ID")
+	private Map<Product, Double> productValues;
 
-    /**
+	/**
      */
-    @ManyToOne
-    private Dealer dealer;
+	private double fees;
+
+	/**
+     */
+	private Boolean isSigned;
+
+	/**
+     */
+	@ManyToOne
+	private DealTemplate dealTemplate;
 }

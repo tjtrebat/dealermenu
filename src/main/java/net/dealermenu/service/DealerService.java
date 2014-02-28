@@ -3,6 +3,7 @@ package net.dealermenu.service;
 import java.util.List;
 import java.util.Map;
 
+import net.dealermenu.domain.Deal;
 import net.dealermenu.domain.DealTemplate;
 import net.dealermenu.domain.Dealer;
 import net.dealermenu.domain.DealerStatus;
@@ -28,6 +29,8 @@ public interface DealerService {
 	public Dealer updateDealer(Dealer dealer);
 
 	public void removeDealer(Long primaryKey);
+	
+	public void addDeal(String loginId, Long dealTemplateId, Deal deal);
 
 	public List<DealTemplate> getDealTemplates(String loginId);
 

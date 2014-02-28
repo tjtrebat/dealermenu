@@ -5,7 +5,9 @@ import java.util.Map;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.TypedQuery;
 
+import net.dealermenu.domain.Deal;
 import net.dealermenu.domain.DealTemplate;
 import net.dealermenu.domain.Fee;
 import net.dealermenu.domain.PackageEntry;
@@ -41,6 +43,14 @@ public class DealTemplateServiceJpaImpl implements DealTemplateService {
 		List<Fee> fees = dealTemplate.getFees();
 		fees.size();
 		return fees;
+	}
+
+	@Override
+	public Double getSumOfFeeValues(Long dealTemplateId) {
+		TypedQuery<Double> query = em.createNamedQuery(
+				"DealTemplate.getSumOfFeeValues", Double.class);
+		query.setParameter("primaryKey", dealTemplateId);
+		return query.getSingleResult();
 	}
 
 }

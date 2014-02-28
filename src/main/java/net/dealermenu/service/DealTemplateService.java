@@ -15,4 +15,6 @@ public interface DealTemplateService {
 
 	public List<Fee> getFees(Long dealTemplateId);
 
+	public Double getSumOfFeeValues(Long dealTemplateId);
+
 }

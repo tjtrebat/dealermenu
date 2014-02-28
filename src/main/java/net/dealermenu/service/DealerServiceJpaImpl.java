@@ -13,6 +13,7 @@ import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 
+import net.dealermenu.domain.Deal;
 import net.dealermenu.domain.DealTemplate;
 import net.dealermenu.domain.Dealer;
 import net.dealermenu.domain.DealerStatus;
@@ -51,8 +52,7 @@ public class DealerServiceJpaImpl implements DealerService {
 				queryBuilder.equal(dealer.get("userType"), UserRoles.ROLE_USER),
 				queryBuilder.equal(dealer.get("status"), status));
 		TypedQuery<Dealer> q = em.createQuery(qdef);
-		List<Dealer> activeDealers = q.getResultList();
-		return activeDealers;
+		return q.getResultList();
 	}
 
 	@Override
@@ -82,6 +82,14 @@ public class DealerServiceJpaImpl implements DealerService {
 	public void removeDealer(Long primaryKey) {
 		Dealer dealer = em.find(Dealer.class, primaryKey);
 		em.remove(dealer);
+	}
+
+	@Override
+	public void addDeal(String loginId, Long dealTemplateId, Deal deal) {
+		DealTemplate dealTemplate = getDealTemplateByPrimaryKey(loginId,
+				dealTemplateId);
+		deal.setDealTemplate(dealTemplate);
+		dealTemplate.getDeals().add(deal);
 	}
 
 	@Override

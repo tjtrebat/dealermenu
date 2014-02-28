@@ -11,7 +11,7 @@
 	<c:url value="/admin/dealers/awaitingDealers" var="awaitingDealersUrl" />
 	<form:form action="${awaitingDealersUrl}" modelAttribute="dealerForm"
 		method="post">
-		<div id="tblContents" class="grid_10">
+		<div id="tblContents" class="grid_10 alpha omega">
 			<div id="tblHeader" class="grid_10 alpha omega">
 				<div class="grid_7 alpha">
 					<p>

@@ -5,6 +5,7 @@ package net.dealermenu.domain;
 
 import java.util.List;
 import java.util.Map;
+import net.dealermenu.domain.Deal;
 import net.dealermenu.domain.DealTemplate;
 import net.dealermenu.domain.DealType;
 import net.dealermenu.domain.Dealer;
@@ -60,6 +61,14 @@ privileged aspect DealTemplate_Roo_JavaBean {
     
     public void DealTemplate.setFees(List<Fee> fees) {
         this.fees = fees;
+    }
+    
+    public List<Deal> DealTemplate.getDeals() {
+        return this.deals;
+    }
+    
+    public void DealTemplate.setDeals(List<Deal> deals) {
+        this.deals = deals;
     }
     
 }

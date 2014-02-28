@@ -7,10 +7,6 @@ h1 {
 	color: #6D7392;
 }
 
-h6 {
-	margin: 0px;
-}
-
 a {
 	/* color: #34282C; */
 	text-decoration: none;
@@ -72,7 +68,6 @@ li {
 }
 
 #tblContents {
-	margin: 10px;
 	border: 1px solid #6D7392;
 }
 
@@ -121,6 +116,9 @@ li {
 .ui-widget .ui-icon {
 	float: left;
 	margin-right: .3em;
+}
+
+.ui-widget .ui-icon-circle-check {
 	background-image:
 		url(../jqueryui/1.8/themes/base/images/ui-icons_4ca300_256x240.png);
 }

@@ -11,7 +11,7 @@
 	<c:url var="deleteDealersUrl" value="/admin/dealers/deniedDealers" />
 	<form:form action="${deleteDealersUrl}" method="post"
 		modelAttribute="dealerForm">
-		<div id="tblContents" class="grid_10">
+		<div id="tblContents" class="grid_10 alpha omega">
 			<div id="tblHeader" class="grid_10 alpha omega">
 				<div class="grid_7 alpha">
 					<p>

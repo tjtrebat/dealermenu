@@ -18,7 +18,7 @@
 	<c:url value="/dealer/defaultSettings/products" var="listUrl" />
 	<form:form action="${listUrl}" modelAttribute="productForm"
 		method="post">
-		<div id="tblContents" class="grid_12">
+		<div id="tblContents" class="grid_12 alpha omega">
 			<div id="tblHeader" class="grid_12 alpha omega">
 				<div class="grid_2 alpha">
 					<p>

@@ -51,7 +51,7 @@ public class Dealer implements Serializable {
 	private String loginId;
 
 	@Column(name = "vPassword")
-	@Size(min = 6, max = 20, message = "The password must be at least 6 characters long.")
+	@Size(min = 6, message = "The password must be at least 6 characters long.")
 	private String password;
 
 	@Enumerated(EnumType.STRING)

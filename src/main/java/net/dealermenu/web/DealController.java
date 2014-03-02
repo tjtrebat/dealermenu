@@ -226,7 +226,15 @@ public class DealController {
 		Dealer dealer = dealerService.getDealerByLoginId(principal.getName());
 		model.addAttribute("deal", deal);
 		model.addAttribute("dealer", dealer);
-		return "PdfDealSummary";
+		switch (deal.getDealTemplate().getType()) {
+		case FINANCE:
+			return "PdfDealSummary";
+		case LEASE:
+			return "PdfLeaseDealSummary";
+		case CASH:
+			return "PdfCashDealSummary";
+		}
+		return null;		
 	}
 
 	@RequestMapping(value = "/getProductList", method = RequestMethod.POST)

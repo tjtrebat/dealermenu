@@ -5,4 +5,8 @@
 
 	<bean id="PdfDealSummary" class="net.dealermenu.web.PdfDealReportView" />
 
+	<bean id="PdfLeaseDealSummary" class="net.dealermenu.web.PdfLeaseDealReportView" />
+
+	<bean id="PdfCashDealSummary" class="net.dealermenu.web.PdfCashDealReportView" />
+
 </beans>

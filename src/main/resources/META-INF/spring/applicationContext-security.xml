@@ -24,7 +24,7 @@
 
 	<authentication-manager alias="authenticationManager">
 		<authentication-provider>
-			<password-encoder hash="plaintext" />
+			<password-encoder hash="sha" />
 			<jdbc-user-service data-source-ref="dataSource"
 				users-by-username-query="select 
 				v_login_id, v_password, true from dealer where v_login_id=?"

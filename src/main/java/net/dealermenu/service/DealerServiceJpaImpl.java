@@ -85,11 +85,36 @@ public class DealerServiceJpaImpl implements DealerService {
 	}
 
 	@Override
+	public List<Deal> getDeals(String loginId) {
+		TypedQuery<Deal> query = em.createNamedQuery("Dealer.getDeals",
+				Deal.class);
+		query.setParameter("loginId", loginId.trim());
+		return query.getResultList();
+	}
+
+	@Override
+	public Deal getDealByPrimaryKey(String loginId, Long primaryKey) {
+		TypedQuery<Deal> query = em.createNamedQuery(
+				"Dealer.getDealByPrimaryKey", Deal.class);
+		query.setParameter("loginId", loginId.trim());
+		query.setParameter("primaryKey", primaryKey);
+		return query.getSingleResult();
+	}
+
+	@Override
 	public void addDeal(String loginId, Long dealTemplateId, Deal deal) {
 		DealTemplate dealTemplate = getDealTemplateByPrimaryKey(loginId,
 				dealTemplateId);
 		deal.setDealTemplate(dealTemplate);
 		dealTemplate.getDeals().add(deal);
+	}
+	
+	@Override
+	public Deal updateDeal(String loginId, Long dealTemplateId, Deal deal) {
+		DealTemplate dealTemplate = getDealTemplateByPrimaryKey(loginId,
+				dealTemplateId);
+		deal.setDealTemplate(dealTemplate);
+		return em.merge(deal);
 	}
 
 	@Override

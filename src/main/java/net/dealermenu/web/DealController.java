@@ -14,14 +14,17 @@ import net.dealermenu.domain.DealTemplate;
 import net.dealermenu.domain.PackageEntry;
 import net.dealermenu.domain.PackageType;
 import net.dealermenu.domain.Product;
+import net.dealermenu.service.DealService;
 import net.dealermenu.service.DealTemplateService;
 import net.dealermenu.service.DealerService;
 
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -36,20 +39,112 @@ public class DealController {
 	private DealerService dealerService;
 	@Autowired
 	private DealTemplateService dealTemplateService;
+	@Autowired
+	private DealService dealService;
 
 	@RequestMapping
 	public String list(Model model, Principal principal) {
+		// add DealTemplateForm to model
 		DealTemplateForm dealTemplateForm = new DealTemplateForm();
 		dealTemplateForm.setDealTemplates(dealerService
 				.getDealTemplates(principal.getName()));
 		model.addAttribute("dealTemplateForm", dealTemplateForm);
+		// add DealForm to model
+		DealForm dealForm = new DealForm();
+		dealForm.setDeals(dealerService.getDeals(principal.getName()));
+		model.addAttribute("dealForm", dealForm);
 		return "deal/list";
 	}
 
-	/*
-	 * @RequestMapping(method = RequestMethod.POST) public String list(Model
-	 * model, Principal principal) { return "deal/list"; }
-	 */
+	@RequestMapping(method = RequestMethod.POST)
+	public String list(@ModelAttribute("dealForm") DealForm dealForm,
+			Model model, Principal principal) {
+		for (Long dealId : dealForm.getSelectedIds()) {
+			Deal deal = dealerService.getDealByPrimaryKey(principal.getName(),
+					dealId);
+			dealService.removeDeal(deal.getId());
+			model.addAttribute("successMsg", "Deals were deleted successfully");
+		}
+		return "redirect:/dealer/deals";
+	}
+
+	@RequestMapping(value = "/update/{primaryKey}")
+	public String update(@PathVariable Long primaryKey, Model model,
+			Principal principal) {
+		Deal deal = dealerService.getDealByPrimaryKey(principal.getName(),
+				primaryKey);
+		deal.setProductValues(dealService.getProductValues(deal.getId()));
+		deal.setSelectedProducts(new HashMap<Long, Boolean>());
+		deal.setProductValuesKeyedById(new HashMap<Long, Double>());
+		for (Entry<Product, Double> entry : deal.getProductValues().entrySet()) {
+			deal.getSelectedProducts().put(entry.getKey().getId(), true);
+			deal.getProductValuesKeyedById().put(entry.getKey().getId(),
+					entry.getValue());
+		}
+		Set<Product> products = dealTemplateService.getPackageTypes(
+				deal.getDealTemplate().getId()).keySet();
+		setSelectedProducts(deal, products);
+		setProductValuesKeyedById(deal, products);
+		model.addAttribute("deal", deal);
+		model.addAttribute("taxes", dealerService.getTaxes(principal.getName()));
+		model.addAttribute(
+				"products",
+				getDealTemplateProductsByPackageType(deal.getDealTemplate()
+						.getId(), deal.getPackageType()));
+		model.addAttribute("packageTypes", PackageType.values());
+		switch (deal.getDealTemplate().getType()) {
+		case FINANCE:
+			return "deal/finance/update";
+		case LEASE:
+			return "deal/lease/update";
+		case CASH:
+			break;
+		}
+		return null;
+	}
+
+	@RequestMapping(value = "/update", method = RequestMethod.POST)
+	public String update(@ModelAttribute("deal") @Valid Deal deal,
+			BindingResult bindingResult, Model model, Principal principal) {
+		if (bindingResult.hasErrors()) {
+			Set<Product> products = dealTemplateService.getPackageTypes(
+					deal.getDealTemplate().getId()).keySet();
+			setSelectedProducts(deal, products);
+			setProductValuesKeyedById(deal, products);
+			model.addAttribute("deal", deal);
+			model.addAttribute("taxes",
+					dealerService.getTaxes(principal.getName()));
+			model.addAttribute(
+					"products",
+					getDealTemplateProductsByPackageType(deal.getDealTemplate()
+							.getId(), deal.getPackageType()));
+			model.addAttribute("packageTypes", PackageType.values());
+			switch (deal.getDealTemplate().getType()) {
+			case FINANCE:
+				return "deal/finance/update";
+			case LEASE:
+				return "deal/lease/update";
+			case CASH:
+				break;
+			default:
+				return null;
+			}
+		}
+		Map<Product, Double> productValues = new HashMap<Product, Double>();
+		for (Long productId : deal.getSelectedProducts().keySet())
+			if (deal.getSelectedProducts().get(productId) != null)
+				productValues.put(dealerService.getProductByPrimaryKey(
+						principal.getName(), productId), deal
+						.getProductValuesKeyedById().get(productId));
+		deal.setProductValues(productValues);
+		Deal dealEntity = dealerService.getDealByPrimaryKey(
+				principal.getName(), deal.getId());
+		BeanUtils.copyProperties(deal, dealEntity, new String[] { "id",
+				"version", "dealTemplate" });
+		dealerService.updateDeal(principal.getName(), deal.getDealTemplate()
+				.getId(), dealEntity);
+		return "redirect:/dealer/deals";
+	}
 
 	@RequestMapping(value = "/create", method = RequestMethod.POST)
 	public String create(
@@ -73,20 +168,22 @@ public class DealController {
 					getDealTemplateProductsByPackageType(dealTemplate.getId(),
 							PackageType.values()[0]));
 			model.addAttribute("packageTypes", PackageType.values());
-
-			/*
-			 * switch (deal.getDealTemplate().getType()) {
-			 * case FINANCE: break; case LEASE: break; case CASH: break; }
-			 */
+			switch (deal.getDealTemplate().getType()) {
+			case FINANCE:
+				return "deal/finance/create";
+			case LEASE:
+				return "deal/lease/create";
+			case CASH:
+				break;
+			}
 			break;
 		}
-		return "deal/create";
+		return null;
 	}
 
 	@RequestMapping(value = "/save", method = RequestMethod.POST)
 	public String save(@ModelAttribute("deal") @Valid Deal deal,
-			BindingResult bindingResult, @RequestParam String action,
-			Model model, Principal principal) {
+			BindingResult bindingResult, Model model, Principal principal) {
 		if (bindingResult.hasErrors()) {
 			Set<Product> products = dealTemplateService.getPackageTypes(
 					deal.getDealTemplate().getId()).keySet();
@@ -100,34 +197,47 @@ public class DealController {
 					getDealTemplateProductsByPackageType(deal.getDealTemplate()
 							.getId(), deal.getPackageType()));
 			model.addAttribute("packageTypes", PackageType.values());
-			return "deal/create";
-		}
-		if (action.equals("Sign")) {
-
-		} else if (action.equals("Save")) {
-			try {
-				Map<Product, Double> productValues = new HashMap<Product, Double>();
-				for (Long productId : deal.getSelectedProducts().keySet())
-					if (deal.getSelectedProducts().get(productId) != null)
-						productValues.put(dealerService.getProductByPrimaryKey(
-								principal.getName(), productId), deal
-								.getProductValuesKeyedById().get(productId));
-				deal.setProductValues(productValues);
-				dealerService.addDeal(principal.getName(), deal
-						.getDealTemplate().getId(), deal);
-			} catch (Exception e) {
-				e.printStackTrace();
+			switch (deal.getDealTemplate().getType()) {
+			case FINANCE:
+				return "deal/finance/create";
+			case LEASE:
+				return "deal/lease/create";
+			case CASH:
+				break;
+			default:
+				return null;
 			}
 		}
+		Map<Product, Double> productValues = new HashMap<Product, Double>();
+		for (Long productId : deal.getSelectedProducts().keySet())
+			if (deal.getSelectedProducts().get(productId) != null)
+				productValues.put(dealerService.getProductByPrimaryKey(
+						principal.getName(), productId), deal
+						.getProductValuesKeyedById().get(productId));
+		deal.setProductValues(productValues);
+		dealerService.addDeal(principal.getName(), deal.getDealTemplate()
+				.getId(), deal);
 		return "redirect:/dealer/deals";
 	}
 
 	@RequestMapping(value = "/getProductList", method = RequestMethod.POST)
 	public String getProductList(@RequestParam Long dealTemplateId,
-			@RequestParam int index, Model model, Principal principal) {
-		Deal deal = new Deal();
+			@RequestParam int index, @RequestParam Deal deal, Model model,
+			Principal principal) {
 		DealTemplate dealTemplate = dealerService.getDealTemplateByPrimaryKey(
 				principal.getName(), dealTemplateId);
+		if (deal != null) {
+			deal.setProductValues(dealService.getProductValues(deal.getId()));
+			deal.setSelectedProducts(new HashMap<Long, Boolean>());
+			deal.setProductValuesKeyedById(new HashMap<Long, Double>());
+			for (Entry<Product, Double> entry : deal.getProductValues()
+					.entrySet()) {
+				deal.getSelectedProducts().put(entry.getKey().getId(), true);
+				deal.getProductValuesKeyedById().put(entry.getKey().getId(),
+						entry.getValue());
+			}
+		} else
+			deal = new Deal();
 		Set<Product> products = getDealTemplateProductsByPackageType(
 				dealTemplate.getId(), PackageType.values()[index]);
 		setSelectedProducts(deal, products);

@@ -29,8 +29,14 @@ public interface DealerService {
 	public Dealer updateDealer(Dealer dealer);
 
 	public void removeDealer(Long primaryKey);
-	
+
+	public List<Deal> getDeals(String loginId);
+
+	public Deal getDealByPrimaryKey(String loginId, Long primaryKey);
+
 	public void addDeal(String loginId, Long dealTemplateId, Deal deal);
+	
+	public Deal updateDeal(String loginId, Long dealTemplateId, Deal deal);
 
 	public List<DealTemplate> getDealTemplates(String loginId);
 

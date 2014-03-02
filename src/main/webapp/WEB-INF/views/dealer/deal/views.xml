@@ -9,9 +9,34 @@
 			value="/WEB-INF/views/dealer/deal/list.jsp" />
 	</definition>
 
-	<definition name="deal/create" extends="dealer_template">
+	<definition name="deal/finance/create" extends="dealer_template">
 		<put-attribute name="content"
-			value="/WEB-INF/views/dealer/deal/create.jsp" />
+			value="/WEB-INF/views/dealer/deal/finance/create.jsp" />
+	</definition>
+
+	<definition name="deal/finance/update" extends="dealer_template">
+		<put-attribute name="content"
+			value="/WEB-INF/views/dealer/deal/finance/update.jsp" />
+	</definition>
+
+	<definition name="deal/lease/create" extends="dealer_template">
+		<put-attribute name="content"
+			value="/WEB-INF/views/dealer/deal/lease/create.jsp" />
+	</definition>
+
+	<definition name="deal/lease/update" extends="dealer_template">
+		<put-attribute name="content"
+			value="/WEB-INF/views/dealer/deal/lease/update.jsp" />
+	</definition>
+	
+	<definition name="deal/cash/create" extends="dealer_template">
+		<put-attribute name="content"
+			value="/WEB-INF/views/dealer/deal/cash/create.jsp" />
+	</definition>
+
+	<definition name="deal/cash/update" extends="dealer_template">
+		<put-attribute name="content"
+			value="/WEB-INF/views/dealer/deal/cash/update.jsp" />
 	</definition>
 
 	<definition name="deal/productList"

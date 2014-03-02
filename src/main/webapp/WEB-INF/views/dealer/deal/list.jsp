@@ -23,7 +23,7 @@
 		</form:form>
 	</div>
 	<c:url var="listUrl" value="/dealer/deals" />
-	<%-- <form:form action="${listUrl}" modelAttribute="dealForm" method="post">
+	<form:form action="${listUrl}" modelAttribute="dealForm" method="post">
 		<div id="tblContents" class="grid_8 alpha omega">
 			<div id="tblHeader" class="grid_8 alpha omega">
 				<div class="grid_2 alpha">
@@ -65,23 +65,31 @@
 							<p>${deal.buyerName}</p>
 						</div>
 						<div class="grid_2">
-							<p>${deal.dealType}</p>
+							<p>
+								<tags:ucfirst value="${deal.dealTemplate.type}" />
+							</p>
 						</div>
 						<div class="grid_1">
-							<p>${deal.isSigned}</p>
+							<p>
+								<c:choose>
+									<c:when test="${deal.isSigned}">Signed</c:when>
+									<c:otherwise>Unsigned</c:otherwise>
+								</c:choose>
+							</p>
 						</div>
 						<div class="grid_1">
 							<p class="alignCenter"></p>
 						</div>
 						<div class="grid_1">
 							<p class="alignCenter">
-								<c:url var="updateUrl"
-									value="/dealer/deals/update/${deal.id}" />
+								<c:url var="updateUrl" value="/dealer/deals/update/${deal.id}" />
 								<a href="${updateUrl}">edit</a>
 							</p>
 						</div>
 						<div class="grid_1 omega">
-							<p class="alignCenter"></p>
+							<p class="alignCenter">
+								<form:checkbox path="checkboxes[${deal.id}]" />
+							</p>
 						</div>
 					</div>
 					<div class="clear"></div>
@@ -93,5 +101,5 @@
 				</div>
 			</div>
 		</div>
-	</form:form> --%>
+	</form:form>
 </div>

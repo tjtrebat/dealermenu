@@ -7,7 +7,7 @@
 <%@ page session="false"%>
 <div class="grid_12 alpha omega">
 	<div class="grid_12 alpha omega">
-		<jsp:include page="../../_notification.jsp" />
+		<jsp:include page="../../../_notification.jsp" />
 	</div>
 	<div class="grid_12 alpha omega">
 		<h6>
@@ -18,7 +18,7 @@
 	<c:url var="saveUrl" value="/dealer/deals/save" />
 	<form:form action="${saveUrl}" modelAttribute="deal" method="post">
 		<div class="grid_12 alpha omega">
-			<jsp:include page="../../_errors.jsp" />
+			<jsp:include page="../../../_errors.jsp" />
 		</div>
 		<input type="hidden" name="dealTemplate"
 			value="${deal.dealTemplate.id}" />
@@ -153,11 +153,15 @@
 					<div class="grid_2 omega">
 						<p>
 							<form:select path="tax">
-								<c:forEach var="tax" items="${taxes}">
+								<c:forEach var="tax" varStatus="status" items="${taxes}">
 									<option value="${tax.id}"
-										<c:if test="${deal.tax.id eq tax.id}"> selected="selected"</c:if>>${tax.profileName}</option>
+										<c:if test="${deal.tax.id eq tax.id}"> selected="selected"</c:if>>${tax.profileName}
+									</option>
 								</c:forEach>
 							</form:select>
+							<c:forEach var="tax" items="${taxes}">
+								<input type="hidden" class="taxRate" value="${tax.rate}" />
+							</c:forEach>
 						</p>
 					</div>
 					<div class="clear"></div>
@@ -168,28 +172,6 @@
 					</div>
 					<div class="grid_2 omega">
 						<p>${deal.dealTemplate.templateName}</p>
-					</div>
-					<div class="clear"></div>
-					<div class="grid_2 alpha">
-						<p class="alignRight">APR(%)</p>
-					</div>
-					<div class="grid_2 omega">
-						<p>
-							<form:input path="apr" size="6" />
-							<br />
-							<form:input path="apr1" size="6" />
-						</p>
-					</div>
-					<div class="clear"></div>
-					<div class="grid_2 alpha">
-						<p class="alignRight">Term (Months)</p>
-					</div>
-					<div class="grid_2 omega">
-						<p>
-							<form:input path="term" size="6" />
-							<br />
-							<form:input path="term1" size="6" />
-						</p>
 					</div>
 					<div class="clear"></div>
 					<div class="grid_2 alpha">
@@ -204,25 +186,7 @@
 					</div>
 					<div class="grid_2 omega">
 						<p>
-							<input type="text" size="6" disabled="disabled" />
-						</p>
-					</div>
-					<div class="clear"></div>
-					<div class="grid_2 alpha">
-						<p class="alignRight">Term</p>
-					</div>
-					<div class="grid_2 omega">
-						<p>
-							<input type="text" size="6" disabled="disabled" />
-						</p>
-					</div>
-					<div class="clear"></div>
-					<div class="grid_2 alpha">
-						<p class="alignRight">APR(%)</p>
-					</div>
-					<div class="grid_2 omega">
-						<p>
-							<input type="text" size="6" disabled="disabled" />
+							<input type="text" id="menu_payment" size="6" disabled="disabled" />
 						</p>
 					</div>
 					<div class="clear"></div>
@@ -231,7 +195,8 @@
 					</div>
 					<div class="grid_2 omega">
 						<p>
-							<input type="text" size="6" disabled="disabled" />
+							<input type="text" id="unpaid_balance" size="6"
+								disabled="disabled" />
 						</p>
 					</div>
 					<div class="clear"></div>
@@ -240,7 +205,7 @@
 					</div>
 					<div class="grid_2 omega">
 						<p>
-							<input type="text" size="6" disabled="disabled" />
+							<input type="text" id="taxes" size="6" disabled="disabled" />
 						</p>
 					</div>
 					<div class="clear"></div>
@@ -249,7 +214,7 @@
 					</div>
 					<div class="grid_2 omega">
 						<p>
-							<input type="text" size="6" disabled="disabled" />
+							<form:input path="baseAmtFinanced" size="6" disabled="disabled" />
 						</p>
 					</div>
 					<div class="clear"></div>
@@ -327,10 +292,10 @@
 		<div class="grid_12 alpha omega">
 			<div class="grid_2 prefix_5 suffix_5 alpha omega">
 				<div class="grid_1 alpha">
-					<input type="submit" name="action" value="Sign" />
+					<form:button name="isSigned" value="1">Sign</form:button>
 				</div>
 				<div class="grid_1 omega">
-					<input type="submit" name="action" value="Save" />
+					<input type="submit" value="Save" />
 				</div>
 			</div>
 		</div>
@@ -352,16 +317,49 @@
 					var totalOfProducts = 0.0;
 					$("#dealProducts").find("input[type='checkbox']").each(
 							function(index, element) {
-								//alert($(element).attr("name"));
 								if ($(element).attr("checked") == "checked")
 									totalOfProducts += parseFloat($(
 											"#dealProducts").find(
 											"input[type='text']:eq(" + index
 													+ ")").val());
 							});
-					$("#totalOfProducts").val(totalOfProducts);
+					$("#totalOfProducts").val(totalOfProducts.toFixed(2));
+					var taxValue = parseFloat($(
+							".taxRate:eq(" + $("#tax option:selected").index()
+									+ ")").val());
+					var sellingPrice = parseFloat($("#sellingPrice").val());
+					var trade = parseFloat($("#trade").val());
+					var payoff = parseFloat($("#payoff").val());
+					var customerCash = parseFloat($("#customerCash").val());
+					var rebate = parseFloat($("#rebate").val());
+					var fees = parseFloat($("#fees").val());
+					// calculate taxes
+					var tax = (taxValue / 100)
+							* (sellingPrice - (rebate + trade));
+					tax = roundDecimals(tax, 2);
+					$("#taxes").val(tax);
+					// calculate unpaid balance
+					var unpaidBalance = sellingPrice - customerCash - rebate
+							- trade + payoff + tax;
+					unpaidBalance = roundDecimals(unpaidBalance, 2);
+					$("#unpaid_balance").val(unpaidBalance);
+					// calculate base amount financed
+					var baseAmtFinanced = unpaidBalance + fees;
+					baseAmtFinanced = roundDecimals(baseAmtFinanced, 2);
+					$("#baseAmtFinanced").val(baseAmtFinanced);
+					// calculate monthly payment
+					var presentValue = baseAmtFinanced + totalOfProducts;
+					presentValue = roundDecimals(presentValue, 2);
+					$("#menu_payment").val(presentValue);
 					return false;
 				});
+
+		function roundDecimals(originalNumber, decimals) {
+			var result = originalNumber * Math.pow(10, decimals);
+			result = Math.round(result);
+			result /= Math.pow(10, decimals);
+			return result;
+		}
 	});
 
 	

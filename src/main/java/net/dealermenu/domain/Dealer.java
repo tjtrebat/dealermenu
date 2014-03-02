@@ -21,15 +21,17 @@ import org.springframework.roo.addon.tostring.RooToString;
 @RooToString
 @RooJpaActiveRecord
 @NamedQueries({
-		@javax.persistence.NamedQuery(name = "Dealer.getDealerByLoginId", query = "SELECT Dealer FROM Dealer Dealer WHERE Dealer.loginId=:loginId"),
-		@javax.persistence.NamedQuery(name = "Dealer.getDealTemplates", query = "SELECT dealTemplate FROM Dealer Dealer JOIN Dealer.dealTemplates dealTemplate WHERE Dealer.loginId=:loginId"),
-		@javax.persistence.NamedQuery(name = "Dealer.getDealTemplateByPrimaryKey", query = "SELECT dealTemplate FROM Dealer Dealer JOIN Dealer.dealTemplates dealTemplate WHERE Dealer.loginId=:loginId AND dealTemplate.id=:primaryKey"),
-		@javax.persistence.NamedQuery(name = "Dealer.getProducts", query = "SELECT product FROM Dealer Dealer JOIN Dealer.providers provider JOIN provider.products product WHERE Dealer.loginId=:loginId"),
-		@javax.persistence.NamedQuery(name = "Dealer.getProductByPrimaryKey", query = "SELECT product FROM Dealer Dealer JOIN Dealer.providers provider JOIN provider.products product WHERE Dealer.loginId=:loginId AND product.id=:primaryKey"),
-		@javax.persistence.NamedQuery(name = "Dealer.getFeeByPrimaryKey", query = "SELECT fee FROM Dealer Dealer JOIN Dealer.fees fee WHERE Dealer.loginId=:loginId AND fee.id=:primaryKey"),
-		@javax.persistence.NamedQuery(name = "Dealer.getTaxByPrimaryKey", query = "SELECT tax FROM Dealer Dealer JOIN Dealer.taxes tax WHERE Dealer.loginId=:loginId AND tax.id=:primaryKey"),
-		@javax.persistence.NamedQuery(name = "Dealer.getProductCategoryByPrimaryKey", query = "SELECT productCategory FROM Dealer Dealer JOIN Dealer.productCategories productCategory WHERE Dealer.loginId=:loginId AND productCategory.id=:primaryKey"),
-		@javax.persistence.NamedQuery(name = "Dealer.getProviderByPrimaryKey", query = "SELECT provider FROM Dealer Dealer JOIN Dealer.providers provider WHERE Dealer.loginId=:loginId AND provider.id=:primaryKey") })
+		@javax.persistence.NamedQuery(name = "Dealer.getDealerByLoginId", query = "SELECT dealer FROM Dealer dealer WHERE dealer.loginId=:loginId"),
+		@javax.persistence.NamedQuery(name = "Dealer.getDeals", query = "SELECT deal FROM Dealer dealer JOIN dealer.dealTemplates dealTemplate JOIN dealTemplate.deals deal WHERE dealer.loginId=:loginId"),
+		@javax.persistence.NamedQuery(name = "Dealer.getDealByPrimaryKey", query = "SELECT deal FROM Dealer dealer JOIN dealer.dealTemplates dealTemplate JOIN dealTemplate.deals deal WHERE dealer.loginId=:loginId AND deal.id=:primaryKey"),
+		@javax.persistence.NamedQuery(name = "Dealer.getDealTemplates", query = "SELECT dealTemplate FROM Dealer dealer JOIN dealer.dealTemplates dealTemplate WHERE dealer.loginId=:loginId"),
+		@javax.persistence.NamedQuery(name = "Dealer.getDealTemplateByPrimaryKey", query = "SELECT dealTemplate FROM Dealer dealer JOIN dealer.dealTemplates dealTemplate WHERE dealer.loginId=:loginId AND dealTemplate.id=:primaryKey"),
+		@javax.persistence.NamedQuery(name = "Dealer.getProducts", query = "SELECT product FROM Dealer dealer JOIN dealer.providers provider JOIN provider.products product WHERE dealer.loginId=:loginId"),
+		@javax.persistence.NamedQuery(name = "Dealer.getProductByPrimaryKey", query = "SELECT product FROM Dealer dealer JOIN dealer.providers provider JOIN provider.products product WHERE dealer.loginId=:loginId AND product.id=:primaryKey"),
+		@javax.persistence.NamedQuery(name = "Dealer.getFeeByPrimaryKey", query = "SELECT fee FROM Dealer dealer JOIN dealer.fees fee WHERE dealer.loginId=:loginId AND fee.id=:primaryKey"),
+		@javax.persistence.NamedQuery(name = "Dealer.getTaxByPrimaryKey", query = "SELECT tax FROM Dealer dealer JOIN dealer.taxes tax WHERE dealer.loginId=:loginId AND tax.id=:primaryKey"),
+		@javax.persistence.NamedQuery(name = "Dealer.getProductCategoryByPrimaryKey", query = "SELECT productCategory FROM Dealer dealer JOIN dealer.productCategories productCategory WHERE dealer.loginId=:loginId AND productCategory.id=:primaryKey"),
+		@javax.persistence.NamedQuery(name = "Dealer.getProviderByPrimaryKey", query = "SELECT provider FROM Dealer dealer JOIN dealer.providers provider WHERE dealer.loginId=:loginId AND provider.id=:primaryKey") })
 public class Dealer implements Serializable {
 
 	@Column(name = "vDealerName")

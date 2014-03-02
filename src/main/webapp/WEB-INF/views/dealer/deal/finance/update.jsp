@@ -201,7 +201,10 @@
 						<p class="alignRight">Print</p>
 					</div>
 					<div class="grid_2 omega">
-						<p></p>
+						<c:url var="reportUrl" value="/dealer/deals/report">
+							<c:param name="pk">${deal.id}</c:param>
+						</c:url>
+						<p><a href="${reportUrl}">Print</a></p>
 					</div>
 					<div class="clear"></div>
 					<div class="grid_2 alpha">

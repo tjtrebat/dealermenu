@@ -78,7 +78,12 @@
 							</p>
 						</div>
 						<div class="grid_1">
-							<p class="alignCenter"></p>
+							<p class="alignCenter">
+								<c:url var="reportUrl" value="/dealer/deals/report">
+									<c:param name="pk">${deal.id}</c:param>
+								</c:url>
+								<a href="${reportUrl}">view</a>
+							</p>
 						</div>
 						<div class="grid_1">
 							<p class="alignCenter">

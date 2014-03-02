@@ -11,6 +11,7 @@ import javax.validation.Valid;
 
 import net.dealermenu.domain.Deal;
 import net.dealermenu.domain.DealTemplate;
+import net.dealermenu.domain.Dealer;
 import net.dealermenu.domain.PackageEntry;
 import net.dealermenu.domain.PackageType;
 import net.dealermenu.domain.Product;
@@ -98,7 +99,7 @@ public class DealController {
 		case LEASE:
 			return "deal/lease/update";
 		case CASH:
-			break;
+			return "deal/cash/update";
 		}
 		return null;
 	}
@@ -125,9 +126,7 @@ public class DealController {
 			case LEASE:
 				return "deal/lease/update";
 			case CASH:
-				break;
-			default:
-				return null;
+				return "deal/cash/update";
 			}
 		}
 		Map<Product, Double> productValues = new HashMap<Product, Double>();
@@ -174,7 +173,7 @@ public class DealController {
 			case LEASE:
 				return "deal/lease/create";
 			case CASH:
-				break;
+				return "deal/cash/create";
 			}
 			break;
 		}
@@ -203,9 +202,7 @@ public class DealController {
 			case LEASE:
 				return "deal/lease/create";
 			case CASH:
-				break;
-			default:
-				return null;
+				return "deal/cash/create";
 			}
 		}
 		Map<Product, Double> productValues = new HashMap<Product, Double>();
@@ -218,6 +215,18 @@ public class DealController {
 		dealerService.addDeal(principal.getName(), deal.getDealTemplate()
 				.getId(), deal);
 		return "redirect:/dealer/deals";
+	}
+
+	@RequestMapping(value = "/report")
+	public String report(@RequestParam("pk") Long primaryKey, Model model,
+			Principal principal) {
+		Deal deal = dealerService.getDealByPrimaryKey(principal.getName(),
+				primaryKey);
+		deal.setProductValues(dealService.getProductValues(deal.getId()));
+		Dealer dealer = dealerService.getDealerByLoginId(principal.getName());
+		model.addAttribute("deal", deal);
+		model.addAttribute("dealer", dealer);
+		return "PdfDealSummary";
 	}
 
 	@RequestMapping(value = "/getProductList", method = RequestMethod.POST)

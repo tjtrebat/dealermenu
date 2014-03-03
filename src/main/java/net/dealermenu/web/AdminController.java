@@ -14,6 +14,7 @@ import net.dealermenu.service.DealerService;
 import org.codehaus.jackson.map.ObjectMapper;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.encoding.ShaPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -111,6 +112,8 @@ public class AdminController {
 			return "admin/approveDealer";
 		}
 		dealer.setStatus(DealerStatus.ACTIVE);
+		dealer.setPassword(new ShaPasswordEncoder().encodePassword(
+				dealer.getPassword(), null));
 		// merges the dealer object into persistence context
 		dealerService.updateDealer(dealer);
 		model.addAttribute("successMsg", "Dealer was approved successfully.");

@@ -13,6 +13,7 @@
 		entry-point-ref="loginUrlAuthenticationEntryPoint">
 		<intercept-url pattern="/resources/**" access="permitAll" />
 		<intercept-url pattern="/login" access="permitAll" />
+		<intercept-url pattern="/registration" access="permitAll" />
 		<intercept-url pattern="/admin/**" access="hasRole('ROLE_ADMIN')" />
 		<intercept-url pattern="/dealer/**" access="hasRole('ROLE_USER')" />
 		<intercept-url pattern="/**"

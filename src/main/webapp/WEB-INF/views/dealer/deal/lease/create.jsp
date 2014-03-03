@@ -7,9 +7,6 @@
 <%@ page session="false"%>
 <div class="grid_12 alpha omega">
 	<div class="grid_12 alpha omega">
-		<jsp:include page="../../../_notification.jsp" />
-	</div>
-	<div class="grid_12 alpha omega">
 		<h6>
 			<tags:ucfirst value="${deal.dealTemplate.type}" />
 			Deal
@@ -18,7 +15,7 @@
 	<c:url var="saveUrl" value="/dealer/deals/save" />
 	<form:form action="${saveUrl}" modelAttribute="deal" method="post">
 		<div class="grid_12 alpha omega">
-			<jsp:include page="../../../_errors.jsp" />
+			<jsp:include page="../../../_notification.jsp" />
 		</div>
 		<input type="hidden" name="dealTemplate"
 			value="${deal.dealTemplate.id}" />
@@ -216,7 +213,12 @@
 						<p class="alignRight">Print</p>
 					</div>
 					<div class="grid_2 omega">
-						<p></p>
+						<c:url var="reportUrl" value="/dealer/deals/report">
+							<c:param name="pk">${deal.id}</c:param>
+						</c:url>
+						<p>
+							<a href="${reportUrl}">Print</a>
+						</p>
 					</div>
 					<div class="clear"></div>
 					<div class="grid_2 alpha">
@@ -368,57 +370,74 @@
 			});
 		});
 
-		$("#menu_calculate").click(
-				function() {
-					var totalOfProducts = 0.0;
-					$("#dealProducts").find("input[type='checkbox']").each(
-							function(index, element) {
-								if ($(element).attr("checked") == "checked")
-									totalOfProducts += parseFloat($(
-											"#dealProducts").find(
-											"input[type='text']:eq(" + index
-													+ ")").val());
-							});
-					$("#totalOfProducts").val(totalOfProducts.toFixed(2));
-					$("#apr2").val($("#apr").val());
-					$("#term2").val($("#term").val());
-					var taxValue = parseFloat($(
-							".taxRate:eq(" + $("#tax option:selected").index()
-									+ ")").val());
-					var msrp = parseFloat($("#msrp").val());
-					var lev = parseFloat($("#lev").val());
-					var sellingPrice = parseFloat($("#sellingPrice").val());
-					var trade = parseFloat($("#trade").val());
-					var payoff = parseFloat($("#payoff").val());
-					var customerCash = parseFloat($("#customerCash").val());
-					var rebate = parseFloat($("#rebate").val());
-					var fees = parseFloat($("#fees").val());
-					var apr = parseFloat($("#apr").val());
-					var term = parseInt($("#term").val());
-					var unpaidBalance = sellingPrice - customerCash - rebate
-							- trade + payoff;
-					// calculate base amount financed
-					var baseAmtFinanced = unpaidBalance + fees;
-					baseAmtFinanced = roundDecimals(baseAmtFinanced, 2);
-					$("#taxes").val(baseAmtFinanced);
-					// calculate lease end value
-					var leaseEndValue = msrp * (lev / 100);
-		 			leaseEndValue = roundDecimals(leaseEndValue, 2);
-		 			$("#unpaid_balance").val(leaseEndValue);
-		 			// calculate total dep.
-		 			var totalDepreciation = baseAmtFinanced - leaseEndValue;
-		 			totalDepreciation = roundDecimals(totalDepreciation, 2);
-		 			$("#baseAmtFinanced").val(totalDepreciation);
-		 			// calculate menu payment
-		 			var moneyFactor = apr / 2400;
-		 			var averageMonthlyDepreciation = (totalDepreciation + totalOfProducts) / term;
-		 			var monthlyMoneyFee = (baseAmtFinanced + totalOfProducts + leaseEndValue) * moneyFactor;
-		 			var baseMonthlyPayment = averageMonthlyDepreciation + monthlyMoneyFee;
-		 			var totalPaymentDue = baseMonthlyPayment * (1 + (taxValue / 100));
-		 			totalPaymentDue = roundDecimals(totalPaymentDue, 2);
-		 			$("#menu_payment").val(totalPaymentDue);
-					return false;
-				});
+		$("#menu_calculate")
+				.click(
+						function() {
+							var totalOfProducts = 0.0;
+							$("#dealProducts")
+									.find("input[type='checkbox']")
+									.each(
+											function(index, element) {
+												if ($(element).attr("checked") == "checked")
+													totalOfProducts += parseFloat($(
+															"#dealProducts")
+															.find(
+																	"input[type='text']:eq("
+																			+ index
+																			+ ")")
+															.val());
+											});
+							$("#totalOfProducts").val(
+									totalOfProducts.toFixed(2));
+							$("#apr2").val($("#apr").val());
+							$("#term2").val($("#term").val());
+							var taxValue = parseFloat($(
+									".taxRate:eq("
+											+ $("#tax option:selected").index()
+											+ ")").val());
+							var msrp = parseFloat($("#msrp").val());
+							var lev = parseFloat($("#lev").val());
+							var sellingPrice = parseFloat($("#sellingPrice")
+									.val());
+							var trade = parseFloat($("#trade").val());
+							var payoff = parseFloat($("#payoff").val());
+							var customerCash = parseFloat($("#customerCash")
+									.val());
+							var rebate = parseFloat($("#rebate").val());
+							var fees = parseFloat($("#fees").val());
+							var apr = parseFloat($("#apr").val());
+							var term = parseInt($("#term").val());
+							var unpaidBalance = sellingPrice - customerCash
+									- rebate - trade + payoff;
+							// calculate base amount financed
+							var baseAmtFinanced = unpaidBalance + fees;
+							baseAmtFinanced = roundDecimals(baseAmtFinanced, 2);
+							$("#taxes").val(baseAmtFinanced);
+							// calculate lease end value
+							var leaseEndValue = msrp * (lev / 100);
+							leaseEndValue = roundDecimals(leaseEndValue, 2);
+							$("#unpaid_balance").val(leaseEndValue);
+							// calculate total dep.
+							var totalDepreciation = baseAmtFinanced
+									- leaseEndValue;
+							totalDepreciation = roundDecimals(
+									totalDepreciation, 2);
+							$("#baseAmtFinanced").val(totalDepreciation);
+							// calculate menu payment
+							var moneyFactor = apr / 2400;
+							var averageMonthlyDepreciation = (totalDepreciation + totalOfProducts)
+									/ term;
+							var monthlyMoneyFee = (baseAmtFinanced
+									+ totalOfProducts + leaseEndValue)
+									* moneyFactor;
+							var baseMonthlyPayment = averageMonthlyDepreciation
+									+ monthlyMoneyFee;
+							var totalPaymentDue = baseMonthlyPayment
+									* (1 + (taxValue / 100));
+							totalPaymentDue = roundDecimals(totalPaymentDue, 2);
+							$("#menu_payment").val(totalPaymentDue);
+							return false;
+						});
 
 		function roundDecimals(originalNumber, decimals) {
 			var result = originalNumber * Math.pow(10, decimals);

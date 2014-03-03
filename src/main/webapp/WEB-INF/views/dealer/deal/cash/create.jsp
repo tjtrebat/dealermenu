@@ -7,9 +7,6 @@
 <%@ page session="false"%>
 <div class="grid_12 alpha omega">
 	<div class="grid_12 alpha omega">
-		<jsp:include page="../../../_notification.jsp" />
-	</div>
-	<div class="grid_12 alpha omega">
 		<h6>
 			<tags:ucfirst value="${deal.dealTemplate.type}" />
 			Deal
@@ -18,7 +15,7 @@
 	<c:url var="saveUrl" value="/dealer/deals/save" />
 	<form:form action="${saveUrl}" modelAttribute="deal" method="post">
 		<div class="grid_12 alpha omega">
-			<jsp:include page="../../../_errors.jsp" />
+			<jsp:include page="../../../_notification.jsp" />
 		</div>
 		<input type="hidden" name="dealTemplate"
 			value="${deal.dealTemplate.id}" />
@@ -178,7 +175,12 @@
 						<p class="alignRight">Print</p>
 					</div>
 					<div class="grid_2 omega">
-						<p></p>
+						<c:url var="reportUrl" value="/dealer/deals/report">
+							<c:param name="pk">${deal.id}</c:param>
+						</c:url>
+						<p>
+							<a href="${reportUrl}">Print</a>
+						</p>
 					</div>
 					<div class="clear"></div>
 					<div class="grid_2 alpha">

@@ -7,9 +7,6 @@
 <%@ page session="false"%>
 <div class="grid_6 prefix_3 suffix_3 alpha omega">
 	<div class="grid_6">
-		<jsp:include page="../../_notification.jsp" />
-	</div>
-	<div class="grid_6">
 		<c:url var="createUrl" value="/dealer/defaultSettings/taxes/create" />
 		<p>
 			<a href="${createUrl}">&#43; Add Taxes</a>
@@ -17,6 +14,9 @@
 	</div>
 	<c:url var="listUrl" value="/dealer/defaultSettings/taxes" />
 	<form:form action="${listUrl}" modelAttribute="taxForm" method="post">
+		<div class="grid_6 alpha omega">
+			<jsp:include page="../../_notification.jsp" />
+		</div>
 		<div id="tblContents" class="grid_6 alpha omega">
 			<div id="tblHeader" class="grid_6 alpha omega">
 				<div class="grid_2 alpha">

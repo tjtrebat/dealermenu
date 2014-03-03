@@ -5,13 +5,12 @@
 	uri="http://www.springframework.org/security/tags"%>
 <%@ page session="false"%>
 <div class="grid_6 prefix_3 suffix_3 alpha omega">
-	<c:url var="createDealerUrl" value="/admin/dealers/createDealer" />
-	<form:form action="${createDealerUrl}" modelAttribute="dealer"
+	<c:url var="registrationUrl" value="/registration" />
+	<form:form action="${registrationUrl}" modelAttribute="dealer"
 		method="post">
 		<div class="grid_6 alpha omega">
-			<jsp:include page="../_notification.jsp" />
+			<jsp:include page="_notification.jsp" />
 		</div>
-		<div class="clear"></div>
 		<div class="grid_2 alpha">
 			<p>
 				<strong>Dealer Name</strong>

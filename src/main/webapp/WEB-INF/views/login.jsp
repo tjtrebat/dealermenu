@@ -5,6 +5,9 @@
 <div class="grid_6 prefix_3 suffix_3 alpha omega">
 	<s:url var="authUrl" value="/static/j_spring_security_check" />
 	<form:form method="post" modelAttribute="dealer" action="${authUrl}">
+		<div class="grid_6 alpha omega">
+			<jsp:include page="_notification.jsp" />
+		</div>
 		<div class="grid_2 alpha">
 			<p class="alignRight">
 				<label for="username">Username</label>
@@ -35,15 +38,30 @@
 			</p>
 		</div>
 		<div class="grid_2 prefix_2 suffix_2 alpha omega">
-			<p>
-				<input name="commit" type="submit" value="Sign In" />
-			</p>
+			<div class="grid_1 alpha">
+				<p>
+					<input name="commit" type="submit" value="Login" />
+				</p>
+			</div>
+			<div class="grid_1 omega">
+				<p>
+					<input type="button" id="clear" value="Clear" />
+			</div>
 		</div>
 	</form:form>
+	<div class="grid_6 alpha omega">
+		<p class="alignCenter">
+			<a href="<c:url value="/registration" />">New Dealer Click Here!</a>
+		</p>
+	</div>
 </div>
 <script type="text/javascript">
 	$(function() {
 		$("#username").focus();
+		$("#clear").click(function() {
+			$("#username").val("");
+			$("#password").val("");
+		});
 	});
 
 	

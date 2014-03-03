@@ -5,12 +5,12 @@
 	uri="http://www.springframework.org/security/tags"%>
 <%@ page session="false"%>
 <div class="grid_6 prefix_3 suffix_3 alpha omega">
-	<div class="grid_6">
-		<jsp:include page="../../_notification.jsp" />
-	</div>
 	<c:url var="updateUrl" value="/dealer/defaultSettings/packages/update" />
 	<form:form action="${updateUrl}" modelAttribute="packages"
 		method="post">
+		<div class="grid_6 alpha omega">
+			<jsp:include page="../../_notification.jsp" />
+		</div>
 		<div class="grid_2 alpha">
 			<p>
 				<strong>Package Name</strong>

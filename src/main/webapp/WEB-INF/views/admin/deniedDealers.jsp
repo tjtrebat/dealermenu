@@ -5,12 +5,12 @@
 	uri="http://www.springframework.org/security/tags"%>
 <%@ page session="true"%>
 <div class="grid_10 prefix_1 suffix_1 alpha omega">
-	<div class="grid_10">
-		<jsp:include page="../_notification.jsp" />
-	</div>
 	<c:url var="deleteDealersUrl" value="/admin/dealers/deniedDealers" />
 	<form:form action="${deleteDealersUrl}" method="post"
 		modelAttribute="dealerForm">
+		<div class="grid_10 alpha omega">
+			<jsp:include page="../_notification.jsp" />
+		</div>
 		<div id="tblContents" class="grid_10 alpha omega">
 			<div id="tblHeader" class="grid_10 alpha omega">
 				<div class="grid_7 alpha">

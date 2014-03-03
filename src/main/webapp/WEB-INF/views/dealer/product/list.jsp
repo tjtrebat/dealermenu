@@ -7,9 +7,6 @@
 <%@ page session="false"%>
 <div id="products" class="grid_12 alpha omega">
 	<div class="grid_12">
-		<jsp:include page="../../_notification.jsp" />
-	</div>
-	<div class="grid_12">
 		<c:url var="createUrl" value="/dealer/defaultSettings/products/create" />
 		<p>
 			<a href="${createUrl}">&#43; Add Product</a>
@@ -18,6 +15,9 @@
 	<c:url value="/dealer/defaultSettings/products" var="listUrl" />
 	<form:form action="${listUrl}" modelAttribute="productForm"
 		method="post">
+		<div class="grid_12 alpha omega">
+			<jsp:include page="../../_notification.jsp" />
+		</div>
 		<div id="tblContents" class="grid_12 alpha omega">
 			<div id="tblHeader" class="grid_12 alpha omega">
 				<div class="grid_2 alpha">

@@ -7,12 +7,12 @@
 <%@ page session="false"%>
 <div class="grid_8 prefix_2 suffix_2 alpha omega">
 	<div class="grid_8">
-		<jsp:include page="../../_notification.jsp" />
-	</div>
-	<div class="grid_8">
 		<c:url var="createUrl" value="/dealer/deals/create" />
 		<form:form action="${createUrl}" modelAttribute="dealTemplateForm"
 			method="post">
+			<div class="grid_8 alpha omega">
+				<jsp:include page="../../_notification.jsp" />
+			</div>
 			<form:select path="dealTemplates" multiple="false">
 				<c:forEach var="dealTemplate"
 					items="${dealTemplateForm.dealTemplates}">

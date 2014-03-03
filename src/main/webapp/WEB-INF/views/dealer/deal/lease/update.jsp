@@ -7,9 +7,6 @@
 <%@ page session="false"%>
 <div class="grid_12 alpha omega">
 	<div class="grid_12 alpha omega">
-		<jsp:include page="../../../_notification.jsp" />
-	</div>
-	<div class="grid_12 alpha omega">
 		<h6>
 			<tags:ucfirst value="${deal.dealTemplate.type}" />
 			Deal
@@ -18,7 +15,7 @@
 	<c:url var="updateUrl" value="/dealer/deals/update" />
 	<form:form action="${updateUrl}" modelAttribute="deal" method="post">
 		<div class="grid_12 alpha omega">
-			<jsp:include page="../../../_errors.jsp" />
+			<jsp:include page="../../../_notification.jsp" />
 		</div>
 		<form:hidden path="id" />
 		<input type="hidden" name="dealTemplate"
@@ -217,7 +214,12 @@
 						<p class="alignRight">Print</p>
 					</div>
 					<div class="grid_2 omega">
-						<p></p>
+						<c:url var="reportUrl" value="/dealer/deals/report">
+							<c:param name="pk">${deal.id}</c:param>
+						</c:url>
+						<p>
+							<a href="${reportUrl}">Print</a>
+						</p>
 					</div>
 					<div class="clear"></div>
 					<div class="grid_2 alpha">
@@ -364,7 +366,7 @@
 			$.post("<c:url value="/dealer/deals/getProductList" />", {
 				"dealTemplateId" : <c:out value="${deal.dealTemplate.id}" />,
 				"index" : $("#id_packageType").prop("selectedIndex"),
-				"deal": <c:out value="${deal.id}" />
+				"deal" : <c:out value="${deal.id}" />
 			}, function(data) {
 				$("#dealProducts").html(data);
 			});

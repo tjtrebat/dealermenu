@@ -17,13 +17,13 @@ p {
 	padding: 4px;
 }
 
-ul {
+#main_menu,#sub_menu {
 	list-style-type: none;
 	margin-bottom: 0px;
 	padding: 10px;
 }
 
-li {
+#main_menu li,#sub_menu li {
 	text-align: center;
 }
 
@@ -110,7 +110,7 @@ li {
 }
 
 .error {
-	color: #FF0000;
+	color: #CD0A0A;
 }
 
 .ui-widget .ui-icon {
@@ -121,4 +121,9 @@ li {
 .ui-widget .ui-icon-circle-check {
 	background-image:
 		url(../jqueryui/1.8/themes/base/images/ui-icons_4ca300_256x240.png);
+}
+
+.errorMessages {
+	margin: 5;
+	padding: 5;
 }

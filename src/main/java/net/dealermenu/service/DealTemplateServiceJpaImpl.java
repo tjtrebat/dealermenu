@@ -7,7 +7,6 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 
-import net.dealermenu.domain.Deal;
 import net.dealermenu.domain.DealTemplate;
 import net.dealermenu.domain.Fee;
 import net.dealermenu.domain.PackageEntry;

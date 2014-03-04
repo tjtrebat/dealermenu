@@ -4,7 +4,9 @@ import java.io.Serializable;
 
 import javax.persistence.Column;
 import javax.persistence.ManyToOne;
+import javax.validation.constraints.NotNull;
 
+import org.hibernate.validator.constraints.NotBlank;
 import org.springframework.roo.addon.javabean.RooJavaBean;
 import org.springframework.roo.addon.jpa.activerecord.RooJpaActiveRecord;
 import org.springframework.roo.addon.tostring.RooToString;
@@ -15,6 +17,7 @@ import org.springframework.roo.addon.tostring.RooToString;
 public class Product implements Serializable {
 
 	@Column(name = "vProductName")
+	@NotBlank(message = "Product name may not be empty")
 	private String productName;
 
 	@Column(name = "vProductDescription")
@@ -47,6 +50,7 @@ public class Product implements Serializable {
 	/**
      */
 	@ManyToOne
+	@NotNull(message = "Provider may not be null")
 	private Provider provider;
 
 	@ManyToOne

@@ -3,6 +3,7 @@ import java.io.Serializable;
 
 import javax.persistence.ManyToOne;
 
+import org.hibernate.validator.constraints.NotBlank;
 import org.springframework.roo.addon.javabean.RooJavaBean;
 import org.springframework.roo.addon.jpa.activerecord.RooJpaActiveRecord;
 import org.springframework.roo.addon.tostring.RooToString;
@@ -14,6 +15,7 @@ public class Tax implements Serializable {
 
     /**
      */
+	@NotBlank(message = "Profile name may not be empty")
     private String profileName;
 
     /**

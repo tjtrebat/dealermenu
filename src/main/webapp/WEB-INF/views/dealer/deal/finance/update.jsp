@@ -6,7 +6,7 @@
 <%@ taglib prefix="tags" tagdir="/WEB-INF/tags"%>
 <%@ page session="false"%>
 <div class="grid_12 alpha omega">
-	<div class="grid_12 alpha omega">
+	<div class="grid_12">
 		<h6>
 			<tags:ucfirst value="${deal.dealTemplate.type}" />
 			Deal
@@ -14,7 +14,7 @@
 	</div>
 	<c:url var="updateUrl" value="/dealer/deals/update" />
 	<form:form action="${updateUrl}" modelAttribute="deal" method="post">
-		<div class="grid_12 alpha omega">
+		<div class="grid_12">
 			<jsp:include page="../../../_notification.jsp" />
 		</div>
 		<form:hidden path="id" />

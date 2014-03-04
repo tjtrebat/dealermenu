@@ -7,6 +7,7 @@ import javax.persistence.CascadeType;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
+import org.hibernate.validator.constraints.NotBlank;
 import org.springframework.roo.addon.javabean.RooJavaBean;
 import org.springframework.roo.addon.jpa.activerecord.RooJpaActiveRecord;
 import org.springframework.roo.addon.tostring.RooToString;
@@ -18,6 +19,7 @@ public class Provider implements Serializable {
 
 	/**
      */
+	@NotBlank(message = "Provider name may not be empty")
 	private String providerName;
 
 	/**

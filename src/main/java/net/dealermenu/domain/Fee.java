@@ -6,6 +6,7 @@ import java.util.List;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 
+import org.hibernate.validator.constraints.NotBlank;
 import org.springframework.roo.addon.javabean.RooJavaBean;
 import org.springframework.roo.addon.jpa.activerecord.RooJpaActiveRecord;
 import org.springframework.roo.addon.tostring.RooToString;
@@ -17,6 +18,7 @@ public class Fee implements Serializable {
 
 	/**
      */
+	@NotBlank(message = "Fee name may not be empty")
 	private String feeName;
 
 	/**

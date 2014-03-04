@@ -35,7 +35,7 @@ public interface DealerService {
 	public Deal getDealByPrimaryKey(String loginId, Long primaryKey);
 
 	public void addDeal(String loginId, Long dealTemplateId, Deal deal);
-	
+
 	public Deal updateDeal(String loginId, Long dealTemplateId, Deal deal);
 
 	public List<DealTemplate> getDealTemplates(String loginId);

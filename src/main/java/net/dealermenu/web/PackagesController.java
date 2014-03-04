@@ -37,29 +37,27 @@ public class PackagesController {
 	public String update(@RequestParam("packageType") int packageType,
 			@RequestParam("alternateLanguage") String alternateLanguage,
 			Model model, Principal principal) {
-		Dealer dealer = dealerService
-				.getDealerByLoginId(principal.getName());
-		Packages packages = dealer.getPackages();
-		if (packages == null)
-			packages = new Packages();
+		Dealer dealer = dealerService.getDealerByLoginId(principal.getName());
+		if (dealer.getPackages() == null) {
+			Packages packages = new Packages();
+			packages.setDealer(dealer);
+			dealer.setPackages(packages);
+		}
 		switch (PackageType.values()[packageType]) {
 		case PREFERRED:
-			packages.setPreferredPackageName(alternateLanguage);
+			dealer.getPackages().setPreferredPackageName(alternateLanguage);
 			break;
 		case PREMIUM:
-			packages.setPremiumPackageName(alternateLanguage);
+			dealer.getPackages().setPremiumPackageName(alternateLanguage);
 			break;
 		case VALUE:
-			packages.setValuePackageName(alternateLanguage);
+			dealer.getPackages().setValuePackageName(alternateLanguage);
 			break;
 		case ECONOMY:
-			packages.setEconomyPackageName(alternateLanguage);
+			dealer.getPackages().setEconomyPackageName(alternateLanguage);
 			break;
 		}
-		dealer.setPackages(packages);
 		dealerService.updateDealer(dealer);
-		model.addAttribute("packages", dealer.getPackages());
 		return "redirect:/dealer/defaultSettings/packages";
 	}
-
 }

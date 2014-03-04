@@ -30,10 +30,7 @@ public class ProviderController {
 	@RequestMapping
 	public String list(Model model, Principal principal) {
 		model.addAttribute("provider", new Provider());
-		ProviderForm providerForm = new ProviderForm();
-		providerForm.setProviders(dealerService.getProviders(principal
-				.getName()));
-		model.addAttribute("providerForm", providerForm);
+		model.addAttribute("providerForm", getProviderForm(principal.getName()));
 		return "provider/list";
 	}
 
@@ -58,11 +55,19 @@ public class ProviderController {
 		if (bindingResult.hasErrors()) {
 			// add dealer bean model attribute
 			model.addAttribute("provider", provider);
+			model.addAttribute("providerForm",
+					getProviderForm(principal.getName()));
 			return "provider/list";
 		}
 		dealerService.addProvider(principal.getName(), provider);
 		model.addAttribute("successMsg", "Provider was created successfully.");
 		return "redirect:/dealer/defaultSettings/providers";
+	}
+
+	public ProviderForm getProviderForm(String loginId) {
+		ProviderForm providerForm = new ProviderForm();
+		providerForm.setProviders(dealerService.getProviders(loginId));
+		return providerForm;
 	}
 
 }

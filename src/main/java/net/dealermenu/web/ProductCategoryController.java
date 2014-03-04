@@ -30,10 +30,8 @@ public class ProductCategoryController {
 	@RequestMapping
 	public String list(Model model, Principal principal) {
 		model.addAttribute("productCategory", new ProductCategory());
-		ProductCategoryForm productCategoryForm = new ProductCategoryForm();
-		productCategoryForm.setProductCategories(dealerService
-				.getProductCategories(principal.getName()));
-		model.addAttribute("productCategoryForm", productCategoryForm);
+		model.addAttribute("productCategoryForm",
+				getProductCategoryForm(principal.getName()));
 		return "productCategory/list";
 	}
 
@@ -61,12 +59,21 @@ public class ProductCategoryController {
 		if (bindingResult.hasErrors()) {
 			// add dealer bean model attribute
 			model.addAttribute("productCategory", productCategory);
+			model.addAttribute("productCategoryForm",
+					getProductCategoryForm(principal.getName()));
 			return "productCategory/list";
 		}
 		dealerService.addProductCategory(principal.getName(), productCategory);
 		model.addAttribute("successMsg",
 				"Product category was created successfully.");
 		return "redirect:/dealer/defaultSettings/productCategory";
+	}
+
+	public ProductCategoryForm getProductCategoryForm(String loginId) {
+		ProductCategoryForm productCategoryForm = new ProductCategoryForm();
+		productCategoryForm.setProductCategories(dealerService
+				.getProductCategories(loginId));
+		return productCategoryForm;
 	}
 
 }

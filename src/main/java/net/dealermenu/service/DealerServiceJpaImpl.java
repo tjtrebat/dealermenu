@@ -108,7 +108,7 @@ public class DealerServiceJpaImpl implements DealerService {
 		deal.setDealTemplate(dealTemplate);
 		dealTemplate.getDeals().add(deal);
 	}
-	
+
 	@Override
 	public Deal updateDeal(String loginId, Long dealTemplateId, Deal deal) {
 		DealTemplate dealTemplate = getDealTemplateByPrimaryKey(loginId,

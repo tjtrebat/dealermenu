@@ -15,10 +15,10 @@
 	<c:url value="/dealer/defaultSettings/products" var="listUrl" />
 	<form:form action="${listUrl}" modelAttribute="productForm"
 		method="post">
-		<div class="grid_12 alpha omega">
+		<div class="grid_12">
 			<jsp:include page="../../_notification.jsp" />
 		</div>
-		<div id="tblContents" class="grid_12 alpha omega">
+		<div id="tblContents" class="grid_12">
 			<div id="tblHeader" class="grid_12 alpha omega">
 				<div class="grid_2 alpha">
 					<p>

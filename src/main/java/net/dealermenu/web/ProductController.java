@@ -70,6 +70,10 @@ public class ProductController {
 			BindingResult bindingResult, Model model, Principal principal) {
 		if (bindingResult.hasErrors()) {
 			model.addAttribute("product", product);
+			model.addAttribute("providers",
+					dealerService.getProviders(principal.getName()));
+			model.addAttribute("productCategories",
+					dealerService.getProductCategories(principal.getName()));
 			return "product/create";
 		}
 		providerService.addProduct(
@@ -97,6 +101,10 @@ public class ProductController {
 			BindingResult bindingResult, Model model, Principal principal) {
 		if (bindingResult.hasErrors()) {
 			model.addAttribute("product", product);
+			model.addAttribute("providers",
+					dealerService.getProviders(principal.getName()));
+			model.addAttribute("productCategories",
+					dealerService.getProductCategories(principal.getName()));
 			return "product/update";
 		}
 		Provider provider = dealerService.getProviderByPrimaryKey(

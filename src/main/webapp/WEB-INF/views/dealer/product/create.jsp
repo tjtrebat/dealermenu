@@ -29,8 +29,12 @@
 			</div>
 			<div class="grid_4 omega">
 				<p>
-					<form:select path="provider" items="${providers}" itemValue="id"
-						itemLabel="providerName" />
+					<form:select path="provider">
+						<c:forEach items="${providers}" var="provider">
+							<option value="${provider.id}"
+								<c:if test="${product.provider.id eq provider.id}"> selected="selected"</c:if>>${provider.providerName}</option>
+						</c:forEach>
+					</form:select>
 				</p>
 			</div>
 			<div class="clear"></div>
@@ -41,8 +45,12 @@
 			</div>
 			<div class="grid_4 omega">
 				<p>
-					<form:select path="productCategory" items="${productCategories}"
-						itemValue="id" itemLabel="productCategoryName" />
+					<form:select path="productCategory">
+						<c:forEach items="${productCategories}" var="productCategory">
+							<option value="${productCategory.id}"
+								<c:if test="${product.productCategory.id eq productCategory.id}"> selected="selected"</c:if>>${productCategory.productCategoryName}</option>
+						</c:forEach>
+					</form:select>
 				</p>
 			</div>
 			<div class="clear"></div>

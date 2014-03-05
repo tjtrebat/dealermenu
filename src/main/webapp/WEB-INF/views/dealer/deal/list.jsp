@@ -28,9 +28,8 @@
 			<div id="tblHeader" class="grid_8 alpha omega">
 				<div class="grid_2 alpha">
 					<p>
-						<strong><form:label path="buyerName">
-								<s:message code="deal.buyerName" />
-							</form:label></strong>
+						<strong> <s:message code="deal.buyerName" />
+						</strong>
 					</p>
 				</div>
 				<div class="grid_2">

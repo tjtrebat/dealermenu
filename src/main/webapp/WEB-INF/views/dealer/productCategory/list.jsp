@@ -10,7 +10,9 @@
 	<form:form action="${createUrl}" modelAttribute="productCategory"
 		method="post">
 		<div class="grid_6 alpha omega">
-			<jsp:include page="../../_notification.jsp" />
+			<jsp:include page="../../_notification.jsp">
+				<jsp:param value="productCategory" name="commandName" />
+			</jsp:include>
 		</div>
 		<div class="grid_6">
 			<div class="grid_2 alpha">

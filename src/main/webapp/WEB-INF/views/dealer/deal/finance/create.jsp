@@ -15,7 +15,9 @@
 	<c:url var="saveUrl" value="/dealer/deals/save" />
 	<form:form action="${saveUrl}" modelAttribute="deal" method="post">
 		<div class="grid_12">
-			<jsp:include page="../../../_notification.jsp" />
+			<jsp:include page="../../../_notification.jsp">
+				<jsp:param value="deal" name="commandName" />
+			</jsp:include>
 		</div>
 		<input type="hidden" name="dealTemplate"
 			value="${deal.dealTemplate.id}" />

@@ -15,6 +15,7 @@ import javax.persistence.MapKeyJoinColumn;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 
+import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.roo.addon.javabean.RooJavaBean;
 import org.springframework.roo.addon.jpa.activerecord.RooJpaActiveRecord;
 import org.springframework.roo.addon.tostring.RooToString;
@@ -29,6 +30,7 @@ public class DealTemplate implements Serializable {
 	private String createdBy;
 
 	@Column(name = "vTemplateName")
+	@NotEmpty
 	private String templateName;
 
 	@Column(name = "vType")

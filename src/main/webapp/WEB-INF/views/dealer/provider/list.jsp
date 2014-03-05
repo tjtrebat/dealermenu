@@ -9,7 +9,9 @@
 	<form:form action="${createUrl}" modelAttribute="provider"
 		method="post">
 		<div class="grid_6 alpha omega">
-			<jsp:include page="../../_notification.jsp" />
+			<jsp:include page="../../_notification.jsp">
+				<jsp:param value="provider" name="commandName" />
+			</jsp:include>
 		</div>
 		<div class="grid_6">
 			<div class="grid_2 alpha">

@@ -15,7 +15,9 @@
 	<c:url var="updateUrl" value="/dealer/deals/update" />
 	<form:form action="${updateUrl}" modelAttribute="deal" method="post">
 		<div class="grid_12">
-			<jsp:include page="../../../_notification.jsp" />
+			<jsp:include page="../../../_notification.jsp">
+				<jsp:param value="deal" name="commandName" />
+			</jsp:include>
 		</div>
 		<form:hidden path="id" />
 		<input type="hidden" name="dealTemplate"

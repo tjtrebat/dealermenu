@@ -6,7 +6,9 @@
 	<s:url var="authUrl" value="/static/j_spring_security_check" />
 	<form:form method="post" modelAttribute="dealer" action="${authUrl}">
 		<div class="grid_6 alpha omega">
-			<jsp:include page="_notification.jsp" />
+			<jsp:include page="_notification.jsp">
+				<jsp:param value="dealer" name="commandName" />
+			</jsp:include>
 		</div>
 		<div class="grid_2 alpha">
 			<p class="alignRight">

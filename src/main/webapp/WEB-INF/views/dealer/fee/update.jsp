@@ -8,7 +8,9 @@
 	<c:url var="updateUrl" value="/dealer/defaultSettings/fees/update" />
 	<form:form action="${createUrl}" modelAttribute="fee" method="post">
 		<div class="grid_6 alpha omega">
-			<jsp:include page="../../_notification.jsp" />
+			<jsp:include page="../../_notification.jsp">
+				<jsp:param value="fee" name="commandName" />
+			</jsp:include>
 		</div>
 		<form:hidden path="id" />
 		<div class="grid_6">

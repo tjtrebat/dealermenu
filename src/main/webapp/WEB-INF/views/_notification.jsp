@@ -16,7 +16,7 @@
 	<c:remove var="successMsg" scope="session" />
 </c:if>
 
-<spring:hasBindErrors name="${commandName}">
+<spring:hasBindErrors name="${param.commandName}">
 	<div class="ui-widget">
 		<div class="ui-state-error ui-corner-all">
 			<div class="notification">

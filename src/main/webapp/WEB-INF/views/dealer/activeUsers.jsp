@@ -7,11 +7,15 @@
 	<form:form method="post" modelAttribute="dealer"
 		action="${activeUsersUrl}">
 		<div class="grid_6 alpha omega">
-			<jsp:include page="../_notification.jsp" />
+			<jsp:include page="../_notification.jsp">
+				<jsp:param value="dealer" name="commandName"/>
+			</jsp:include>
 		</div>
 		<div class="grid_2 alpha">
 			<p class="alignRight">
-				<label for="username">Username</label>
+				<label for="username"><form:label path="loginId">
+						<s:message code="dealer.loginId" />
+					</form:label></label>
 			</p>
 		</div>
 		<div class="grid_4 omega">
@@ -22,7 +26,9 @@
 		<div class="clear"></div>
 		<div class="grid_2 alpha">
 			<p class="alignRight">
-				<label for="password">Password</label>
+				<label for="password"><form:label path="password">
+						<s:message code="security_login_form_password" />
+					</form:label></label>
 			</p>
 		</div>
 		<div class="grid_4 omega">

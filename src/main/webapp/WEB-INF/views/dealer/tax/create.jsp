@@ -8,7 +8,9 @@
 	<c:url var="createUrl" value="/dealer/defaultSettings/taxes/create" />
 	<form:form action="${createUrl}" modelAttribute="tax" method="post">
 		<div class="grid_6 alpha omega">
-			<jsp:include page="../../_notification.jsp" />
+			<jsp:include page="../../_notification.jsp">
+				<jsp:param value="tax" name="commandName" />
+			</jsp:include>
 		</div>
 		<div class="grid_2 alpha">
 			<p>
@@ -64,7 +66,7 @@
 		<div class="clear"></div>
 		<div class="grid_2 alpha">
 			<p>
-				<strong><form:label path="tax.maxTaxableAmt">
+				<strong><form:label path="maxTaxableAmt">
 						<s:message code="tax.maxTaxableAmt" />
 					</form:label></strong>
 			</p>

@@ -14,7 +14,9 @@
 		</div>
 		<div class="grid_2 alpha">
 			<p>
-				<strong>Dealer Name</strong>
+				<strong><form:label path="dealerName">
+						<s:message code="dealer.dealerName" />
+					</form:label></strong>
 			</p>
 		</div>
 		<div class="grid_4 omega">
@@ -23,7 +25,9 @@
 		<div class="clear"></div>
 		<div class="grid_2 alpha">
 			<p>
-				<strong>Street Address</strong>
+				<strong><form:label path="streetAddress">
+						<s:message code="dealer.streetAddress" />
+					</form:label></strong>
 			</p>
 		</div>
 		<div class="grid_4 omega">
@@ -32,7 +36,9 @@
 		<div class="clear"></div>
 		<div class="grid_2 alpha">
 			<p>
-				<strong>City</strong>
+				<strong><form:label path="city">
+						<s:message code="dealer.city" />
+					</form:label></strong>
 			</p>
 		</div>
 		<div class="grid_4 omega">
@@ -41,7 +47,9 @@
 		<div class="clear"></div>
 		<div class="grid_2 alpha">
 			<p>
-				<strong>State</strong>
+				<strong><form:label path="state">
+						<s:message code="dealer.state" />
+					</form:label></strong>
 			</p>
 		</div>
 		<div class="grid_4 omega">
@@ -50,7 +58,9 @@
 		<div class="clear"></div>
 		<div class="grid_2 alpha">
 			<p>
-				<strong>Zip</strong>
+				<strong><form:label path="zip">
+						<s:message code="dealer.zip" />
+					</form:label></strong>
 			</p>
 		</div>
 		<div class="grid_4 omega">
@@ -59,7 +69,9 @@
 		<div class="clear"></div>
 		<div class="grid_2 alpha">
 			<p>
-				<strong>Email</strong>
+				<strong><form:label path="mailId">
+						<s:message code="dealer.mailId" />
+					</form:label></strong>
 			</p>
 		</div>
 		<div class="grid_4 omega">
@@ -68,7 +80,9 @@
 		<div class="clear"></div>
 		<div class="grid_2 alpha">
 			<p>
-				<strong>Mobile No</strong>
+				<strong><form:label path="mobile">
+						<s:message code="dealer.mobile" />
+					</form:label></strong>
 			</p>
 		</div>
 		<div class="grid_4 omega">
@@ -77,14 +91,14 @@
 		<div class="clear"></div>
 		<div class="grid_2 alpha">
 			<p>
-				<strong>Login Id</strong>
+				<strong><form:label path="loginId">
+						<s:message code="dealer.loginId" />
+					</form:label></strong>
 			</p>
 		</div>
 		<div class="grid_4 omega">
 			<p>
 				<form:input path="loginId" size="30" />
-				<br />
-				<form:errors path="loginId" cssClass="error" />
 			</p>
 		</div>
 		<div id="loginAvailable" class="grid_4 push_5 alpha omega">
@@ -95,14 +109,14 @@
 		<div class="clear"></div>
 		<div class="grid_2 alpha">
 			<p>
-				<strong>Password</strong>
+				<strong><form:label path="password">
+						<s:message code="security_login_form_password" />
+					</form:label></strong>
 			</p>
 		</div>
 		<div class="grid_4 omega">
 			<p>
 				<form:password path="password" size="30" showPassword="true" />
-				<br />
-				<form:errors path="password" cssClass="error" />
 			</p>
 		</div>
 		<form:hidden path="id" />

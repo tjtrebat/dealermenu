@@ -7,7 +7,7 @@
 <div class="grid_6 prefix_3 suffix_3 alpha omega">
 	<div class="grid_2 alpha">
 		<p>
-			<strong>Dealer Name</strong>
+			<strong><s:message code="dealer.dealerName" /></strong>
 		</p>
 	</div>
 	<div class="grid_4 omega">
@@ -16,7 +16,7 @@
 	<div class="clear"></div>
 	<div class="grid_2 alpha">
 		<p>
-			<strong>Street Address</strong>
+			<strong><s:message code="dealer.streetAddress" /></strong>
 		</p>
 	</div>
 	<div class="grid_4 omega">
@@ -25,7 +25,7 @@
 	<div class="clear"></div>
 	<div class="grid_2 alpha">
 		<p>
-			<strong>City</strong>
+			<strong><s:message code="dealer.city" /></strong>
 		</p>
 	</div>
 	<div class="grid_4 omega">
@@ -34,7 +34,7 @@
 	<div class="clear"></div>
 	<div class="grid_2 alpha">
 		<p>
-			<strong>State</strong>
+			<strong><s:message code="dealer.state" /></strong>
 		</p>
 	</div>
 	<div class="grid_4 omega">
@@ -43,7 +43,7 @@
 	<div class="clear"></div>
 	<div class="grid_2 alpha">
 		<p>
-			<strong>Zip</strong>
+			<strong><s:message code="dealer.zip" /></strong>
 		</p>
 	</div>
 	<div class="grid_4 omega">
@@ -52,7 +52,7 @@
 	<div class="clear"></div>
 	<div class="grid_2 alpha">
 		<p>
-			<strong>Email</strong>
+			<strong><s:message code="dealer.mailId" /></strong>
 		</p>
 	</div>
 	<div class="grid_4 omega">
@@ -61,7 +61,7 @@
 	<div class="clear"></div>
 	<div class="grid_2 alpha">
 		<p>
-			<strong>Mobile no.</strong>
+			<strong><s:message code="dealer.mobile" /></strong>
 		</p>
 	</div>
 	<div class="grid_4 omega">

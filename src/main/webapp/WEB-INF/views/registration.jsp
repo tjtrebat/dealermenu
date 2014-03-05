@@ -13,7 +13,9 @@
 		</div>
 		<div class="grid_2 alpha">
 			<p>
-				<strong>Dealer Name</strong>
+				<strong><form:label path="dealerName">
+						<s:message code="dealer.dealerName" />
+					</form:label></strong>
 			</p>
 		</div>
 		<div class="grid_4 omega">
@@ -24,7 +26,9 @@
 		<div class="clear"></div>
 		<div class="grid_2 alpha">
 			<p>
-				<strong>Street Address</strong>
+				<strong><form:label path="streetAddress">
+						<s:message code="dealer.streetAddress" />
+					</form:label></strong>
 			</p>
 		</div>
 		<div class="grid_4 omega">
@@ -35,7 +39,9 @@
 		<div class="clear"></div>
 		<div class="grid_2 alpha">
 			<p>
-				<strong>City</strong>
+				<strong><form:label path="city">
+						<s:message code="dealer.city" />
+					</form:label></strong>
 			</p>
 		</div>
 		<div class="grid_4 omega">
@@ -46,7 +52,9 @@
 		<div class="clear"></div>
 		<div class="grid_2 alpha">
 			<p>
-				<strong>State</strong>
+				<strong><form:label path="state">
+						<s:message code="dealer.state" />
+					</form:label></strong>
 			</p>
 		</div>
 		<div class="grid_4 omega">
@@ -57,7 +65,9 @@
 		<div class="clear"></div>
 		<div class="grid_2 alpha">
 			<p>
-				<strong>Zip</strong>
+				<strong><form:label path="zip">
+						<s:message code="dealer.zip" />
+					</form:label></strong>
 			</p>
 		</div>
 		<div class="grid_4 omega">
@@ -68,7 +78,9 @@
 		<div class="clear"></div>
 		<div class="grid_2 alpha">
 			<p>
-				<strong>E-mail</strong>
+				<strong><form:label path="mailId">
+						<s:message code="dealer.mailId" />
+					</form:label></strong>
 			</p>
 		</div>
 		<div class="grid_4 omega">
@@ -79,7 +91,9 @@
 		<div class="clear"></div>
 		<div class="grid_2 alpha">
 			<p>
-				<strong>Mobile no.</strong>
+				<strong><form:label path="mobile">
+						<s:message code="dealer.mobile" />
+					</form:label></strong>
 			</p>
 		</div>
 		<div class="grid_4 omega">
@@ -90,7 +104,8 @@
 		<div class="clear"></div>
 		<div class="grid_2 prefix_2 suffix_2 alpha omega">
 			<p>
-				<input type="submit" value="Submit" />
+				<s:message var="submitTxt" code="button_submit" />
+				<input type="submit" value="${submitTxt}" />
 			</p>
 		</div>
 	</form:form>

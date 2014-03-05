@@ -15,7 +15,7 @@
 			<div id="tblHeader" class="grid_10 alpha omega">
 				<div class="grid_8 alpha">
 					<p>
-						<strong>Dealer Name</strong>
+						<strong><s:message code="dealer.dealerName" /></strong>
 					</p>
 				</div>
 				<div class="grid_1">
@@ -52,7 +52,8 @@
 				</c:forEach>
 				<div class="grid_2 prefix_4 suffix_4 alpha omega">
 					<p>
-						<input type="submit" value="Submit" />
+						<s:message var="submitTxt" code="button_submit" />
+						<input type="submit" value="${submitTxt}" />
 					</p>
 				</div>
 			</div>

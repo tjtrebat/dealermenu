@@ -21,22 +21,22 @@
 				</div>
 				<div class="grid_1">
 					<p class="alignCenter">
-						<strong>Preferred</strong>
+						<strong><s:message code="packages.preferredPackageName" /></strong>
 					</p>
 				</div>
 				<div class="grid_1">
 					<p class="alignCenter">
-						<strong>Premium</strong>
+						<strong><s:message code="packages.premiumPackageName" /></strong>
 					</p>
 				</div>
 				<div class="grid_1">
 					<p class="alignCenter">
-						<strong>Value</strong>
+						<strong><s:message code="packages.valuePackageName" /></strong>
 					</p>
 				</div>
 				<div class="grid_1 alpha omega">
 					<p class="alignCenter">
-						<strong>Economy</strong>
+						<strong><s:message code="packages.economyPackageName" /></strong>
 					</p>
 				</div>
 			</div>

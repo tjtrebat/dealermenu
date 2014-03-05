@@ -12,7 +12,7 @@
 			<div class="grid_2 alpha">
 				<p>
 					<strong><form:label path="templateName">
-							<s:message code="dealtemplate.templateName" />
+							<s:message code="dealTemplate.templateName" />
 						</form:label></strong>
 				</p>
 			</div>
@@ -25,7 +25,7 @@
 			<div class="grid_2 alpha">
 				<p>
 					<strong><form:label path="type">
-							<s:message code="dealtemplate.type" />
+							<s:message code="dealTemplate.type" />
 						</form:label></strong>
 				</p>
 			</div>
@@ -44,7 +44,7 @@
 			<div class="grid_2 alpha">
 				<p>
 					<strong><form:label path="createdBy">
-							<s:message code="dealtemplate.createdBy" />
+							<s:message code="dealTemplate.createdBy" />
 						</form:label></strong>
 				</p>
 			</div>

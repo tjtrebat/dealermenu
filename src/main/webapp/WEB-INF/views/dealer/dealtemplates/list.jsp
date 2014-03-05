@@ -33,7 +33,7 @@
 				</div>
 				<div class="grid_2">
 					<p>
-						<strong><s:message code="dealtemplate.createdBy" /></strong>
+						<strong><s:message code="dealTemplate.createdBy" /></strong>
 					</p>
 				</div>
 				<div class="grid_1">

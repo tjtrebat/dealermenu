@@ -11,7 +11,9 @@
 		<div class="grid_6">
 			<div class="grid_2 alpha">
 				<p>
-					<strong>Deal Template Name</strong>
+					<strong><form:label path="templateName">
+							<s:message code="dealtemplate.templateName" />
+						</form:label></strong>
 				</p>
 			</div>
 			<div class="grid_4 omega">
@@ -22,7 +24,9 @@
 			<div class="clear"></div>
 			<div class="grid_2 alpha">
 				<p>
-					<strong>Deal Type</strong>
+					<strong><form:label path="type">
+							<s:message code="dealtemplate.type" />
+						</form:label></strong>
 				</p>
 			</div>
 			<div class="grid_4 omega">
@@ -39,7 +43,9 @@
 			<div class="clear"></div>
 			<div class="grid_2 alpha">
 				<p>
-					<strong>Created By</strong>
+					<strong><form:label path="createdBy">
+							<s:message code="dealtemplate.createdBy" />
+						</form:label></strong>
 				</p>
 			</div>
 			<div class="grid_4 omega">

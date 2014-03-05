@@ -15,7 +15,7 @@ public class Tax implements Serializable {
 
     /**
      */
-	@NotBlank(message = "Profile name may not be empty")
+	@NotBlank
     private String profileName;
 
     /**

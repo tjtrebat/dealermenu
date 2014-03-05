@@ -22,47 +22,47 @@
 			<div id="tblHeader" class="grid_12 alpha omega">
 				<div class="grid_2 alpha">
 					<p>
-						<strong>Product Name</strong>
+						<strong><s:message code="product.productName" /></strong>
 					</p>
 				</div>
 				<div class="grid_2">
 					<p>
-						<strong>Provider</strong>
+						<strong><s:message code="product.provider" /></strong>
 					</p>
 				</div>
 				<div class="grid_2">
 					<p>
-						<strong>Category</strong>
+						<strong><s:message code="product.productCategory" /></strong>
 					</p>
 				</div>
 				<div class="grid_1">
 					<p class="alignCenter">
-						<strong>Finance</strong>
+						<strong>><s:message code="product.isFinance" /></strong>
 					</p>
 				</div>
 				<div class="grid_1">
 					<p class="alignCenter">
-						<strong>Cash</strong>
+						<strong><s:message code="product.isCash" /></strong>
 					</p>
 				</div>
 				<div class="grid_1">
 					<p class="alignCenter">
-						<strong>Lease</strong>
+						<strong><s:message code="product.isLease" /></strong>
 					</p>
 				</div>
 				<div class="grid_1">
 					<p class="alignCenter">
-						<strong>Balloon</strong>
+						<strong><s:message code="product.isBalloon" /></strong>
 					</p>
 				</div>
 				<div class="grid_1">
 					<p class="alignCenter">
-						<strong>Edit</strong>
+						<strong><s:message code="button_edit" /></strong>
 					</p>
 				</div>
 				<div class="grid_1 omega">
 					<p class="alignCenter">
-						<strong>Delete</strong>
+						<strong><s:message code="button_delete" /></strong>
 					</p>
 				</div>
 			</div>
@@ -117,7 +117,8 @@
 				</c:forEach>
 				<div class="grid_2 prefix_5 suffix_5 alpha omega">
 					<p class="alignCenter">
-						<input type="submit" value="Delete" />
+						<s:message var="deleteTxt" code="button_delete" />
+						<input type="submit" value="${deleteTxt}" />
 					</p>
 				</div>
 			</div>

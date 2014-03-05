@@ -27,7 +27,7 @@ public class Deal {
 
 	/**
      */
-	@NotBlank(message="Buyer name may not be empty")
+	@NotBlank
 	private String buyerName;
 
 	/**

@@ -83,17 +83,17 @@
 		<div id="tblHeader" class="grid_8 alpha omega">
 			<div class="grid_2 alpha">
 				<p>
-					<strong>Fee Name</strong>
+					<strong><s:message code="fee.feeName" /></strong>
 				</p>
 			</div>
 			<div class="grid_2">
 				<p>
-					<strong>Display Name</strong>
+					<strong><s:message code="fee.displayName" /></strong>
 				</p>
 			</div>
 			<div class="grid_2">
 				<p>
-					<strong>Default Value</strong>
+					<strong><s:message code="fee.defaultValue" /></strong>
 				</p>
 			</div>
 			<div class="grid_2 omega">

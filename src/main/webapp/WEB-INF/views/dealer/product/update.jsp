@@ -8,13 +8,17 @@
 	<c:url var="updateUrl" value="/dealer/defaultSettings/products/update" />
 	<form:form action="${updateUrl}" modelAttribute="product" method="post">
 		<div class="grid_6 alpha omega">
-			<jsp:include page="../../_notification.jsp" />
+			<jsp:include page="../../_notification.jsp">
+				<jsp:param value="product" name="commandName" />
+			</jsp:include>
 		</div>
 		<form:hidden path="id" />
 		<div class="grid_6">
 			<div class="grid_2 alpha">
 				<p>
-					<strong>Product Name</strong>
+					<strong><form:label path="productName">
+							<s:message code="product.productName" />
+						</form:label></strong>
 				</p>
 			</div>
 			<div class="grid_4 omega">
@@ -25,15 +29,17 @@
 			<div class="clear"></div>
 			<div class="grid_2 alpha">
 				<p>
-					<strong>Provider</strong>
+					<strong><form:label path="provider">
+							<s:message code="product.provider" />
+						</form:label></strong>
 				</p>
 			</div>
 			<div class="grid_4 omega">
 				<p>
 					<form:select path="provider">
-						<c:forEach var="providerItem" items="${providers}">
-							<option value="${providerItem.id}"
-								<c:if test="${providerItem.id eq product.provider.id}">selected</c:if>>${providerItem.providerName}</option>
+						<c:forEach items="${providers}" var="provider">
+							<option value="${provider.id}"
+								<c:if test="${product.provider.id eq provider.id}"> selected="selected"</c:if>>${provider.providerName}</option>
 						</c:forEach>
 					</form:select>
 				</p>
@@ -41,16 +47,17 @@
 			<div class="clear"></div>
 			<div class="grid_2 alpha">
 				<p>
-					<strong>Product Category</strong>
+					<strong><form:label path="productCategory">
+							<s:message code="product.productCategory" />
+						</form:label></strong>
 				</p>
 			</div>
 			<div class="grid_4 omega">
 				<p>
-					<form:select path="productCategory" itemValue="id"
-						itemLabel="productCategoryName">
-						<c:forEach var="productCategoryItem" items="${productCategories}">
-							<option value="${productCategoryItem.id}"
-								<c:if test="${productCategoryItem.id eq product.productCategory.id}">selected</c:if>>${productCategoryItem.productCategoryName}</option>
+					<form:select path="productCategory">
+						<c:forEach items="${productCategories}" var="productCategory">
+							<option value="${productCategory.id}"
+								<c:if test="${product.productCategory.id eq productCategory.id}"> selected="selected"</c:if>>${productCategory.productCategoryName}</option>
 						</c:forEach>
 					</form:select>
 				</p>
@@ -58,7 +65,9 @@
 			<div class="clear"></div>
 			<div class="grid_2 alpha">
 				<p>
-					<strong>Description</strong>
+					<strong><form:label path="description">
+							<s:message code="product.description" />
+						</form:label></strong>
 				</p>
 			</div>
 			<div class="grid_4 omega">
@@ -69,7 +78,9 @@
 			<div class="clear"></div>
 			<div class="grid_2 alpha">
 				<p>
-					<strong>Maximum Price</strong>
+					<strong><form:label path="maxPrice">
+							<s:message code="product.maxPrice" />
+						</form:label></strong>
 				</p>
 			</div>
 			<div class="grid_4 omega">
@@ -80,7 +91,9 @@
 			<div class="clear"></div>
 			<div class="grid_2 alpha">
 				<p>
-					<strong>Default Price</strong>
+					<strong><form:label path="defaultPrice">
+							<s:message code="product.defaultPrice" />
+						</form:label></strong>
 				</p>
 			</div>
 			<div class="grid_4 omega">
@@ -91,7 +104,9 @@
 			<div class="clear"></div>
 			<div class="grid_2 alpha">
 				<p>
-					<strong>Minimum Price</strong>
+					<strong><form:label path="minPrice">
+							<s:message code="product.minPrice" />
+						</form:label></strong>
 				</p>
 			</div>
 			<div class="grid_4 omega">
@@ -102,7 +117,9 @@
 			<div class="clear"></div>
 			<div class="grid_2 alpha">
 				<p>
-					<strong>Cost</strong>
+					<strong><form:label path="cost">
+							<s:message code="product.cost" />
+						</form:label></strong>
 				</p>
 			</div>
 			<div class="grid_4 omega">
@@ -114,21 +131,22 @@
 			<div class="grid_4 prefix_1 suffix_1 alpha omega">
 				<div class="grid_2 alpha">
 					<form:checkbox path="isFinance" />
-					<strong>Finance</strong><br />
+					<strong><s:message code="product.isFinance" /></strong><br />
 					<form:checkbox path="isLease" />
-					<strong>Lease</strong><br />
+					<strong><s:message code="product.isLease" /></strong><br />
 				</div>
 				<div class="grid_2 omega">
 					<form:checkbox path="isCash" />
-					<strong>Cash</strong><br />
+					<strong><s:message code="product.isCash" /></strong><br />
 					<form:checkbox path="isBalloon" />
-					<strong>Balloon</strong><br />
+					<strong><s:message code="product.isBalloon" /></strong><br />
 				</div>
 			</div>
 			<div class="clear"></div>
 			<div class="grid_2 prefix_2 suffix_2 alpha omega">
 				<p class="alignCenter">
-					<input type="submit" value="Submit" />
+					<s:message var="submitTxt" code="button_submit" />
+					<input type="submit" value="${submitTxt}" />
 				</p>
 			</div>
 		</div>

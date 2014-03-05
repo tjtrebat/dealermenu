@@ -22,7 +22,11 @@
 			value="${deal.dealTemplate.id}" />
 		<div class="grid_4 alpha">
 			<div class="grid_2 alpha">
-				<p class="alignRight">Buyer Name</p>
+				<p class="alignRight">
+					<form:label path="buyerName">
+						<s:message code="deal.buyerName" />
+					</form:label>
+				</p>
 			</div>
 			<div class="grid_2 omega">
 				<p>
@@ -31,7 +35,11 @@
 			</div>
 			<div class="clear"></div>
 			<div class="grid_2 alpha">
-				<p class="alignRight">Stock #</p>
+				<p class="alignRight">
+					<form:label path="stock">
+						<s:message code="deal.stock" />
+					</form:label>
+				</p>
 			</div>
 			<div class="grid_2 omega">
 				<p>
@@ -41,7 +49,11 @@
 		</div>
 		<div class="grid_4">
 			<div class="grid_2 alpha">
-				<p class="alignRight">Vehicle Type</p>
+				<p class="alignRight">
+					<form:label path="vehicleType">
+						<s:message code="deal.vehicleType" />
+					</form:label>
+				</p>
 			</div>
 			<div class="grid_2 omega">
 				<p>
@@ -50,7 +62,11 @@
 			</div>
 			<div class="clear"></div>
 			<div class="grid_2 alpha">
-				<p class="alignRight">VIN</p>
+				<p class="alignRight">
+					<form:label path="vin">
+						<s:message code="deal.vin" />
+					</form:label>
+				</p>
 			</div>
 			<div class="grid_2 omega">
 				<p>
@@ -60,7 +76,11 @@
 		</div>
 		<div class="grid_4 omega">
 			<div class="grid_2 alpha">
-				<p class="alignRight">Mileage</p>
+				<p class="alignRight">
+					<form:label path="mileage">
+						<s:message code="deal.mileage" />
+					</form:label>
+				</p>
 			</div>
 			<div class="grid_2 omega">
 				<p>
@@ -92,7 +112,11 @@
 			<div id="tblBody" class="grid_12 alpha omega">
 				<div class="grid_4 alpha">
 					<div class="grid_2 alpha">
-						<p class="alignRight">Selling Price</p>
+						<p class="alignRight">
+							<form:label path="sellingPrice">
+								<s:message code="deal.sellingPrice" />
+							</form:label>
+						</p>
 					</div>
 					<div class="grid_2 omega">
 						<p>
@@ -101,7 +125,11 @@
 					</div>
 					<div class="clear"></div>
 					<div class="grid_2 alpha">
-						<p class="alignRight">Trade</p>
+						<p class="alignRight">
+							<form:label path="trade">
+								<s:message code="deal.trade" />
+							</form:label>
+						</p>
 					</div>
 					<div class="grid_2 omega">
 						<p>
@@ -110,7 +138,11 @@
 					</div>
 					<div class="clear"></div>
 					<div class="grid_2 alpha">
-						<p class="alignRight">Payoff</p>
+						<p class="alignRight">
+							<form:label path="payoff">
+								<s:message code="deal.payoff" />
+							</form:label>
+						</p>
 					</div>
 					<div class="grid_2 omega">
 						<p>
@@ -119,7 +151,11 @@
 					</div>
 					<div class="clear"></div>
 					<div class="grid_2 alpha">
-						<p class="alignRight">Customer Cash</p>
+						<p class="alignRight">
+							<form:label path="customerCash">
+								<s:message code="deal.customerCash" />
+							</form:label>
+						</p>
 					</div>
 					<div class="grid_2 omega">
 						<p>
@@ -128,7 +164,11 @@
 					</div>
 					<div class="clear"></div>
 					<div class="grid_2 alpha">
-						<p class="alignRight">Rebate</p>
+						<p class="alignRight">
+							<form:label path="rebate">
+								<s:message code="deal.rebate" />
+							</form:label>
+						</p>
 					</div>
 					<div class="grid_2 omega">
 						<p>
@@ -137,7 +177,11 @@
 					</div>
 					<div class="clear"></div>
 					<div class="grid_2 alpha">
-						<p class="alignRight">Fees</p>
+						<p class="alignRight">
+							<form:label path="fees">
+								<s:message code="deal.fees" />
+							</form:label>
+						</p>
 					</div>
 					<div class="grid_2 omega">
 						<p>
@@ -146,7 +190,11 @@
 					</div>
 					<div class="clear"></div>
 					<div class="grid_2 alpha">
-						<p class="alignRight">Tax Profile</p>
+						<p class="alignRight">
+							<form:label path="tax">
+								<s:message code="deal.tax" />
+							</form:label>
+						</p>
 					</div>
 					<div class="grid_2 omega">
 						<p>
@@ -253,7 +301,11 @@
 					</div>
 					<div class="clear"></div>
 					<div class="grid_2 alpha">
-						<p class="alignRight">Total Amt. Financed</p>
+						<p class="alignRight">
+							<form:label path="baseAmtFinanced">
+								<s:message code="deal.baseAmtFinanced" />
+							</form:label>
+						</p>
 					</div>
 					<div class="grid_2 omega">
 						<p>
@@ -264,7 +316,11 @@
 				</div>
 				<div class="grid_4 omega">
 					<div class="grid_2 alpha">
-						<p class="alignRight">Packages</p>
+						<p class="alignRight">
+							<form:label path="packageType">
+								<s:message code="deal.packageType" />
+							</form:label>
+						</p>
 					</div>
 					<div class="grid_2 omega">
 						<p>
@@ -338,7 +394,8 @@
 					<form:button name="isSigned" value="1">Sign</form:button>
 				</div>
 				<div class="grid_1 omega">
-					<input type="submit" value="Save" />
+					<s:message var="saveTxt" code="button_save" />
+					<input type="submit" value="${saveTxt}" />
 				</div>
 			</div>
 		</div>

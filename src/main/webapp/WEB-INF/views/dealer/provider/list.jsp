@@ -14,7 +14,9 @@
 		<div class="grid_6">
 			<div class="grid_2 alpha">
 				<p class="alignRight">
-					<strong>Provider Name</strong>
+					<strong><form:label path="providerName">
+							<s:message code="provider.providerName" />
+						</form:label></strong>
 				</p>
 			</div>
 			<div class="grid_4 omega">
@@ -43,7 +45,7 @@
 				</div>
 				<div class="grid_2 omega">
 					<p class="alignCenter">
-						<strong>Delete</strong>
+						<strong><s:message code="button_delete" /></strong>
 					</p>
 				</div>
 			</div>
@@ -65,7 +67,8 @@
 				</c:forEach>
 				<div class="grid_2 prefix_2 suffix_2 alpha omega">
 					<p class="alignCenter">
-						<input type="submit" value="Submit" />
+						<s:message var="submitTxt" code="button_submit" />
+						<input type="submit" value="${submitTxt}" />
 					</p>
 				</div>
 			</div>

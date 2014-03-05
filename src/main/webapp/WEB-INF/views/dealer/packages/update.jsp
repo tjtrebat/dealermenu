@@ -19,10 +19,14 @@
 		<div class="grid_4 omega">
 			<p>
 				<select name="packageType">
-					<option value="0">Preferred</option>
-					<option value="1">Premium</option>
-					<option value="2">Value</option>
-					<option value="3">Economy</option>
+					<option value="0"><s:message
+							code="packages.preferredPackageName" /></option>
+					<option value="1"><s:message
+							code="packages.premiumPackageName" /></option>
+					<option value="2"><s:message
+							code="packages.valuePackageName" /></option>
+					<option value="3"><s:message
+							code="packages.economyPackageName" /></option>
 				</select>
 			</p>
 		</div>
@@ -69,14 +73,16 @@
 					<p>1</p>
 				</div>
 				<div class="grid_2">
-					<p>Preferred</p>
+					<p>
+						<s:message code="packages.preferredPackageName" />
+					</p>
 				</div>
 				<div class="grid_2 omega">
 					<p>
 						<c:choose>
 							<c:when test="${empty packages.preferredPackageName}">
-							Preferred 
-						</c:when>
+								<s:message code="packages.preferredPackageName" />
+							</c:when>
 							<c:otherwise>
 								${packages.preferredPackageName}
 							</c:otherwise>
@@ -89,14 +95,16 @@
 					<p>2</p>
 				</div>
 				<div class="grid_2">
-					<p>Premium</p>
+					<p>
+						<s:message code="packages.premiumPackageName" />
+					</p>
 				</div>
 				<div class="grid_2 omega">
 					<p>
 						<c:choose>
 							<c:when test="${empty packages.premiumPackageName}">
-							Premium
-						</c:when>
+								<s:message code="packages.premiumPackageName" />
+							</c:when>
 							<c:otherwise>
 								${packages.premiumPackageName}
 							</c:otherwise>
@@ -109,14 +117,16 @@
 					<p>3</p>
 				</div>
 				<div class="grid_2">
-					<p>Value</p>
+					<p>
+						<s:message code="packages.valuePackageName" />
+					</p>
 				</div>
 				<div class="grid_2 omega">
 					<p>
 						<c:choose>
 							<c:when test="${empty packages.valuePackageName}">
-							Value
-						</c:when>
+								<s:message code="packages.valuePackageName" />
+							</c:when>
 							<c:otherwise>
 								${packages.valuePackageName}
 							</c:otherwise>
@@ -129,14 +139,16 @@
 					<p>4</p>
 				</div>
 				<div class="grid_2">
-					<p>Economy</p>
+					<p>
+						<s:message code="packages.economyPackageName" />
+					</p>
 				</div>
 				<div class="grid_2 omega">
 					<p>
 						<c:choose>
 							<c:when test="${empty packages.economyPackageName}">
-							Economy
-						</c:when>
+								<s:message code="packages.economyPackageName" />
+							</c:when>
 							<c:otherwise>
 								${packages.economyPackageName}
 							</c:otherwise>

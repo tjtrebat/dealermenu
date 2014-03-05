@@ -18,7 +18,7 @@ import org.springframework.roo.addon.tostring.RooToString;
 public class ProductCategory implements Serializable {
 
 	@Column(name = "vProductCategory")
-	@NotBlank(message = "Product category name may not be empty")
+	@NotBlank
 	private String productCategoryName;
 
 	@ManyToOne

@@ -21,7 +21,7 @@
 			<div id="tblHeader" class="grid_6 alpha omega">
 				<div class="grid_2 alpha">
 					<p>
-						<strong>Profile Name</strong>
+						<strong><s:message code="tax.profileName" /></strong>
 					</p>
 				</div>
 				<div class="grid_2">
@@ -31,12 +31,12 @@
 				</div>
 				<div class="grid_1">
 					<p class="alignCenter">
-						<strong>Edit</strong>
+						<strong><s:message code="button_edit" /></strong>
 					</p>
 				</div>
 				<div class="grid_1 omega">
 					<p class="alignCenter">
-						<strong>Delete</strong>
+						<strong><s:message code="button_delete" /></strong>
 					</p>
 				</div>
 			</div>
@@ -69,7 +69,8 @@
 				</c:forEach>
 				<div class="grid_2 prefix_2 suffix_2 alpha omega">
 					<p class="alignCenter">
-						<input type="submit" value="Submit" />
+						<s:message var="submitTxt" code="button_submit" />
+						<input type="submit" value="${submitTxt}" />
 					</p>
 				</div>
 			</div>

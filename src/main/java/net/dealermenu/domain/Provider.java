@@ -19,7 +19,7 @@ public class Provider implements Serializable {
 
 	/**
      */
-	@NotBlank(message = "Provider name may not be empty")
+	@NotBlank
 	private String providerName;
 
 	/**

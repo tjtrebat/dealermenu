@@ -15,7 +15,9 @@
 		<div class="grid_6">
 			<div class="grid_2 alpha">
 				<p class="alignRight">
-					<strong>Product Category Name</strong>
+					<strong><form:label path="productCategoryName">
+							<s:message code="productcategory.productCategoryName" />
+						</form:label></strong>
 				</p>
 			</div>
 			<div class="grid_4 omega">
@@ -66,7 +68,8 @@
 				</c:forEach>
 				<div class="grid_2 prefix_2 suffix_2 alpha omega">
 					<p class="alignCenter">
-						<input type="submit" value="Submit" />
+						<s:message var="submitTxt" code="button_submit" />
+						<input type="submit" value="${submitTxt}" />
 					</p>
 				</div>
 			</div>

@@ -13,7 +13,9 @@
 		<form:hidden path="id" />
 		<div class="grid_2 alpha">
 			<p>
-				<strong>Profile Name</strong>
+				<strong><form:label path="profileName">
+						<s:message code="tax.profileName" />
+					</form:label></strong>
 			</p>
 		</div>
 		<div class="grid_4 omega">
@@ -24,7 +26,9 @@
 		<div class="clear"></div>
 		<div class="grid_2 alpha">
 			<p>
-				<strong>Tax Type</strong>
+				<strong><form:label path="taxType">
+						<s:message code="tax.taxType" />
+					</form:label></strong>
 			</p>
 		</div>
 		<div class="grid_4 omega">
@@ -35,7 +39,9 @@
 		<div class="clear"></div>
 		<div class="grid_2 alpha">
 			<p>
-				<strong>Rate</strong>
+				<strong><form:label path="rate">
+						<s:message code="tax.rate" />
+					</form:label></strong>
 			</p>
 		</div>
 		<div class="grid_4 omega">
@@ -46,7 +52,9 @@
 		<div class="clear"></div>
 		<div class="grid_2 alpha">
 			<p>
-				<strong>Starting Taxable Amount</strong>
+				<strong><form:label path="startingTaxableAmt">
+						<s:message code="tax.startingTaxableAmt" />
+					</form:label></strong>
 			</p>
 		</div>
 		<div class="grid_4 omega">
@@ -57,7 +65,9 @@
 		<div class="clear"></div>
 		<div class="grid_2 alpha">
 			<p>
-				<strong>Max Taxable Amount</strong>
+				<strong><form:label path="tax.maxTaxableAmt">
+						<s:message code="tax.maxTaxableAmt" />
+					</form:label></strong>
 			</p>
 		</div>
 		<div class="grid_4 omega">
@@ -68,7 +78,9 @@
 		<div class="clear"></div>
 		<div class="grid_2 alpha">
 			<p>
-				<strong>Max Total Tax</strong>
+				<strong><form:label path="maxTotalTax">
+						<s:message code="tax.maxTotalTax" />
+					</form:label></strong>
 			</p>
 		</div>
 		<div class="grid_4 omega">
@@ -79,7 +91,9 @@
 		<div class="clear"></div>
 		<div class="grid_2 alpha">
 			<p>
-				<strong>Default</strong>
+				<strong><form:label path="isDefault">
+						<s:message code="tax.isDefault" />
+					</form:label></strong>
 			</p>
 		</div>
 		<div class="grid_4 omega">
@@ -89,9 +103,11 @@
 		</div>
 		<div class="clear"></div>
 		<div class="grid_2 prefix_2 suffix_2 alpha omega">
-			<p>
-				<input type="submit" value="Submit" />
+			<p class="alignCenter">
+				<s:message var="submitTxt" code="button_submit" />
+				<input type="submit" value="${submitTxt}" />
 			</p>
 		</div>
+		<div class="clear"></div>
 	</form:form>
 </div>

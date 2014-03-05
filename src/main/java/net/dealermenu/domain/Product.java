@@ -17,7 +17,7 @@ import org.springframework.roo.addon.tostring.RooToString;
 public class Product implements Serializable {
 
 	@Column(name = "vProductName")
-	@NotBlank(message = "Product name may not be empty")
+	@NotBlank
 	private String productName;
 
 	@Column(name = "vProductDescription")
@@ -50,7 +50,7 @@ public class Product implements Serializable {
 	/**
      */
 	@ManyToOne
-	@NotNull(message = "Provider may not be null")
+	@NotNull
 	private Provider provider;
 
 	@ManyToOne

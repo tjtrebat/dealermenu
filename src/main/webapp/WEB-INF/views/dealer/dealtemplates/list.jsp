@@ -33,7 +33,7 @@
 				</div>
 				<div class="grid_2">
 					<p>
-						<strong>Created By</strong>
+						<strong><s:message code="dealtemplate.createdBy" /></strong>
 					</p>
 				</div>
 				<div class="grid_1">
@@ -92,7 +92,8 @@
 				</c:forEach>
 				<div class="grid_2 prefix_4 suffix_4 alpha omega">
 					<p class="alignCenter">
-						<input type="submit" value="Submit" />
+						<s:message var="submitTxt" code="button_submit" />
+						<input type="submit" value="${submitTxt}" />
 					</p>
 				</div>
 			</div>
